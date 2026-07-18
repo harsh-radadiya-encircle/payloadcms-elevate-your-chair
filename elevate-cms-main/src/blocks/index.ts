@@ -1,0 +1,25 @@
+import { CampaignFormEmbed } from '@/blocks/CampaignFormEmbed';
+import { ContentSection } from '@/blocks/ContentSection';
+import { MultiImageContent } from '@/blocks/MultiImageContent';
+import { EnquiryForm } from '@/blocks/EnquiryForm';
+import { ThankYou } from '@/blocks/ThankYou';
+import { HeroSlider } from '@/blocks/HeroSlider';
+import { SplitContent } from '@/blocks/SplitContent';
+import { AppPromo } from '@/blocks/AppPromo';
+import { TestimonialsSlider } from '@/blocks/TestimonialsSlider';
+import { StagesSection } from '@/blocks/StagesSection';
+import { FeatureCards } from '@/blocks/FeatureCards';
+import { PricingSection } from '@/blocks/PricingSection';
+import { PageBanner } from '@/blocks/PageBanner';
+import { ImageCardsSection } from '@/blocks/ImageCardsSection';
+import { StorySection } from '@/blocks/StorySection';
+import { FaqSection } from '@/blocks/FaqSection';
+import { ComparisonTable } from '@/blocks/ComparisonTable';
+import { ImageGridSection } from '@/blocks/ImageGridSection';
+import { CenteredTextSection } from '@/blocks/CenteredTextSection';
+import { FeaturedBlogPost } from '@/blocks/FeaturedBlogPost';
+import { BlogCategoryGrid } from '@/blocks/BlogCategoryGrid';
+import { BlogFilterGrid } from '@/blocks/BlogFilterGrid';
+import { ContactInformation } from '@/blocks/ContactInformation';
+
+export const blocks = [CampaignFormEmbed, ContentSection, MultiImageContent, EnquiryForm, ThankYou, HeroSlider, SplitContent, AppPromo, TestimonialsSlider, StagesSection, FeatureCards, PricingSection, PageBanner, ImageCardsSection, StorySection, FaqSection, ComparisonTable, ImageGridSection, CenteredTextSection, FeaturedBlogPost, BlogCategoryGrid, BlogFilterGrid, ContactInformation];

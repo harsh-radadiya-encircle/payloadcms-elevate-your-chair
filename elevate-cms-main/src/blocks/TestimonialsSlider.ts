@@ -1,0 +1,80 @@
+import type { Block } from 'payload';
+
+export const TestimonialsSlider: Block = {
+  slug: 'testimonials-slider',
+  imageURL: '/thumbnails/TestimonialsSlider-block.png',
+  imageAltText: 'Testimonials Slider Block Thumbnail',
+  interfaceName: 'TestimonialsSliderBlock',
+  labels: {
+    singular: 'Testimonials Slider',
+    plural: 'Testimonials Sliders',
+  },
+  fields: [
+    {
+      name: 'preHeading',
+      type: 'text',
+      label: 'Normal Heading (e.g. "IN-PERSON")',
+    },
+    {
+      name: 'mainHeading',
+      type: 'text',
+      label: 'Bold Heading (e.g. "LEARNING")',
+      required: true,
+      defaultValue: 'LEARNING',
+    },
+    {
+      name: 'backgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Background Image (Optional)',
+    },
+    {
+      name: 'testimonials',
+      type: 'array',
+      label: 'Testimonials',
+      minRows: 1,
+      fields: [
+        {
+          name: 'mediaType',
+          type: 'radio',
+          label: 'Media Type',
+          options: [
+            { label: 'None', value: 'none' },
+            { label: 'Image', value: 'image' },
+            { label: 'Video', value: 'video' },
+          ],
+          defaultValue: 'none',
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Cover Image',
+          admin: {
+            condition: (_, siblingData) => siblingData.mediaType === 'image' || siblingData.mediaType === 'video',
+          },
+        },
+        {
+          name: 'videoUrl',
+          type: 'text',
+          label: 'Video URL (e.g. YouTube/Vimeo Link)',
+          admin: {
+            condition: (_, siblingData) => siblingData.mediaType === 'video',
+          },
+        },
+        {
+          name: 'quote',
+          type: 'textarea',
+          label: 'Quote',
+          required: true,
+        },
+        {
+          name: 'name',
+          type: 'text',
+          label: 'Name',
+          required: true,
+        },
+      ],
+    },
+  ],
+};

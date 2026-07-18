@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/* 
+  Custom styling for Lexical Rich Text output
+  Applied in components/sections/ContentSection.tsx
+*/
+.content-formatting {
+  /* Optimal reading width */
+  margin: 0 auto;
+}
+
+.content-formatting h1,
+.content-formatting h2,
+.content-formatting h3,
+.content-formatting h4,
+.content-formatting h5,
+.content-formatting h6 {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #1a1a1a;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.content-formatting h1 {
+  font-size: 2.25rem;
+}
+
+.content-formatting h2 {
+  font-size: 1.5rem;
+}
+
+.content-formatting h3 {
+  font-size: 1.25rem;
+}
+
+.content-formatting h4 {
+  font-size: 1.125rem;
+}
+
+.content-formatting h5 {
+  font-size: 1rem;
+}
+
+.content-formatting h6 {
+  font-size: 0.875rem;
+}
+
+.content-formatting p {
+  color: #666666;
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+  font-size: 0.875rem;
+  /* text-sm */
+}
+
+/* Base lists */
+.content-formatting ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #666666;
+  font-size: 0.875rem;
+}
+
+.content-formatting ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #666666;
+  font-size: 0.875rem;
+}
+
+.content-formatting li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+/* Ensure nested lists are spaced correctly */
+.content-formatting li ul,
+.content-formatting li ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.content-formatting a {
+  color: #1a1a1a;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.content-formatting a:hover {
+  opacity: 0.7;
+}
+
+.content-formatting strong,
+.content-formatting b {
+  font-weight: 700;
+  color: #1a1a1a;
+}

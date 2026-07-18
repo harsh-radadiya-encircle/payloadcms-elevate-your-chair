@@ -1,0 +1,191 @@
+"use client";
+
+import React, { useRef } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { getMedia } from "~/_utils/getMedia";
+import Image from "next/image";
+
+type Testimonial = {
+  mediaType?: 'none' | 'image' | 'video';
+  image?: any;
+  videoUrl?: string;
+  quote: string;
+  name: string;
+};
+
+type Props = {
+  backgroundImage?: any;
+  preHeading?: string;
+  mainHeading: string;
+  testimonials?: Testimonial[];
+};
+
+export const TestimonialsSlider: React.FC<Props> = ({
+  backgroundImage,
+  preHeading,
+  mainHeading,
+  testimonials,
+}) => {
+  const sliderRef = useRef<Slider | null>(null);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: false, // We use custom arrows
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+
+  const next = () => {
+    sliderRef.current?.slickNext();
+  };
+
+  const previous = () => {
+    sliderRef.current?.slickPrev();
+  };
+
+  const bgImageUrl = getMedia(backgroundImage);
+
+  return (
+    <section className="relative w-full py-20 px-6 overflow-hidden bg-[#fafafa]">
+      {/* Background Image & Overlay */}
+      {bgImageUrl && bgImageUrl !== "#" && (
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={bgImageUrl}
+            alt="Background"
+            fill
+            className="object-cover object-center opacity-30"
+            unoptimized={bgImageUrl.includes('localhost') || bgImageUrl.includes('127.0.0.1')}
+          />
+        </div>
+      )}
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Header Section */}
+        <div className="text-center mb-16 flex flex-col items-center">
+          <h2 className="text-3xl md:text-5xl uppercase tracking-wider mb-4 leading-tight text-[#1a1a1a]">
+            {preHeading && (
+              <span className="font-light mr-3">{preHeading}</span>
+            )}
+            <span className="font-bold">{mainHeading}</span>
+          </h2>
+        </div>
+
+        {/* Slider Container */}
+        {testimonials && testimonials.length > 0 && (
+          <div className="relative">
+            <Slider ref={sliderRef} {...settings} className="mx-[-10px]">
+              {testimonials.map((testimonial, idx) => {
+                const hasMedia = testimonial.mediaType === 'image' || testimonial.mediaType === 'video';
+                const imageUrl = hasMedia ? getMedia(testimonial.image) : null;
+                const isVideo = testimonial.mediaType === 'video';
+
+                return (
+                  <div key={idx} className="px-[10px]">
+                    <div className="bg-white p-6 flex flex-col items-center text-center relative h-full shadow-lg border border-gray-100">
+
+                      {/* Media Area */}
+                      {hasMedia && imageUrl && imageUrl !== "#" && (
+                        <div className="relative w-full aspect-[4/3] mb-8">
+                          <Image
+                            src={imageUrl}
+                            alt={testimonial.name}
+                            fill
+                            className="object-cover border-4 border-white shadow-sm"
+                            unoptimized={imageUrl.includes('localhost') || imageUrl.includes('127.0.0.1')}
+                          />
+                          {/* Play Button Overlay */}
+                          {isVideo && (
+                            <a
+                              href={testimonial.videoUrl || "#"}
+                              target={testimonial.videoUrl ? "_blank" : "_self"}
+                              rel="noopener noreferrer"
+                              className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors"
+                            >
+                              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center pl-1 shadow-md">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="#1a1a1a">
+                                  <path d="M8 5v14l11-7z" />
+                                </svg>
+                              </div>
+                            </a>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Left Quote */}
+                      {!hasMedia && (
+                        <div className="absolute top-6 left-6 text-4xl text-gray-400 font-serif leading-none">
+                          &ldquo;
+                        </div>
+                      )}
+
+                      {/* Quote Text */}
+                      <p className="text-gray-500 text-sm md:text-base leading-relaxed mt-2 mb-8 px-4 flex-grow flex items-center justify-center relative">
+                        {hasMedia && <span className="font-serif text-xl absolute top-0 left-0 -mt-2 text-gray-400">&ldquo;</span>}
+                        {testimonial.quote}
+                        {hasMedia && <span className="font-serif text-xl absolute bottom-0 right-0 -mb-2 text-gray-400">&rdquo;</span>}
+                      </p>
+
+                      {/* Right Quote */}
+                      {!hasMedia && (
+                        <div className="absolute top-6 right-6 text-4xl text-gray-400 font-serif leading-none">
+                          &rdquo;
+                        </div>
+                      )}
+
+                      {/* Name */}
+                      <h4 className="text-xs md:text-sm font-bold uppercase tracking-widest text-[#1a1a1a] mt-auto">
+                        {testimonial.name}
+                      </h4>
+                    </div>
+                  </div>
+                );
+              })}
+            </Slider>
+
+            {/* Custom Arrows */}
+            <div className="flex justify-center items-center gap-6 mt-12">
+              <button
+                onClick={previous}
+                className="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-black transition-colors"
+                aria-label="Previous slide"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={next}
+                className="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-black transition-colors"
+                aria-label="Next slide"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
