@@ -781,6 +781,10 @@ export interface TestimonialsSliderBlock {
   preHeading?: string | null;
   mainHeading: string;
   backgroundImage?: (string | null) | Media;
+  /**
+   * e.g. #CDBEA5 (The gradient will be generated automatically)
+   */
+  cardBorderColor?: string | null;
   testimonials?:
     | {
         mediaType?: ('none' | 'image' | 'video') | null;
@@ -839,6 +843,10 @@ export interface FeatureCardsBlock {
   preHeading?: string | null;
   mainHeading: string;
   subHeading?: string | null;
+  /**
+   * e.g. #CDBEA5 (The gradient will be generated automatically)
+   */
+  cardBorderGradient?: string | null;
   cards?:
     | {
         icon: string | Media;
@@ -889,6 +897,9 @@ export interface PricingSectionBlock {
         description: string;
         isFeatured?: boolean | null;
         cardBackground?: string | null;
+        /**
+         * e.g. #CDBEA5 (The gradient will be generated automatically)
+         */
         cardBorder?: string | null;
         id?: string | null;
       }[]
@@ -1777,6 +1788,7 @@ export interface TestimonialsSliderBlockSelect<T extends boolean = true> {
   preHeading?: T;
   mainHeading?: T;
   backgroundImage?: T;
+  cardBorderColor?: T;
   testimonials?:
     | T
     | {
@@ -1830,6 +1842,7 @@ export interface FeatureCardsBlockSelect<T extends boolean = true> {
   preHeading?: T;
   mainHeading?: T;
   subHeading?: T;
+  cardBorderGradient?: T;
   cards?:
     | T
     | {
@@ -2690,7 +2703,7 @@ export interface SiteConfig {
   id: string;
   siteName: string;
   siteLink: string;
-  favicon: string | Media;
+  favicon?: (string | null) | Media;
   logo?: (string | null) | Media;
   icon?: (string | null) | Media;
   contact?: {

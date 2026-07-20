@@ -12,13 +12,13 @@ type Props = {
   buttons?: any[];
 };
 
-export const SplitContent: React.FC<Props> = ({ 
-  layout, 
-  image, 
-  preHeading, 
-  mainHeading, 
-  description_html, 
-  buttons 
+export const SplitContent: React.FC<Props> = ({
+  layout,
+  image,
+  preHeading,
+  mainHeading,
+  description_html,
+  buttons
 }) => {
   const isImageLeft = layout === "image-left";
   const imageUrl = getMedia(image);
@@ -26,18 +26,17 @@ export const SplitContent: React.FC<Props> = ({
   return (
     <section className="w-full bg-[#f8f8f8] py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12 lg:gap-24">
-        
+
         {/* Content Side */}
-        <div 
-          className={`flex-1 flex flex-col items-start ${
-            isImageLeft ? "md:order-2" : "md:order-1"
-          }`}
+        <div
+          className={`flex-1 flex flex-col items-start order-last ${isImageLeft ? "md:order-2" : "md:order-1"
+            }`}
         >
           {/* Vertical line and Text Container */}
           <div className="flex">
             {/* The vertical line (increased thickness) */}
-            <div className="w-[3px] bg-gray-300 mr-6 hidden md:block shrink-0"></div>
-            
+            <div className="w-[3px] bg-gray-300 mr-4 md:mr-6 shrink-0"></div>
+
             <div className="flex flex-col py-2">
               {/* Headings */}
               <h2 className="text-3xl md:text-5xl uppercase mb-6 leading-tight text-[#1a1a1a]">
@@ -49,7 +48,7 @@ export const SplitContent: React.FC<Props> = ({
 
               {/* Rich Text Description */}
               {description_html && (
-                <div 
+                <div
                   className="prose prose-sm md:prose-base prose-gray max-w-none mb-8 text-gray-600 space-y-4"
                   dangerouslySetInnerHTML={{ __html: description_html }}
                 />
@@ -60,7 +59,7 @@ export const SplitContent: React.FC<Props> = ({
                 <div className="flex flex-col sm:flex-row gap-4 mt-2">
                   {buttons.map((btn: any, btnIdx: number) => {
                     const isSolid = btn.style === "solid";
-                    
+
                     let bgColor, textColor, borderColor;
 
                     if (isSolid) {
@@ -99,10 +98,9 @@ export const SplitContent: React.FC<Props> = ({
         </div>
 
         {/* Image Side */}
-        <div 
-          className={`flex-1 w-full flex justify-center ${
-            isImageLeft ? "md:order-1" : "md:order-2"
-          }`}
+        <div
+          className={`flex-1 w-full flex justify-center order-first ${isImageLeft ? "md:order-1" : "md:order-2"
+            }`}
         >
           {imageUrl && imageUrl !== "#" ? (
             <div className="relative w-full aspect-[3/4] md:aspect-square lg:aspect-[4/5]">

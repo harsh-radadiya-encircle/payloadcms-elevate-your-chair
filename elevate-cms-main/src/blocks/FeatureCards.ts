@@ -25,6 +25,14 @@ export const FeatureCards: Block = {
       label: 'Sub-Heading Text (e.g. "A focus on wellness...")',
     },
     {
+      name: 'cardBorderGradient',
+      type: 'text',
+      label: 'Card Border Color (Hex)',
+      admin: {
+        description: 'e.g. #CDBEA5 (The gradient will be generated automatically)',
+      },
+    },
+    {
       name: 'cards',
       type: 'array',
       label: 'Cards',

@@ -114,8 +114,9 @@ export const PricingSection: Block = {
         {
           name: 'cardBorder',
           type: 'text',
-          label: 'Card Border Color (e.g. "#000000" or "#cdbfae")',
+          label: 'Card Border Color (Hex)',
           admin: {
+            description: 'e.g. #CDBEA5 (The gradient will be generated automatically)',
             condition: (_, siblingData) => siblingData.isFeatured,
           },
         },

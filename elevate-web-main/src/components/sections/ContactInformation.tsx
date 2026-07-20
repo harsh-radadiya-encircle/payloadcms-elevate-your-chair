@@ -81,14 +81,14 @@ export const ContactInformation: React.FC<Props> = ({
         
         {/* Content Side */}
         <div 
-          className={`flex-1 flex flex-col items-start ${
+          className={`flex-1 flex flex-col items-start order-last ${
             isImageLeft ? "md:order-2" : "md:order-1"
           }`}
         >
           {/* Vertical line and Text Container */}
           <div className="flex">
             {/* The vertical line matching SplitContent */}
-            <div className="w-[3px] bg-[#1a1a1a] mr-6 hidden md:block shrink-0 h-64 mt-2"></div>
+            <div className="w-[3px] bg-[#1a1a1a] mr-4 md:mr-6 shrink-0 h-auto self-stretch mt-2"></div>
             
             <div className="flex flex-col py-2">
               {/* Headings */}
@@ -166,7 +166,7 @@ export const ContactInformation: React.FC<Props> = ({
 
         {/* Image Side */}
         <div 
-          className={`flex-1 w-full flex justify-center ${
+          className={`flex-1 w-full flex justify-center order-first ${
             isImageLeft ? "md:order-1" : "md:order-2"
           }`}
         >

@@ -83,16 +83,18 @@ const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
       >
         {/* Top Notice Bar */}
         {(noticeText || cta) && (
-          <div className="w-full bg-[#1e1e1e] border-b border-white/10 hidden md:block">
-            <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
-              <span className="text-white/80 text-sm">
-                {noticeText}
-              </span>
+          <div className="w-full bg-[#1e1e1e] border-b border-white/10">
+            <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-center md:justify-between text-center md:text-left">
+              {noticeText && (
+                <span className="text-white/80 text-xs md:text-sm">
+                  {noticeText}
+                </span>
+              )}
               {cta && (
                 <Link
                   href={cta.url || "#"}
                   target={cta.newTab ? "_blank" : "_self"}
-                  className="bg-[#cdbfae] text-black font-semibold text-xs tracking-wider uppercase px-4 py-1.5 rounded-sm hover:bg-[#bbaea0] transition-colors"
+                  className="hidden md:block bg-[#cdbfae] text-black font-semibold text-xs tracking-wider uppercase px-4 py-1.5 rounded-sm hover:bg-[#bbaea0] transition-colors"
                 >
                   {cta.label}
                 </Link>
@@ -205,7 +207,9 @@ const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
 
       {/* Mobile Menu Dropdown */}
       <div 
-        className={`fixed inset-0 top-[60px] md:top-[100px] z-40 lg:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-300 ${
+          (noticeText || cta) ? "top-[90px] md:top-[100px]" : "top-[64px] md:top-[80px]"
+        } ${
           isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
@@ -217,11 +221,11 @@ const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
         
         {/* Menu Container */}
         <div 
-          className={`absolute top-0 left-0 right-0 bg-[#f8f8f8] shadow-2xl transition-transform duration-300 ${
+          className={`absolute inset-0 bg-[#f8f8f8] shadow-2xl transition-transform duration-300 flex flex-col ${
             isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
           }`}
         >
-          <div className="flex flex-col py-4 max-h-[calc(100vh-60px)] overflow-y-auto">
+          <div className="flex flex-col flex-1 py-4 overflow-y-auto">
             {siteHeader.navigationLinks?.map((link, idx) => (
               <div key={link.id || idx}>
                 <Link
@@ -247,20 +251,20 @@ const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
                 )}
               </div>
             ))}
-            
-            {/* Mobile Actions */}
-            {cta && (
-              <div className="mt-6 px-8 py-6 border-t border-gray-200">
-                <Link
-                  href={cta.url || "#"}
-                  target={cta.newTab ? "_blank" : "_self"}
-                  className="block text-center w-full bg-[#cdbfae] text-black font-semibold text-sm tracking-wider uppercase px-4 py-3 rounded-sm hover:bg-[#bbaea0] transition-colors"
-                >
-                  {cta.label}
-                </Link>
-              </div>
-            )}
           </div>
+
+          {/* Mobile Actions (Pinned to Bottom) */}
+          {cta && (
+            <div className="px-8 py-6 border-t border-gray-200 bg-[#f8f8f8] mt-auto flex flex-col items-center">
+              <Link
+                href={cta.url || "#"}
+                target={cta.newTab ? "_blank" : "_self"}
+                className="block text-center w-full bg-[#cdbfae] text-black font-semibold text-sm tracking-wider uppercase px-4 py-3 rounded-sm hover:bg-[#bbaea0] transition-colors"
+              >
+                {cta.label}
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getMedia } from "~/_utils/getMedia";
@@ -34,7 +34,16 @@ export const PricingSection: React.FC<Props> = ({
   buttons
 }) => {
   const [isYearly, setIsYearly] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const bgImageUrl = getMedia(backgroundImage);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const { clientWidth } = scrollContainerRef.current;
+      const scrollAmount = direction === 'left' ? -clientWidth / 2 : clientWidth / 2;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   return (
     <section className="relative w-full py-20 px-6 overflow-hidden">
@@ -90,81 +99,117 @@ export const PricingSection: React.FC<Props> = ({
 
         {/* Pricing Cards */}
         {plans && plans.length > 0 && (
-          <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 items-stretch mb-12 justify-center mx-auto ${plans.length === 3 ? 'lg:grid-cols-3 max-w-5xl' : 'lg:grid-cols-4'}`}>
-            {plans.map((plan, idx) => {
-              // Extract values from Payload, with defaults matching the Figma design
-              const borderStyle = plan.cardBorder || "#1a1a1a";
-              const bgStyle = plan.cardBackground || "linear-gradient(to bottom, #f3f4f6, #d1d5db)";
+          <div className="relative">
+            <div
+              ref={scrollContainerRef}
+              className={`flex flex-nowrap lg:grid gap-4 lg:gap-6 items-stretch mb-12 justify-start lg:justify-center mx-auto overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none hide-scrollbar pb-6 lg:pb-0 w-full ${plans.length === 3 ? 'lg:grid-cols-3 max-w-5xl' : 'lg:grid-cols-4'}`}
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {plans.map((plan, idx) => {
+                // Extract values from Payload, with defaults matching the Figma design
+                const baseBorderColor = plan.cardBorder || "#1a1a1a";
+                const borderGradient = baseBorderColor.startsWith("linear-gradient")
+                  ? baseBorderColor
+                  : `linear-gradient(180deg, ${baseBorderColor} 0%, ${baseBorderColor}66 45%, transparent 100%)`;
+                const bgStyle = plan.cardBackground || "linear-gradient(to bottom, #f3f4f6, #d1d5db)";
 
-              return (
-                <div
-                  key={idx}
-                  className={`relative w-full transition-transform hover:-translate-y-1 ${plan.isFeatured ? "shadow-xl z-10" : "shadow-md"
-                    }`}
-                  style={
-                    plan.isFeatured
-                      ? {
-                        background: borderStyle,
-                        padding: "3px", // Border thickness all around
-                      }
-                      : {}
-                  }
-                >
-                  {/* Inner Content Area */}
+                return (
                   <div
-                    className={`relative h-full w-full px-6 py-10 flex flex-col items-center text-center ${!plan.isFeatured ? "bg-white/95 border border-white/60" : ""
+                    key={idx}
+                    className={`snap-center shrink-0 w-[85vw] sm:w-[calc(50vw-1rem)] lg:w-auto relative transition-transform hover:-translate-y-1 ${plan.isFeatured ? "shadow-xl z-10" : "shadow-md"
                       }`}
                     style={
                       plan.isFeatured
-                        ? { background: bgStyle }
+                        ? {
+                          border: "4px solid transparent",
+                          borderImage: `${borderGradient} 1`,
+                        }
                         : {}
                     }
                   >
+                    {/* Inner Content Area */}
+                    <div
+                      className={`relative h-full w-full px-6 py-10 flex flex-col items-center text-center ${!plan.isFeatured ? "bg-white/95 border border-white/60" : ""
+                        }`}
+                      style={
+                        plan.isFeatured
+                          ? { background: bgStyle }
+                          : {}
+                      }
+                    >
 
-                    {/* Overlapping Badge */}
-                    {plan.badge && (
-                      <div className="absolute top-0 left-[-4px] -translate-y-1/2 bg-[#cdbfae] text-[#1a1a1a] text-[9px] md:text-[10px] font-bold tracking-widest uppercase px-3 py-1 whitespace-nowrap z-20">
-                        {plan.badge}
-                      </div>
-                    )}
-
-                    {/* Title */}
-                    <h3 className="text-lg md:text-xl uppercase font-bold tracking-widest mb-4 mt-2 leading-snug text-[#1a1a1a]">
-                      {plan.title}
-                    </h3>
-
-                    {/* Price */}
-                    <div className="text-gray-700 text-sm md:text-base mb-6 min-h-[1.5rem] flex items-center justify-center gap-2">
-                      {isYearly ? (
-                        <>
-                          {plan.yearlyOriginalPrice && (
-                            <span className="line-through text-gray-400 decoration-gray-400 font-normal">
-                              ${plan.yearlyOriginalPrice}
-                            </span>
-                          )}
-                          <span className="font-bold">${plan.yearlyPrice}</span>
-                        </>
-                      ) : (
-                        <>
-                          {plan.monthlyOriginalPrice && (
-                            <span className="line-through text-gray-400 decoration-gray-400 font-normal">
-                              ${plan.monthlyOriginalPrice}
-                            </span>
-                          )}
-                          <span className="font-bold">${plan.monthlyPrice}</span>
-                        </>
+                      {/* Overlapping Badge */}
+                      {plan.badge && (
+                        <div className="absolute top-0 left-[-4px] -translate-y-1/2 bg-[#cdbfae] text-[#1a1a1a] text-[9px] md:text-[10px] font-bold tracking-widest uppercase px-3 py-1 whitespace-nowrap z-20">
+                          {plan.badge}
+                        </div>
                       )}
-                      <span>| {isYearly ? 'Year' : 'Month'}</span>
-                    </div>
 
-                    {/* Description */}
-                    <p className="text-gray-500 text-xs md:text-sm leading-relaxed mt-auto max-w-[250px]">
-                      {plan.description}
-                    </p>
+                      {/* Title */}
+                      <h3 className="text-lg md:text-xl uppercase font-bold tracking-widest mb-4 mt-2 leading-snug text-[#1a1a1a]">
+                        {plan.title}
+                      </h3>
+
+                      {/* Price */}
+                      <div className="text-gray-700 text-sm md:text-base mb-6 min-h-[1.5rem] flex items-center justify-center gap-2">
+                        {isYearly ? (
+                          <>
+                            {plan.yearlyOriginalPrice && (
+                              <span className="line-through text-gray-400 decoration-gray-400 font-normal">
+                                ${plan.yearlyOriginalPrice}
+                              </span>
+                            )}
+                            <span className="font-bold">${plan.yearlyPrice}</span>
+                          </>
+                        ) : (
+                          <>
+                            {plan.monthlyOriginalPrice && (
+                              <span className="line-through text-gray-400 decoration-gray-400 font-normal">
+                                ${plan.monthlyOriginalPrice}
+                              </span>
+                            )}
+                            <span className="font-bold">${plan.monthlyPrice}</span>
+                          </>
+                        )}
+                        <span>| {isYearly ? 'Year' : 'Month'}</span>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-gray-500 text-xs md:text-sm leading-relaxed mt-auto max-w-[250px]">
+                        {plan.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+
+            {/* Scroll Buttons (visible on md and smaller, or when horizontal scrolling is active) */}
+            <div className="flex justify-center items-center space-x-6 mt-2 lg:hidden">
+              <button
+                onClick={() => scroll('left')}
+                className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-sm hover:border-[#1a1a1a] hover:text-[#1a1a1a] text-gray-500 transition-colors"
+                aria-label="Scroll left"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 12H5M5 12L12 5M5 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <button
+                onClick={() => scroll('right')}
+                className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-sm hover:border-[#1a1a1a] hover:text-[#1a1a1a] text-gray-500 transition-colors"
+                aria-label="Scroll right"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
+            <style jsx>{`
+              .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
           </div>
         )}
 

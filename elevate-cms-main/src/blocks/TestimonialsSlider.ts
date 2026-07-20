@@ -29,6 +29,14 @@ export const TestimonialsSlider: Block = {
       label: 'Background Image (Optional)',
     },
     {
+      name: 'cardBorderColor',
+      type: 'text',
+      label: 'Card Border Color (Hex)',
+      admin: {
+        description: 'e.g. #CDBEA5 (The gradient will be generated automatically)',
+      },
+    },
+    {
       name: 'testimonials',
       type: 'array',
       label: 'Testimonials',

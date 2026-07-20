@@ -19,6 +19,7 @@ type Props = {
   backgroundImage?: any;
   preHeading?: string;
   mainHeading: string;
+  cardBorderColor?: string;
   testimonials?: Testimonial[];
 };
 
@@ -26,6 +27,7 @@ export const TestimonialsSlider: React.FC<Props> = ({
   backgroundImage,
   preHeading,
   mainHeading,
+  cardBorderColor,
   testimonials,
 }) => {
   const sliderRef = useRef<Slider | null>(null);
@@ -62,6 +64,10 @@ export const TestimonialsSlider: React.FC<Props> = ({
   };
 
   const bgImageUrl = getMedia(backgroundImage);
+  const baseColor = cardBorderColor || "#CDBEA5";
+  const borderGradient = baseColor.startsWith("linear-gradient")
+    ? baseColor
+    : `linear-gradient(180deg, ${baseColor} 0%, ${baseColor}66 45%, transparent 100%)`;
 
   return (
     <section className="relative w-full py-20 px-6 overflow-hidden bg-[#fafafa]">
@@ -99,8 +105,14 @@ export const TestimonialsSlider: React.FC<Props> = ({
                 const isVideo = testimonial.mediaType === 'video';
 
                 return (
-                  <div key={idx} className="px-[10px]">
-                    <div className="bg-white p-6 flex flex-col items-center text-center relative h-full shadow-lg border border-gray-100">
+                  <div key={idx} className="px-[10px] py-4 h-full">
+                    <div 
+                      className="bg-white p-6 flex flex-col items-center text-center relative h-full shadow-lg"
+                      style={{
+                        border: "3px solid transparent",
+                        borderImage: `${borderGradient} 1`,
+                      }}
+                    >
 
                       {/* Media Area */}
                       {hasMedia && imageUrl && imageUrl !== "#" && (

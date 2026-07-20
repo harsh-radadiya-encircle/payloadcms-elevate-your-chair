@@ -13,27 +13,31 @@ type Props = {
   buttons?: any[];
 };
 
-export const AppPromo: React.FC<Props> = ({ 
+export const AppPromo: React.FC<Props> = ({
   layout,
   gradientColor = "#cdbfae",
-  image, 
-  preHeading, 
-  mainHeading, 
-  description_html, 
-  buttons 
+  image,
+  preHeading,
+  mainHeading,
+  description_html,
+  buttons
 }) => {
   const isImageLeft = layout === "image-left";
   const imageUrl = getMedia(image);
 
   return (
-    <section className="w-full py-16 md:py-24 overflow-hidden relative bg-black text-white">
+    <section
+      className="w-full py-16 md:py-24 overflow-hidden relative text-white"
+      style={{
+        background: `radial-gradient(circle at ${isImageLeft ? "left center" : "right center"}, ${gradientColor} 0%, #0c0e12 70%)`
+      }}
+    >
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12 lg:gap-24 relative z-10">
-        
+
         {/* Content Side */}
-        <div 
-          className={`flex-1 flex flex-col items-start ${
-            isImageLeft ? "md:order-2" : "md:order-1"
-          }`}
+        <div
+          className={`flex-1 flex flex-col items-start order-last ${isImageLeft ? "md:order-2" : "md:order-1"
+            }`}
         >
           <div className="flex flex-col py-2">
             {/* Headings */}
@@ -46,7 +50,7 @@ export const AppPromo: React.FC<Props> = ({
 
             {/* Rich Text Description */}
             {description_html && (
-              <div 
+              <div
                 className="prose prose-sm md:prose-base max-w-none mb-8 space-y-4 prose-invert text-gray-300 app-promo-richtext"
                 dangerouslySetInnerHTML={{ __html: description_html }}
               />
@@ -57,7 +61,7 @@ export const AppPromo: React.FC<Props> = ({
               <div className="flex flex-col sm:flex-row gap-4 mt-2">
                 {buttons.map((btn: any, btnIdx: number) => {
                   const isSolid = btn.style === "solid";
-                  
+
                   let bgColor, textColor, borderColor;
 
                   if (isSolid) {
@@ -107,20 +111,10 @@ export const AppPromo: React.FC<Props> = ({
         </div>
 
         {/* Image Side */}
-        <div 
-          className={`relative flex-1 w-full flex justify-center items-center ${
-            isImageLeft ? "md:order-1" : "md:order-2"
-          }`}
+        <div
+          className={`relative flex-1 w-full flex justify-center items-center order-first ${isImageLeft ? "md:order-1" : "md:order-2"
+            }`}
         >
-          {/* Radial Gradient Glow */}
-          {gradientColor && (
-            <div 
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] max-w-[800px] max-h-[800px] z-0 opacity-50 blur-[100px] rounded-full pointer-events-none"
-              style={{
-                background: `radial-gradient(circle closest-side, ${gradientColor} 0%, transparent 100%)`,
-              }}
-            ></div>
-          )}
 
           {imageUrl && imageUrl !== "#" ? (
             <div className="relative w-full aspect-[3/4] md:aspect-square lg:aspect-[4/5] z-10">
@@ -140,7 +134,7 @@ export const AppPromo: React.FC<Props> = ({
         </div>
 
       </div>
-      
+
       {/* Custom Styles for Rich Text */}
       <style jsx global>{`
         .app-promo-richtext ul {

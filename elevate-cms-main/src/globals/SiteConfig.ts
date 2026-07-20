@@ -25,7 +25,6 @@ export const SiteConfig: GlobalConfig = {
               name: 'favicon',
               type: 'upload',
               relationTo: 'media',
-              required: true,
               label: 'Favicon',
               filterOptions: {
                 mimeType: {
