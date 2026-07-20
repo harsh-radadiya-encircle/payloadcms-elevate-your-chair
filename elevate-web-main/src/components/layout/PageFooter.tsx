@@ -132,21 +132,23 @@ const PageFooter: FC<Props> = ({ siteFooter }) => {
           <div className="flex-1 flex flex-col items-start lg:items-end w-full lg:max-w-2xl justify-between pt-2">
             
             {/* Logo */}
-            {logoUrl && logoUrl !== "#" ? (
-              <div className="relative w-64 h-16 lg:w-96 lg:h-20 mb-8 lg:mb-auto">
-                <Image
-                  src={logoUrl}
-                  alt="Elevate Your Chair Logo"
-                  fill
-                  className="object-contain object-left lg:object-right"
-                  unoptimized={logoUrl.includes('localhost') || logoUrl.includes('127.0.0.1')}
-                />
-              </div>
-            ) : (
-              <h2 className="text-3xl font-light uppercase tracking-widest">
-                ELEVATE <span className="font-bold border-l border-gray-600 pl-4 ml-4">YOUR CHAIR</span>
-              </h2>
-            )}
+            <Link href="/" className="block mb-8 lg:mb-auto transition-opacity hover:opacity-80">
+              {logoUrl && logoUrl !== "#" ? (
+                <div className="relative w-64 h-16 lg:w-96 lg:h-20">
+                  <Image
+                    src={logoUrl}
+                    alt="Elevate Your Chair Logo"
+                    fill
+                    className="object-contain object-left lg:object-right"
+                    unoptimized={logoUrl.includes('localhost') || logoUrl.includes('127.0.0.1')}
+                  />
+                </div>
+              ) : (
+                <h2 className="text-3xl font-light uppercase tracking-widest text-white">
+                  ELEVATE <span className="font-bold border-l border-gray-600 pl-4 ml-4">YOUR CHAIR</span>
+                </h2>
+              )}
+            </Link>
 
             <div className="flex flex-col w-full gap-4 mt-auto">
               {/* Legal Links */}

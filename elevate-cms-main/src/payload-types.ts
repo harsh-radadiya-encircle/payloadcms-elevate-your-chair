@@ -782,6 +782,10 @@ export interface TestimonialsSliderBlock {
   mainHeading: string;
   backgroundImage?: (string | null) | Media;
   /**
+   * Set the opacity of the background image from 0 (invisible) to 100 (fully visible).
+   */
+  bgOpacity?: number | null;
+  /**
    * e.g. #CDBEA5 (The gradient will be generated automatically)
    */
   cardBorderColor?: string | null;
@@ -868,6 +872,10 @@ export interface PricingSectionBlock {
    * If provided, this image will appear faded behind the pricing section.
    */
   backgroundImage?: (string | null) | Media;
+  /**
+   * Set the opacity of the background image from 0 (invisible) to 100 (fully visible).
+   */
+  bgOpacity?: number | null;
   preHeading?: string | null;
   mainHeading: string;
   description?: {
@@ -968,6 +976,10 @@ export interface StorySectionBlock {
    * The full-width image that appears behind the white container.
    */
   backgroundImage: string | Media;
+  /**
+   * Set the opacity of the background image from 0 (invisible) to 100 (fully visible).
+   */
+  bgOpacity?: number | null;
   preHeading?: string | null;
   mainHeading: string;
   content: {
@@ -1788,6 +1800,7 @@ export interface TestimonialsSliderBlockSelect<T extends boolean = true> {
   preHeading?: T;
   mainHeading?: T;
   backgroundImage?: T;
+  bgOpacity?: T;
   cardBorderColor?: T;
   testimonials?:
     | T
@@ -1860,6 +1873,7 @@ export interface FeatureCardsBlockSelect<T extends boolean = true> {
  */
 export interface PricingSectionBlockSelect<T extends boolean = true> {
   backgroundImage?: T;
+  bgOpacity?: T;
   preHeading?: T;
   mainHeading?: T;
   description?: T;
@@ -1937,6 +1951,7 @@ export interface ImageCardsSectionBlockSelect<T extends boolean = true> {
  */
 export interface StorySectionBlockSelect<T extends boolean = true> {
   backgroundImage?: T;
+  bgOpacity?: T;
   preHeading?: T;
   mainHeading?: T;
   content?: T;

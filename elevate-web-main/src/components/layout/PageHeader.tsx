@@ -7,6 +7,8 @@ import { FiMenu, FiSearch, FiX } from "react-icons/fi";
 import type { SiteHeader } from "~/payload-types";
 import { getMedia } from "~/_utils/getMedia";
 
+import { useRouter } from "next/router";
+
 type Props = { 
   siteHeader: SiteHeader;
   forceDarkBg?: boolean;
@@ -25,9 +27,18 @@ const getUrl = (link: any) => {
 };
 
 const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && searchQuery.trim()) {
+      setIsSearchOpen(false);
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
   const { scrollY } = useScroll();
   const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -198,6 +209,9 @@ const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
               <input
                 type="text"
                 placeholder="Search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearch}
                 className="w-full py-3 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-black focus:border-black text-gray-800"
               />
             </div>

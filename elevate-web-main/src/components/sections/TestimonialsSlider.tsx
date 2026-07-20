@@ -21,6 +21,7 @@ type Props = {
   mainHeading: string;
   cardBorderColor?: string;
   testimonials?: Testimonial[];
+  bgOpacity?: number;
 };
 
 export const TestimonialsSlider: React.FC<Props> = ({
@@ -29,6 +30,7 @@ export const TestimonialsSlider: React.FC<Props> = ({
   mainHeading,
   cardBorderColor,
   testimonials,
+  bgOpacity = 10,
 }) => {
   const sliderRef = useRef<Slider | null>(null);
 
@@ -70,15 +72,15 @@ export const TestimonialsSlider: React.FC<Props> = ({
     : `linear-gradient(180deg, ${baseColor} 0%, ${baseColor}66 45%, transparent 100%)`;
 
   return (
-    <section className="relative w-full py-20 px-6 overflow-hidden bg-[#fafafa]">
+    <section className={`relative w-full py-20 px-6 overflow-hidden ${bgImageUrl && bgImageUrl !== "#" ? "bg-[#e6dfd8]" : "bg-[#fafafa]"}`}>
       {/* Background Image & Overlay */}
       {bgImageUrl && bgImageUrl !== "#" && (
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0" style={{ opacity: bgOpacity / 100 }}>
           <Image
             src={bgImageUrl}
             alt="Background"
             fill
-            className="object-cover object-center opacity-30"
+            className="object-cover object-center"
             unoptimized={bgImageUrl.includes('localhost') || bgImageUrl.includes('127.0.0.1')}
           />
         </div>
@@ -106,7 +108,7 @@ export const TestimonialsSlider: React.FC<Props> = ({
 
                 return (
                   <div key={idx} className="px-[10px] py-4 h-full">
-                    <div 
+                    <div
                       className="bg-white p-6 flex flex-col items-center text-center relative h-full shadow-lg"
                       style={{
                         border: "3px solid transparent",

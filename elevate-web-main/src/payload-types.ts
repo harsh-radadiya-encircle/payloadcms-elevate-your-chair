@@ -89,6 +89,7 @@ export interface Config {
     'form-submission-subscribers': FormSubmissionSubscriber;
     'campaign-pages': CampaignPage;
     stays: Stay;
+    'newsletter-subscribers': NewsletterSubscriber;
     redirects: Redirect;
     search: Search;
     'campaign-forms': CampaignForm;
@@ -110,6 +111,7 @@ export interface Config {
     'form-submission-subscribers': FormSubmissionSubscribersSelect<false> | FormSubmissionSubscribersSelect<true>;
     'campaign-pages': CampaignPagesSelect<false> | CampaignPagesSelect<true>;
     stays: StaysSelect<false> | StaysSelect<true>;
+    'newsletter-subscribers': NewsletterSubscribersSelect<false> | NewsletterSubscribersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     search: SearchSelect<false> | SearchSelect<true>;
     'campaign-forms': CampaignFormsSelect<false> | CampaignFormsSelect<true>;
@@ -204,6 +206,8 @@ export interface Page {
             heading?: string | null;
             description?: string | null;
             form: string | CampaignForm;
+            backgroundImage?: (string | null) | Media;
+            imageOpacity?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'campaign-form-embed';
@@ -276,8 +280,37 @@ export interface Page {
           }
         | HeroSliderBlock
         | SplitContentBlock
+        | AppPromoBlock
+        | TestimonialsSliderBlock
+        | StagesSectionBlock
         | FeatureCardsBlock
         | PricingSectionBlock
+        | PageBannerBlock
+        | ImageCardsSectionBlock
+        | StorySectionBlock
+        | FaqSectionBlock
+        | ComparisonTableBlock
+        | ImageGridSectionBlock
+        | CenteredTextSectionBlock
+        | FeaturedBlogPostBlock
+        | BlogCategoryGridBlock
+        | BlogFilterGridBlock
+        | {
+            layout: 'image-left' | 'image-right';
+            preHeading?: string | null;
+            mainHeading?: string | null;
+            emailAddress?: string | null;
+            socialHandle?: string | null;
+            instagramUrl?: string | null;
+            tiktokUrl?: string | null;
+            youtubeUrl?: string | null;
+            appStoreUrl?: string | null;
+            googlePlayUrl?: string | null;
+            image: string | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contact-information';
+          }
       )[]
     | null;
   meta?: {
@@ -443,6 +476,8 @@ export interface CampaignPage {
             heading?: string | null;
             description?: string | null;
             form: string | CampaignForm;
+            backgroundImage?: (string | null) | Media;
+            imageOpacity?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'campaign-form-embed';
@@ -515,8 +550,37 @@ export interface CampaignPage {
           }
         | HeroSliderBlock
         | SplitContentBlock
+        | AppPromoBlock
+        | TestimonialsSliderBlock
+        | StagesSectionBlock
         | FeatureCardsBlock
         | PricingSectionBlock
+        | PageBannerBlock
+        | ImageCardsSectionBlock
+        | StorySectionBlock
+        | FaqSectionBlock
+        | ComparisonTableBlock
+        | ImageGridSectionBlock
+        | CenteredTextSectionBlock
+        | FeaturedBlogPostBlock
+        | BlogCategoryGridBlock
+        | BlogFilterGridBlock
+        | {
+            layout: 'image-left' | 'image-right';
+            preHeading?: string | null;
+            mainHeading?: string | null;
+            emailAddress?: string | null;
+            socialHandle?: string | null;
+            instagramUrl?: string | null;
+            tiktokUrl?: string | null;
+            youtubeUrl?: string | null;
+            appStoreUrl?: string | null;
+            googlePlayUrl?: string | null;
+            image: string | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contact-information';
+          }
       )[]
     | null;
   meta?: {
@@ -592,6 +656,7 @@ export interface HeroSliderBlock {
       | {
           style?: ('solid' | 'outline' | 'link') | null;
           label: string;
+          icon?: (string | null) | Media;
           url: string;
           newTab?: boolean | null;
           backgroundColor?: string | null;
@@ -610,6 +675,7 @@ export interface HeroSliderBlock {
           | {
               style?: ('solid' | 'outline' | 'link') | null;
               label: string;
+              icon?: (string | null) | Media;
               url: string;
               newTab?: boolean | null;
               backgroundColor?: string | null;
@@ -653,6 +719,7 @@ export interface SplitContentBlock {
     | {
         style?: ('solid' | 'outline' | 'link') | null;
         label: string;
+        icon?: (string | null) | Media;
         url: string;
         newTab?: boolean | null;
         backgroundColor?: string | null;
@@ -666,12 +733,124 @@ export interface SplitContentBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AppPromoBlock".
+ */
+export interface AppPromoBlock {
+  layout: 'image-left' | 'image-right';
+  gradientColor?: string | null;
+  image: string | Media;
+  preHeading?: string | null;
+  mainHeading: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  description_html?: string | null;
+  buttons?:
+    | {
+        style?: ('solid' | 'outline' | 'link') | null;
+        label: string;
+        icon?: (string | null) | Media;
+        url: string;
+        newTab?: boolean | null;
+        backgroundColor?: string | null;
+        textColor?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'app-promo';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsSliderBlock".
+ */
+export interface TestimonialsSliderBlock {
+  preHeading?: string | null;
+  mainHeading: string;
+  backgroundImage?: (string | null) | Media;
+  /**
+   * Set the opacity of the background image from 0 (invisible) to 100 (fully visible).
+   */
+  bgOpacity?: number | null;
+  /**
+   * e.g. #CDBEA5 (The gradient will be generated automatically)
+   */
+  cardBorderColor?: string | null;
+  testimonials?:
+    | {
+        mediaType?: ('none' | 'image' | 'video') | null;
+        image?: (string | null) | Media;
+        videoUrl?: string | null;
+        quote: string;
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials-slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StagesSectionBlock".
+ */
+export interface StagesSectionBlock {
+  /**
+   * The full-width image that appears behind the white container.
+   */
+  backgroundImage: string | Media;
+  preHeading?: string | null;
+  mainHeading: string;
+  subHeading?: string | null;
+  stages?:
+    | {
+        image: string | Media;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  bottomText?: string | null;
+  buttons?:
+    | {
+        style?: ('solid' | 'outline' | 'link') | null;
+        label: string;
+        icon?: (string | null) | Media;
+        url: string;
+        newTab?: boolean | null;
+        backgroundColor?: string | null;
+        textColor?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stages-section';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "FeatureCardsBlock".
  */
 export interface FeatureCardsBlock {
   preHeading?: string | null;
   mainHeading: string;
   subHeading?: string | null;
+  /**
+   * e.g. #CDBEA5 (The gradient will be generated automatically)
+   */
+  cardBorderGradient?: string | null;
   cards?:
     | {
         icon: string | Media;
@@ -693,16 +872,43 @@ export interface PricingSectionBlock {
    * If provided, this image will appear faded behind the pricing section.
    */
   backgroundImage?: (string | null) | Media;
+  /**
+   * Set the opacity of the background image from 0 (invisible) to 100 (fully visible).
+   */
+  bgOpacity?: number | null;
   preHeading?: string | null;
   mainHeading: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  description_html?: string | null;
   plans?:
     | {
         badge?: string | null;
         title: string;
-        monthlyPrice: string;
-        yearlyPrice: string;
+        monthlyOriginalPrice?: string | null;
+        monthlyPrice?: string | null;
+        yearlyOriginalPrice?: string | null;
+        yearlyPrice?: string | null;
         description: string;
         isFeatured?: boolean | null;
+        cardBackground?: string | null;
+        /**
+         * e.g. #CDBEA5 (The gradient will be generated automatically)
+         */
+        cardBorder?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -710,6 +916,7 @@ export interface PricingSectionBlock {
     | {
         style?: ('solid' | 'outline' | 'link') | null;
         label: string;
+        icon?: (string | null) | Media;
         url: string;
         newTab?: boolean | null;
         backgroundColor?: string | null;
@@ -720,6 +927,211 @@ export interface PricingSectionBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'pricing-section';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageBannerBlock".
+ */
+export interface PageBannerBlock {
+  title: string;
+  mediaType: 'image' | 'video' | 'slider';
+  image?: (string | null) | Media;
+  video?: (string | null) | Media;
+  slides?:
+    | {
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'page-banner';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageCardsSectionBlock".
+ */
+export interface ImageCardsSectionBlock {
+  preHeading?: string | null;
+  mainHeading: string;
+  subHeading?: string | null;
+  cards?:
+    | {
+        image: string | Media;
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image-cards-section';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StorySectionBlock".
+ */
+export interface StorySectionBlock {
+  /**
+   * The full-width image that appears behind the white container.
+   */
+  backgroundImage: string | Media;
+  /**
+   * Set the opacity of the background image from 0 (invisible) to 100 (fully visible).
+   */
+  bgOpacity?: number | null;
+  preHeading?: string | null;
+  mainHeading: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  content_html?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'story-section';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqSectionBlock".
+ */
+export interface FaqSectionBlock {
+  /**
+   * The background image that appears behind the FAQs (with a light overlay).
+   */
+  backgroundImage?: (string | null) | Media;
+  heading: string;
+  faqs?:
+    | {
+        question: string;
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq-section';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ComparisonTableBlock".
+ */
+export interface ComparisonTableBlock {
+  heading: string;
+  tiers?:
+    | {
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
+  features?:
+    | {
+        featureName: string;
+        tierValues?:
+          | {
+              hasFeature?: boolean | null;
+              textValue?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'comparison-table';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageGridSectionBlock".
+ */
+export interface ImageGridSectionBlock {
+  preHeading?: string | null;
+  mainHeading: string;
+  subHeading?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  description_html?: string | null;
+  images?:
+    | {
+        image: string | Media;
+        title?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image-grid-section';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CenteredTextSectionBlock".
+ */
+export interface CenteredTextSectionBlock {
+  backgroundColor?: string | null;
+  textColor?: string | null;
+  /**
+   * If provided, this image will appear as a background covering the section.
+   */
+  backgroundImage?: (string | null) | Media;
+  preHeading?: string | null;
+  mainHeading?: string | null;
+  subHeading?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  description_html?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'centered-text-section';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedBlogPostBlock".
+ */
+export interface FeaturedBlogPostBlock {
+  preHeading?: string | null;
+  mainHeading: string;
+  post: string | BlogPost;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featured-blog-post';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -791,6 +1203,35 @@ export interface BlogCategory {
   description?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlogCategoryGridBlock".
+ */
+export interface BlogCategoryGridBlock {
+  preHeading?: string | null;
+  mainHeading: string;
+  category: string | BlogCategory;
+  theme: 'light' | 'dark' | 'beige';
+  backgroundImage?: (string | null) | Media;
+  imageOpacity?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'blog-category-grid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlogFilterGridBlock".
+ */
+export interface BlogFilterGridBlock {
+  preHeading?: string | null;
+  mainHeading?: string | null;
+  theme: 'light' | 'dark' | 'beige';
+  backgroundImage?: (string | null) | Media;
+  imageOpacity?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'blog-filter-grid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -878,6 +1319,17 @@ export interface Stay {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter-subscribers".
+ */
+export interface NewsletterSubscriber {
+  id: string;
+  email: string;
+  active?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -932,7 +1384,15 @@ export interface Search {
  */
 export interface CampaignLead {
   id: string;
-  page: string | CampaignPage;
+  page?:
+    | ({
+        relationTo: 'pages';
+        value: string | Page;
+      } | null)
+    | ({
+        relationTo: 'campaign-pages';
+        value: string | CampaignPage;
+      } | null);
   form: string | CampaignForm;
   name: string;
   email: string;
@@ -1018,6 +1478,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'stays';
         value: string | Stay;
+      } | null)
+    | ({
+        relationTo: 'newsletter-subscribers';
+        value: string | NewsletterSubscriber;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1119,6 +1583,8 @@ export interface PagesSelect<T extends boolean = true> {
               heading?: T;
               description?: T;
               form?: T;
+              backgroundImage?: T;
+              imageOpacity?: T;
               id?: T;
               blockName?: T;
             };
@@ -1178,8 +1644,38 @@ export interface PagesSelect<T extends boolean = true> {
             };
         'hero-slider'?: T | HeroSliderBlockSelect<T>;
         'split-content'?: T | SplitContentBlockSelect<T>;
+        'app-promo'?: T | AppPromoBlockSelect<T>;
+        'testimonials-slider'?: T | TestimonialsSliderBlockSelect<T>;
+        'stages-section'?: T | StagesSectionBlockSelect<T>;
         'feature-cards'?: T | FeatureCardsBlockSelect<T>;
         'pricing-section'?: T | PricingSectionBlockSelect<T>;
+        'page-banner'?: T | PageBannerBlockSelect<T>;
+        'image-cards-section'?: T | ImageCardsSectionBlockSelect<T>;
+        'story-section'?: T | StorySectionBlockSelect<T>;
+        'faq-section'?: T | FaqSectionBlockSelect<T>;
+        'comparison-table'?: T | ComparisonTableBlockSelect<T>;
+        'image-grid-section'?: T | ImageGridSectionBlockSelect<T>;
+        'centered-text-section'?: T | CenteredTextSectionBlockSelect<T>;
+        'featured-blog-post'?: T | FeaturedBlogPostBlockSelect<T>;
+        'blog-category-grid'?: T | BlogCategoryGridBlockSelect<T>;
+        'blog-filter-grid'?: T | BlogFilterGridBlockSelect<T>;
+        'contact-information'?:
+          | T
+          | {
+              layout?: T;
+              preHeading?: T;
+              mainHeading?: T;
+              emailAddress?: T;
+              socialHandle?: T;
+              instagramUrl?: T;
+              tiktokUrl?: T;
+              youtubeUrl?: T;
+              appStoreUrl?: T;
+              googlePlayUrl?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -1211,6 +1707,7 @@ export interface HeroSliderBlockSelect<T extends boolean = true> {
           | {
               style?: T;
               label?: T;
+              icon?: T;
               url?: T;
               newTab?: T;
               backgroundColor?: T;
@@ -1230,6 +1727,7 @@ export interface HeroSliderBlockSelect<T extends boolean = true> {
           | {
               style?: T;
               label?: T;
+              icon?: T;
               url?: T;
               newTab?: T;
               backgroundColor?: T;
@@ -1257,6 +1755,89 @@ export interface SplitContentBlockSelect<T extends boolean = true> {
     | {
         style?: T;
         label?: T;
+        icon?: T;
+        url?: T;
+        newTab?: T;
+        backgroundColor?: T;
+        textColor?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AppPromoBlock_select".
+ */
+export interface AppPromoBlockSelect<T extends boolean = true> {
+  layout?: T;
+  gradientColor?: T;
+  image?: T;
+  preHeading?: T;
+  mainHeading?: T;
+  description?: T;
+  description_html?: T;
+  buttons?:
+    | T
+    | {
+        style?: T;
+        label?: T;
+        icon?: T;
+        url?: T;
+        newTab?: T;
+        backgroundColor?: T;
+        textColor?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsSliderBlock_select".
+ */
+export interface TestimonialsSliderBlockSelect<T extends boolean = true> {
+  preHeading?: T;
+  mainHeading?: T;
+  backgroundImage?: T;
+  bgOpacity?: T;
+  cardBorderColor?: T;
+  testimonials?:
+    | T
+    | {
+        mediaType?: T;
+        image?: T;
+        videoUrl?: T;
+        quote?: T;
+        name?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StagesSectionBlock_select".
+ */
+export interface StagesSectionBlockSelect<T extends boolean = true> {
+  backgroundImage?: T;
+  preHeading?: T;
+  mainHeading?: T;
+  subHeading?: T;
+  stages?:
+    | T
+    | {
+        image?: T;
+        label?: T;
+        id?: T;
+      };
+  bottomText?: T;
+  buttons?:
+    | T
+    | {
+        style?: T;
+        label?: T;
+        icon?: T;
         url?: T;
         newTab?: T;
         backgroundColor?: T;
@@ -1274,6 +1855,7 @@ export interface FeatureCardsBlockSelect<T extends boolean = true> {
   preHeading?: T;
   mainHeading?: T;
   subHeading?: T;
+  cardBorderGradient?: T;
   cards?:
     | T
     | {
@@ -1291,17 +1873,24 @@ export interface FeatureCardsBlockSelect<T extends boolean = true> {
  */
 export interface PricingSectionBlockSelect<T extends boolean = true> {
   backgroundImage?: T;
+  bgOpacity?: T;
   preHeading?: T;
   mainHeading?: T;
+  description?: T;
+  description_html?: T;
   plans?:
     | T
     | {
         badge?: T;
         title?: T;
+        monthlyOriginalPrice?: T;
         monthlyPrice?: T;
+        yearlyOriginalPrice?: T;
         yearlyPrice?: T;
         description?: T;
         isFeatured?: T;
+        cardBackground?: T;
+        cardBorder?: T;
         id?: T;
       };
   buttons?:
@@ -1309,12 +1898,183 @@ export interface PricingSectionBlockSelect<T extends boolean = true> {
     | {
         style?: T;
         label?: T;
+        icon?: T;
         url?: T;
         newTab?: T;
         backgroundColor?: T;
         textColor?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PageBannerBlock_select".
+ */
+export interface PageBannerBlockSelect<T extends boolean = true> {
+  title?: T;
+  mediaType?: T;
+  image?: T;
+  video?: T;
+  slides?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageCardsSectionBlock_select".
+ */
+export interface ImageCardsSectionBlockSelect<T extends boolean = true> {
+  preHeading?: T;
+  mainHeading?: T;
+  subHeading?: T;
+  cards?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StorySectionBlock_select".
+ */
+export interface StorySectionBlockSelect<T extends boolean = true> {
+  backgroundImage?: T;
+  bgOpacity?: T;
+  preHeading?: T;
+  mainHeading?: T;
+  content?: T;
+  content_html?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqSectionBlock_select".
+ */
+export interface FaqSectionBlockSelect<T extends boolean = true> {
+  backgroundImage?: T;
+  heading?: T;
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ComparisonTableBlock_select".
+ */
+export interface ComparisonTableBlockSelect<T extends boolean = true> {
+  heading?: T;
+  tiers?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        featureName?: T;
+        tierValues?:
+          | T
+          | {
+              hasFeature?: T;
+              textValue?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageGridSectionBlock_select".
+ */
+export interface ImageGridSectionBlockSelect<T extends boolean = true> {
+  preHeading?: T;
+  mainHeading?: T;
+  subHeading?: T;
+  description?: T;
+  description_html?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CenteredTextSectionBlock_select".
+ */
+export interface CenteredTextSectionBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  textColor?: T;
+  backgroundImage?: T;
+  preHeading?: T;
+  mainHeading?: T;
+  subHeading?: T;
+  description?: T;
+  description_html?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedBlogPostBlock_select".
+ */
+export interface FeaturedBlogPostBlockSelect<T extends boolean = true> {
+  preHeading?: T;
+  mainHeading?: T;
+  post?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlogCategoryGridBlock_select".
+ */
+export interface BlogCategoryGridBlockSelect<T extends boolean = true> {
+  preHeading?: T;
+  mainHeading?: T;
+  category?: T;
+  theme?: T;
+  backgroundImage?: T;
+  imageOpacity?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlogFilterGridBlock_select".
+ */
+export interface BlogFilterGridBlockSelect<T extends boolean = true> {
+  preHeading?: T;
+  mainHeading?: T;
+  theme?: T;
+  backgroundImage?: T;
+  imageOpacity?: T;
   id?: T;
   blockName?: T;
 }
@@ -1453,6 +2213,8 @@ export interface CampaignPagesSelect<T extends boolean = true> {
               heading?: T;
               description?: T;
               form?: T;
+              backgroundImage?: T;
+              imageOpacity?: T;
               id?: T;
               blockName?: T;
             };
@@ -1512,8 +2274,38 @@ export interface CampaignPagesSelect<T extends boolean = true> {
             };
         'hero-slider'?: T | HeroSliderBlockSelect<T>;
         'split-content'?: T | SplitContentBlockSelect<T>;
+        'app-promo'?: T | AppPromoBlockSelect<T>;
+        'testimonials-slider'?: T | TestimonialsSliderBlockSelect<T>;
+        'stages-section'?: T | StagesSectionBlockSelect<T>;
         'feature-cards'?: T | FeatureCardsBlockSelect<T>;
         'pricing-section'?: T | PricingSectionBlockSelect<T>;
+        'page-banner'?: T | PageBannerBlockSelect<T>;
+        'image-cards-section'?: T | ImageCardsSectionBlockSelect<T>;
+        'story-section'?: T | StorySectionBlockSelect<T>;
+        'faq-section'?: T | FaqSectionBlockSelect<T>;
+        'comparison-table'?: T | ComparisonTableBlockSelect<T>;
+        'image-grid-section'?: T | ImageGridSectionBlockSelect<T>;
+        'centered-text-section'?: T | CenteredTextSectionBlockSelect<T>;
+        'featured-blog-post'?: T | FeaturedBlogPostBlockSelect<T>;
+        'blog-category-grid'?: T | BlogCategoryGridBlockSelect<T>;
+        'blog-filter-grid'?: T | BlogFilterGridBlockSelect<T>;
+        'contact-information'?:
+          | T
+          | {
+              layout?: T;
+              preHeading?: T;
+              mainHeading?: T;
+              emailAddress?: T;
+              socialHandle?: T;
+              instagramUrl?: T;
+              tiktokUrl?: T;
+              youtubeUrl?: T;
+              appStoreUrl?: T;
+              googlePlayUrl?: T;
+              image?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -1551,6 +2343,16 @@ export interface StayGallerySelect<T extends boolean = true> {
   image?: T;
   caption?: T;
   id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter-subscribers_select".
+ */
+export interface NewsletterSubscribersSelect<T extends boolean = true> {
+  email?: T;
+  active?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1858,59 +2660,19 @@ export interface SiteHeader {
  */
 export interface SiteFooter {
   id: string;
+  followUsHeading?: string | null;
+  instagramHandle?: string | null;
+  feedImages?:
+    | {
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  newsletterHeading?: string | null;
+  newsletterDescription?: string | null;
+  emailPlaceholder?: string | null;
+  newsletterCTA?: string | null;
   logo: string | Media;
-  primaryLinks?:
-    | {
-        linkType: 'url' | 'reference';
-        label: string;
-        url?: string | null;
-        pageReference?: {
-          relationTo: 'pages';
-          value: string | Page;
-        } | null;
-        newTab?: boolean | null;
-        dropdownLinks?:
-          | {
-              linkType: 'url' | 'reference';
-              label: string;
-              url?: string | null;
-              pageReference?: {
-                relationTo: 'pages';
-                value: string | Page;
-              } | null;
-              newTab?: boolean | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  secondaryLinks?:
-    | {
-        linkType: 'url' | 'reference';
-        label: string;
-        url?: string | null;
-        pageReference?: {
-          relationTo: 'pages';
-          value: string | Page;
-        } | null;
-        newTab?: boolean | null;
-        dropdownLinks?:
-          | {
-              linkType: 'url' | 'reference';
-              label: string;
-              url?: string | null;
-              pageReference?: {
-                relationTo: 'pages';
-                value: string | Page;
-              } | null;
-              newTab?: boolean | null;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
   legalLinks?:
     | {
         linkType: 'url' | 'reference';
@@ -1937,18 +2699,14 @@ export interface SiteFooter {
         id?: string | null;
       }[]
     | null;
-  /**
-   * Use {{year}} as a placeholder to auto-populate the current year.
-   */
   copyright: string;
-  formHeading: string;
-  formFields: {
-    namePlaceholder: string;
-    emailPlaceholder: string;
-    countryPlaceholder: string;
-    ctaLabel: string;
-  };
-  thankYouMessage: string;
+  socialLinks?:
+    | {
+        platform: 'instagram' | 'tiktok' | 'youtube';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1960,7 +2718,7 @@ export interface SiteConfig {
   id: string;
   siteName: string;
   siteLink: string;
-  favicon: string | Media;
+  favicon?: (string | null) | Media;
   logo?: (string | null) | Media;
   icon?: (string | null) | Media;
   contact?: {
@@ -2085,47 +2843,19 @@ export interface SiteHeaderSelect<T extends boolean = true> {
  * via the `definition` "site-footer_select".
  */
 export interface SiteFooterSelect<T extends boolean = true> {
+  followUsHeading?: T;
+  instagramHandle?: T;
+  feedImages?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  newsletterHeading?: T;
+  newsletterDescription?: T;
+  emailPlaceholder?: T;
+  newsletterCTA?: T;
   logo?: T;
-  primaryLinks?:
-    | T
-    | {
-        linkType?: T;
-        label?: T;
-        url?: T;
-        pageReference?: T;
-        newTab?: T;
-        dropdownLinks?:
-          | T
-          | {
-              linkType?: T;
-              label?: T;
-              url?: T;
-              pageReference?: T;
-              newTab?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  secondaryLinks?:
-    | T
-    | {
-        linkType?: T;
-        label?: T;
-        url?: T;
-        pageReference?: T;
-        newTab?: T;
-        dropdownLinks?:
-          | T
-          | {
-              linkType?: T;
-              label?: T;
-              url?: T;
-              pageReference?: T;
-              newTab?: T;
-              id?: T;
-            };
-        id?: T;
-      };
   legalLinks?:
     | T
     | {
@@ -2147,16 +2877,13 @@ export interface SiteFooterSelect<T extends boolean = true> {
         id?: T;
       };
   copyright?: T;
-  formHeading?: T;
-  formFields?:
+  socialLinks?:
     | T
     | {
-        namePlaceholder?: T;
-        emailPlaceholder?: T;
-        countryPlaceholder?: T;
-        ctaLabel?: T;
+        platform?: T;
+        url?: T;
+        id?: T;
       };
-  thankYouMessage?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

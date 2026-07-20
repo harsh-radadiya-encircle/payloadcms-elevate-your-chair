@@ -29,6 +29,18 @@ export const TestimonialsSlider: Block = {
       label: 'Background Image (Optional)',
     },
     {
+      name: 'bgOpacity',
+      type: 'number',
+      label: 'Background Image Opacity (%)',
+      min: 0,
+      max: 100,
+      defaultValue: 10,
+      admin: {
+        description: 'Set the opacity of the background image from 0 (invisible) to 100 (fully visible).',
+        condition: (_, siblingData) => Boolean(siblingData.backgroundImage),
+      },
+    },
+    {
       name: 'cardBorderColor',
       type: 'text',
       label: 'Card Border Color (Hex)',

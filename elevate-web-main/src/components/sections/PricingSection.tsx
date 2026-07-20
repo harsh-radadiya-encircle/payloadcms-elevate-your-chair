@@ -23,6 +23,7 @@ type Props = {
   description_html?: string;
   plans?: PlanProps[];
   buttons?: any[];
+  bgOpacity?: number;
 };
 
 export const PricingSection: React.FC<Props> = ({
@@ -31,7 +32,8 @@ export const PricingSection: React.FC<Props> = ({
   mainHeading,
   description_html,
   plans,
-  buttons
+  buttons,
+  bgOpacity = 10,
 }) => {
   const [isYearly, setIsYearly] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -46,15 +48,15 @@ export const PricingSection: React.FC<Props> = ({
   };
 
   return (
-    <section className="relative w-full py-20 px-6 overflow-hidden">
+    <section className={`relative w-full py-20 px-6 overflow-hidden ${bgImageUrl && bgImageUrl !== "#" ? "bg-[#e6dfd8]" : ""}`}>
       {/* Background Image & Overlay */}
       {bgImageUrl && bgImageUrl !== "#" && (
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0" style={{ opacity: bgOpacity / 100 }}>
           <Image
             src={bgImageUrl}
             alt="Background"
             fill
-            className="object-cover object-top opacity-50"
+            className="object-cover object-top"
             unoptimized={bgImageUrl.includes('localhost') || bgImageUrl.includes('127.0.0.1')}
           />
         </div>
@@ -102,7 +104,7 @@ export const PricingSection: React.FC<Props> = ({
           <div className="relative">
             <div
               ref={scrollContainerRef}
-              className={`flex flex-nowrap lg:grid gap-4 lg:gap-6 items-stretch mb-12 justify-start lg:justify-center mx-auto overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none hide-scrollbar pb-6 lg:pb-0 w-full ${plans.length === 3 ? 'lg:grid-cols-3 max-w-5xl' : 'lg:grid-cols-4'}`}
+              className={`flex flex-nowrap overflow-x-auto snap-x snap-mandatory gap-4 lg:gap-6 items-stretch mb-12 scroll-smooth hide-scrollbar pt-6 pb-6 ${plans.length <= 5 ? "lg:justify-center" : "justify-start"}`}
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {plans.map((plan, idx) => {
@@ -116,8 +118,7 @@ export const PricingSection: React.FC<Props> = ({
                 return (
                   <div
                     key={idx}
-                    className={`snap-center shrink-0 w-[85vw] sm:w-[calc(50vw-1rem)] lg:w-auto relative transition-transform hover:-translate-y-1 ${plan.isFeatured ? "shadow-xl z-10" : "shadow-md"
-                      }`}
+                    className={`snap-center w-[280px] lg:min-w-[240px] max-w-[320px] relative transition-transform hover:-translate-y-1 min-h-[280px] ${plan.isFeatured ? "shadow-xl z-10" : "shadow-md"} ${plans.length <= 5 ? "shrink-0 lg:shrink lg:flex-1 lg:w-auto" : "shrink-0"}`}
                     style={
                       plan.isFeatured
                         ? {
@@ -137,10 +138,9 @@ export const PricingSection: React.FC<Props> = ({
                           : {}
                       }
                     >
-
-                      {/* Overlapping Badge */}
+                      {/* Badge (Inside Top-Left) */}
                       {plan.badge && (
-                        <div className="absolute top-0 left-[-4px] -translate-y-1/2 bg-[#cdbfae] text-[#1a1a1a] text-[9px] md:text-[10px] font-bold tracking-widest uppercase px-3 py-1 whitespace-nowrap z-20">
+                        <div className="absolute top-1 left-0 bg-[#cdbfae] text-[#1a1a1a] text-[9px] md:text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 whitespace-nowrap z-20">
                           {plan.badge}
                         </div>
                       )}
@@ -184,27 +184,29 @@ export const PricingSection: React.FC<Props> = ({
               })}
             </div>
 
-            {/* Scroll Buttons (visible on md and smaller, or when horizontal scrolling is active) */}
-            <div className="flex justify-center items-center space-x-6 mt-2 lg:hidden">
-              <button
-                onClick={() => scroll('left')}
-                className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-sm hover:border-[#1a1a1a] hover:text-[#1a1a1a] text-gray-500 transition-colors"
-                aria-label="Scroll left"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19 12H5M5 12L12 5M5 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-sm hover:border-[#1a1a1a] hover:text-[#1a1a1a] text-gray-500 transition-colors"
-                aria-label="Scroll right"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
+            {/* Scroll Buttons */}
+            {plans.length > 1 && (
+              <div className={`flex justify-center items-center space-x-6 mt-2 ${plans.length <= 5 ? "lg:hidden" : ""}`}>
+                <button
+                  onClick={() => scroll('left')}
+                  className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-sm hover:border-[#1a1a1a] hover:text-[#1a1a1a] text-gray-500 transition-colors"
+                  aria-label="Scroll left"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 12H5M5 12L12 5M5 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => scroll('right')}
+                  className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-sm hover:border-[#1a1a1a] hover:text-[#1a1a1a] text-gray-500 transition-colors"
+                  aria-label="Scroll right"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
+            )}
             <style jsx>{`
               .hide-scrollbar::-webkit-scrollbar {
                 display: none;
