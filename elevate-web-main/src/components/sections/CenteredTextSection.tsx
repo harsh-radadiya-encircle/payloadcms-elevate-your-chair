@@ -28,7 +28,7 @@ export const CenteredTextSection: React.FC<Props> = ({
 
   return (
     <section 
-      className="relative w-full py-24 px-6 overflow-hidden flex justify-center items-center"
+      className="dynamic-section relative w-full py-24 px-6 overflow-hidden flex justify-center items-center"
       style={{ backgroundColor, color: textColor }}
     >
       {/* Background Image & Overlay */}

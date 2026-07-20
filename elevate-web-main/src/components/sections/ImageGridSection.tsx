@@ -23,7 +23,7 @@ export const ImageGridSection: React.FC<Props> = ({
   images
 }) => {
   return (
-    <section className="w-full bg-white text-[#1a1a1a] py-20 px-6">
+    <section className="dynamic-section w-full bg-white text-[#1a1a1a] py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 flex flex-col items-center">
           <h2 className="text-3xl md:text-5xl uppercase tracking-wider mb-4 leading-tight">

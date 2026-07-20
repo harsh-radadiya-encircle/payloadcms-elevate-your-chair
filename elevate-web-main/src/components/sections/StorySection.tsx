@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { getMedia } from "~/_utils/getMedia";
+import { FadeIn } from "~/components/animations/FadeIn";
 
 type Props = {
   backgroundImage: any;
@@ -19,7 +20,8 @@ export const StorySection: React.FC<Props> = ({
 }) => {
   const bgImageUrl = getMedia(backgroundImage);
   return (
-    <section className={`relative w-full py-16 md:py-24 px-4 md:px-8 flex items-center justify-center overflow-hidden min-h-[60vh] ${bgImageUrl && bgImageUrl !== "#" ? "bg-[#e6dfd8]" : ""}`}>
+    <section className={`dynamic-section relative w-full py-16 md:py-24 px-4 md:px-8 flex items-center justify-center overflow-hidden min-h-[60vh] ${bgImageUrl && bgImageUrl !== "#" ? "bg-[#e6dfd8]" : ""}`}>
+      <FadeIn direction="up">
       {/* Full Width Background Image */}
       {bgImageUrl && bgImageUrl !== "#" && (
         <>
@@ -69,6 +71,7 @@ export const StorySection: React.FC<Props> = ({
           }
         `}</style>
       </div>
+      </FadeIn>
     </section>
   );
 };

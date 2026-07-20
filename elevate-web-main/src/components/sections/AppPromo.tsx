@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getMedia } from "~/_utils/getMedia";
+import { FadeIn } from "~/components/animations/FadeIn";
 
 type Props = {
   layout: "image-left" | "image-right";
@@ -27,7 +28,7 @@ export const AppPromo: React.FC<Props> = ({
 
   return (
     <section
-      className="w-full py-16 md:py-24 overflow-hidden relative text-white"
+      className="dynamic-section w-full overflow-hidden relative text-white"
       style={{
         background: `radial-gradient(circle at ${isImageLeft ? "left center" : "right center"}, ${gradientColor} 0%, #0c0e12 70%)`
       }}
@@ -35,7 +36,8 @@ export const AppPromo: React.FC<Props> = ({
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12 lg:gap-24 relative z-10">
 
         {/* Content Side */}
-        <div
+        <FadeIn
+          direction={isImageLeft ? "right" : "left"}
           className={`flex-1 flex flex-col items-start order-last ${isImageLeft ? "md:order-2" : "md:order-1"
             }`}
         >
@@ -108,10 +110,11 @@ export const AppPromo: React.FC<Props> = ({
               </div>
             )}
           </div>
-        </div>
+        </FadeIn>
 
         {/* Image Side */}
-        <div
+        <FadeIn
+          direction={isImageLeft ? "left" : "right"}
           className={`relative flex-1 w-full flex justify-center items-center order-first ${isImageLeft ? "md:order-1" : "md:order-2"
             }`}
         >
@@ -131,7 +134,7 @@ export const AppPromo: React.FC<Props> = ({
               No image uploaded
             </div>
           )}
-        </div>
+        </FadeIn>
 
       </div>
 

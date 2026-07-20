@@ -24,7 +24,7 @@ export const SplitContent: React.FC<Props> = ({
   const imageUrl = getMedia(image);
 
   return (
-    <section className="w-full bg-[#f8f8f8] py-16 md:py-24">
+    <section className="dynamic-section w-full bg-[#f8f8f8] py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12 lg:gap-24">
 
         {/* Content Side */}

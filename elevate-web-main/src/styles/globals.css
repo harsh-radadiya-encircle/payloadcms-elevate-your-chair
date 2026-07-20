@@ -101,3 +101,32 @@
   font-weight: 700;
   color: #1a1a1a;
 }
+.dynamic-section {
+  padding-top: var(--pt-mobile);
+  padding-bottom: var(--pb-mobile);
+  margin-top: var(--mt-mobile);
+  margin-bottom: var(--mb-mobile);
+}
+@media (min-width: 768px) {
+  .dynamic-section {
+    padding-top: var(--pt-desktop);
+    padding-bottom: var(--pb-desktop);
+    margin-top: var(--mt-desktop);
+    margin-bottom: var(--mb-desktop);
+  }
+}
+
+.dynamic-section {
+  padding-top: var(--pt-mobile, 64px) !important;
+  padding-bottom: var(--pb-mobile, 64px) !important;
+  margin-top: var(--mt-mobile, 0px) !important;
+  margin-bottom: var(--mb-mobile, 0px) !important;
+}
+@media (min-width: 768px) {
+  .dynamic-section {
+    padding-top: var(--pt-desktop, 80px) !important;
+    padding-bottom: var(--pb-desktop, 80px) !important;
+    margin-top: var(--mt-desktop, 0px) !important;
+    margin-bottom: var(--mb-desktop, 0px) !important;
+  }
+}

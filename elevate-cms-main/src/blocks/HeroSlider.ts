@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 import { Button } from '@/fields/Button';
 
 export const HeroSlider: Block = {
@@ -11,6 +12,12 @@ export const HeroSlider: Block = {
     plural: 'Hero Sections',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'heroType',
       type: 'radio',
@@ -75,6 +82,11 @@ export const HeroSlider: Block = {
           maxRows: 2,
           fields: Button,
         },
+      ],
+    },
+          ],
+        },
+        styleTab,
       ],
     },
   ],

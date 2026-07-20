@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 
 export const PageBanner: Block = {
   slug: 'page-banner',
@@ -10,6 +11,12 @@ export const PageBanner: Block = {
     plural: 'Page Banners',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'title',
       type: 'text',
@@ -62,6 +69,11 @@ export const PageBanner: Block = {
           label: 'Slide Image',
           required: true,
         },
+      ],
+    },
+          ],
+        },
+        styleTab,
       ],
     },
   ],

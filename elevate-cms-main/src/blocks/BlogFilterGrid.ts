@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 
 export const BlogFilterGrid: Block = {
   slug: 'blog-filter-grid',
@@ -8,6 +9,12 @@ export const BlogFilterGrid: Block = {
     plural: 'Blog Filter Grids',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'preHeading',
       type: 'text',
@@ -44,6 +51,11 @@ export const BlogFilterGrid: Block = {
       admin: {
         condition: (_, siblingData) => Boolean(siblingData?.backgroundImage),
       },
+    },
+          ],
+        },
+        styleTab,
+      ],
     },
   ],
 };

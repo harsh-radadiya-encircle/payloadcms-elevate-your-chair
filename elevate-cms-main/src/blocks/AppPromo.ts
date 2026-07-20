@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 import { Button } from '@/fields/Button';
 import {
   lexicalEditor,
@@ -16,6 +17,12 @@ export const AppPromo: Block = {
     plural: 'App Promo Blocks',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'layout',
       type: 'radio',
@@ -69,6 +76,11 @@ export const AppPromo: Block = {
       label: 'Buttons',
       maxRows: 2,
       fields: Button,
+    },
+          ],
+        },
+        styleTab,
+      ],
     },
   ],
 };

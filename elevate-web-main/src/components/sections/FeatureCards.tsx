@@ -34,7 +34,7 @@ export const FeatureCards: React.FC<Props> = ({
   };
 
   return (
-    <section className="w-full bg-[#151515] text-white py-20 px-6">
+    <section className="dynamic-section w-full bg-[#151515] text-white py-20 px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* Header Section */}

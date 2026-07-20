@@ -85,7 +85,7 @@ const CampaignFormEmbed: React.FC<Props> = ({
   if (!isFormExpanded) return null;
 
   return (
-    <section className="relative w-full py-24 px-6 overflow-hidden bg-[#e6dfd8]">
+    <section className="dynamic-section relative w-full py-24 px-6 overflow-hidden bg-[#e6dfd8]">
       {bgImageUrl && bgImageUrl !== "#" && (
         <div className="absolute inset-0 z-0">
           <Image

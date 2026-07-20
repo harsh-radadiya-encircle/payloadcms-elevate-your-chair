@@ -30,7 +30,7 @@ export const StagesSection: React.FC<Props> = ({
   const bgImageUrl = getMedia(backgroundImage);
 
   return (
-    <section className="relative w-full py-16 md:py-24 px-4 flex items-center justify-center overflow-hidden">
+    <section className="dynamic-section relative w-full py-16 md:py-24 px-4 flex items-center justify-center overflow-hidden">
       {/* Full Width Background Image */}
       {bgImageUrl && bgImageUrl !== "#" && (
         <>

@@ -51,7 +51,7 @@ const PageBanner: React.FC<Props> = ({ title, mediaType, image, video, slides })
   if (mediaType === "video" && video) {
     const videoUrl = getMedia(video);
     return (
-      <section className="relative w-full h-[80vh] min-h-[600px] overflow-hidden bg-black outline-none">
+      <section className="dynamic-section relative w-full h-[80vh] min-h-[600px] overflow-hidden bg-black outline-none">
         {videoUrl !== "#" && (
           <div className="absolute inset-0 z-0">
             <video

@@ -1,6 +1,7 @@
 import { type AppType } from "next/app";
 import { Montserrat } from "next/font/google";
 import Head from "next/head";
+import { SmoothScroll } from "~/components/layout/SmoothScroll";
 import "~/styles/globals.css";
 
 const montserrat = Montserrat({
@@ -22,7 +23,9 @@ const App: AppType = ({ Component, pageProps }) => {
         `}</style>
       </Head>
       <main className={`${montserrat.variable} font-sans`}>
-        <Component {...pageProps} />
+        <SmoothScroll>
+          <Component {...pageProps} />
+        </SmoothScroll>
       </main>
     </>
   );

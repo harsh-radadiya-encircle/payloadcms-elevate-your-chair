@@ -22,7 +22,7 @@ export const ImageCardsSection: React.FC<Props> = ({
   cards 
 }) => {
   return (
-    <section className="w-full bg-[#1a1a1a] text-white py-20 px-6">
+    <section className="dynamic-section w-full bg-[#1a1a1a] text-white py-20 px-6">
       <div className="max-w-7xl mx-auto">
         
         {/* Header Section */}

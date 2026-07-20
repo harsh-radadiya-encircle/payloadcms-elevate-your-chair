@@ -103,7 +103,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ heroType, singleVideo, slides }
   if (heroType === 'video' && singleVideo) {
     const videoUrl = getMedia(singleVideo.video);
     return (
-      <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-black outline-none">
+      <section className="dynamic-section relative w-full h-screen min-h-[600px] overflow-hidden bg-black outline-none">
         {videoUrl !== "#" && (
           <div className="absolute inset-0 z-0">
             <video
@@ -125,7 +125,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ heroType, singleVideo, slides }
 
   if (heroType === 'slider' && slides && slides.length > 0) {
     return (
-      <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-black">
+      <section className="dynamic-section relative w-full h-screen min-h-[600px] overflow-hidden bg-black">
         <style>{activeDotStyle}</style>
         <Slider {...settings} className="h-full">
           {slides.map((slide, index) => {

@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 
 export const FaqSection: Block = {
   slug: 'faq-section',
@@ -8,6 +9,12 @@ export const FaqSection: Block = {
     plural: 'FAQ Sections',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'backgroundImage',
       type: 'upload',
@@ -42,6 +49,11 @@ export const FaqSection: Block = {
           label: 'Answer',
           required: true,
         },
+      ],
+    },
+          ],
+        },
+        styleTab,
       ],
     },
   ],

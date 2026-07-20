@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 
 export const ContactInformation: Block = {
   slug: 'contact-information',
@@ -7,6 +8,12 @@ export const ContactInformation: Block = {
     plural: 'Contact Information Blocks',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'layout',
       type: 'radio',
@@ -83,6 +90,11 @@ export const ContactInformation: Block = {
       relationTo: 'media',
       label: 'Featured Image',
       required: true,
+    },
+          ],
+        },
+        styleTab,
+      ],
     },
   ],
 };

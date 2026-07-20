@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 import {
   lexicalEditor,
   HTMLConverterFeature,
@@ -15,6 +16,12 @@ export const ImageGridSection: Block = {
     plural: 'Image Grid Blocks',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'preHeading',
       type: 'text',
@@ -60,6 +67,11 @@ export const ImageGridSection: Block = {
           type: 'text',
           label: 'Text below image (e.g. "COMPLETING EDUCATION CLASSES")',
         },
+      ],
+    },
+          ],
+        },
+        styleTab,
       ],
     },
   ],

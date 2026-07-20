@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 import { Button } from '@/fields/Button';
 import {
   lexicalEditor,
@@ -16,6 +17,12 @@ export const PricingSection: Block = {
     plural: 'Pricing Summary Blocks',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'backgroundImage',
       type: 'upload',
@@ -140,6 +147,11 @@ export const PricingSection: Block = {
       label: 'Buttons',
       maxRows: 2,
       fields: Button,
+    },
+          ],
+        },
+        styleTab,
+      ],
     },
   ],
 };

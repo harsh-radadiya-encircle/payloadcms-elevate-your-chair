@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 
 export const FeaturedBlogPost: Block = {
   slug: 'featured-blog-post',
@@ -8,6 +9,12 @@ export const FeaturedBlogPost: Block = {
     plural: 'Featured Blog Posts',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'preHeading',
       type: 'text',
@@ -26,6 +33,11 @@ export const FeaturedBlogPost: Block = {
       relationTo: 'blog-posts',
       required: true,
       label: 'Select Blog Post to Feature',
+    },
+          ],
+        },
+        styleTab,
+      ],
     },
   ],
 };

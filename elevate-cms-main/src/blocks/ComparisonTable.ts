@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 
 export const ComparisonTable: Block = {
   slug: 'comparison-table',
@@ -8,6 +9,12 @@ export const ComparisonTable: Block = {
     plural: 'Comparison Tables',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'heading',
       type: 'text',
@@ -59,6 +66,11 @@ export const ComparisonTable: Block = {
             },
           ],
         },
+      ],
+    },
+          ],
+        },
+        styleTab,
       ],
     },
   ],

@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { getMedia } from "~/_utils/getMedia";
 import Image from "next/image";
+import { FadeIn } from "~/components/animations/FadeIn";
 
 type Testimonial = {
   mediaType?: 'none' | 'image' | 'video';
@@ -72,7 +73,7 @@ export const TestimonialsSlider: React.FC<Props> = ({
     : `linear-gradient(180deg, ${baseColor} 0%, ${baseColor}66 45%, transparent 100%)`;
 
   return (
-    <section className={`relative w-full py-20 px-6 overflow-hidden ${bgImageUrl && bgImageUrl !== "#" ? "bg-[#e6dfd8]" : "bg-[#fafafa]"}`}>
+    <section className={`dynamic-section relative w-full py-20 px-6 overflow-hidden ${bgImageUrl && bgImageUrl !== "#" ? "bg-[#e6dfd8]" : "bg-[#fafafa]"}`}>
       {/* Background Image & Overlay */}
       {bgImageUrl && bgImageUrl !== "#" && (
         <div className="absolute inset-0 z-0" style={{ opacity: bgOpacity / 100 }}>
@@ -88,18 +89,18 @@ export const TestimonialsSlider: React.FC<Props> = ({
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16 flex flex-col items-center">
+        <FadeIn direction="up" className="text-center mb-16 flex flex-col items-center">
           <h2 className="text-3xl md:text-5xl uppercase tracking-wider mb-4 leading-tight text-[#1a1a1a]">
             {preHeading && (
               <span className="font-light mr-3">{preHeading}</span>
             )}
             <span className="font-bold">{mainHeading}</span>
           </h2>
-        </div>
+        </FadeIn>
 
         {/* Slider Container */}
         {testimonials && testimonials.length > 0 && (
-          <div className="relative">
+          <FadeIn direction="up" delay={0.2} className="relative">
             <Slider ref={sliderRef} {...settings} className="mx-[-10px]">
               {testimonials.map((testimonial, idx) => {
                 const hasMedia = testimonial.mediaType === 'image' || testimonial.mediaType === 'video';
@@ -196,8 +197,7 @@ export const TestimonialsSlider: React.FC<Props> = ({
                 </svg>
               </button>
             </div>
-
-          </div>
+          </FadeIn>
         )}
       </div>
     </section>

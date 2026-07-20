@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 import {
   lexicalEditor,
   HTMLConverterFeature,
@@ -13,6 +14,12 @@ export const StorySection: Block = {
     plural: 'Story Sections',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'backgroundImage',
       type: 'upload',
@@ -59,5 +66,10 @@ export const StorySection: Block = {
       }),
     },
     lexicalHTML('content', { name: 'content_html' }),
+          ],
+        },
+        styleTab,
+      ],
+    },
   ],
 };

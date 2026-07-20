@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 
 export const TestimonialsSlider: Block = {
   slug: 'testimonials-slider',
@@ -10,6 +11,12 @@ export const TestimonialsSlider: Block = {
     plural: 'Testimonials Sliders',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'preHeading',
       type: 'text',
@@ -94,6 +101,11 @@ export const TestimonialsSlider: Block = {
           label: 'Name',
           required: true,
         },
+      ],
+    },
+          ],
+        },
+        styleTab,
       ],
     },
   ],

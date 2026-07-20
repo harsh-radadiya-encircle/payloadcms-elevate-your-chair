@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 
 export const ImageCardsSection: Block = {
   slug: 'image-cards-section',
@@ -8,6 +9,12 @@ export const ImageCardsSection: Block = {
     plural: 'Image Cards Sections',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'preHeading',
       type: 'text',
@@ -49,6 +56,11 @@ export const ImageCardsSection: Block = {
           label: 'Card Description',
           required: true,
         },
+      ],
+    },
+          ],
+        },
+        styleTab,
       ],
     },
   ],

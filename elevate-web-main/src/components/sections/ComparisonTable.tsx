@@ -15,7 +15,7 @@ export const ComparisonTable: React.FC<Props> = ({ heading, tiers, features }) =
   if (!tiers || !features) return null;
 
   return (
-    <section className="w-full bg-[#1a1a1a] py-20 px-6">
+    <section className="dynamic-section w-full bg-[#1a1a1a] py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-white text-3xl md:text-4xl font-bold text-center tracking-widest uppercase mb-12">
           {heading}

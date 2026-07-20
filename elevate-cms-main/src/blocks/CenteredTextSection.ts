@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 import {
   lexicalEditor,
   HTMLConverterFeature,
@@ -13,6 +14,12 @@ export const CenteredTextSection: Block = {
     plural: 'Centered Text Blocks',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'backgroundColor',
       type: 'text',
@@ -61,5 +68,10 @@ export const CenteredTextSection: Block = {
       }),
     },
     lexicalHTML('description', { name: 'description_html' }),
+          ],
+        },
+        styleTab,
+      ],
+    },
   ],
 };

@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 
 export const CampaignFormEmbed: Block = {
   slug: 'campaign-form-embed',
@@ -7,6 +8,12 @@ export const CampaignFormEmbed: Block = {
     plural: 'Campaign Forms',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'heading',
       type: 'text',
@@ -42,6 +49,11 @@ export const CampaignFormEmbed: Block = {
       admin: {
         condition: (_, siblingData) => Boolean(siblingData?.backgroundImage),
       },
+    },
+          ],
+        },
+        styleTab,
+      ],
     },
   ],
 };

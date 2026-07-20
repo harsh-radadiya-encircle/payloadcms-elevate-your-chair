@@ -208,6 +208,14 @@ export interface Page {
             form: string | CampaignForm;
             backgroundImage?: (string | null) | Media;
             imageOpacity?: number | null;
+            paddingTopDesktop?: number | null;
+            paddingBottomDesktop?: number | null;
+            paddingTopMobile?: number | null;
+            paddingBottomMobile?: number | null;
+            marginTopDesktop?: number | null;
+            marginBottomDesktop?: number | null;
+            marginTopMobile?: number | null;
+            marginBottomMobile?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'campaign-form-embed';
@@ -231,6 +239,14 @@ export interface Page {
               };
               [k: string]: unknown;
             };
+            paddingTopDesktop?: number | null;
+            paddingBottomDesktop?: number | null;
+            paddingTopMobile?: number | null;
+            paddingBottomMobile?: number | null;
+            marginTopDesktop?: number | null;
+            marginBottomDesktop?: number | null;
+            marginTopMobile?: number | null;
+            marginBottomMobile?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'content-section';
@@ -251,6 +267,14 @@ export interface Page {
               link?: string | null;
               openInNewTab?: boolean | null;
             };
+            paddingTopDesktop?: number | null;
+            paddingBottomDesktop?: number | null;
+            paddingTopMobile?: number | null;
+            paddingBottomMobile?: number | null;
+            marginTopDesktop?: number | null;
+            marginBottomDesktop?: number | null;
+            marginTopMobile?: number | null;
+            marginBottomMobile?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'multi-image-content';
@@ -265,6 +289,14 @@ export interface Page {
               relationTo: 'pages';
               value: string | Page;
             } | null;
+            paddingTopDesktop?: number | null;
+            paddingBottomDesktop?: number | null;
+            paddingTopMobile?: number | null;
+            paddingBottomMobile?: number | null;
+            marginTopDesktop?: number | null;
+            marginBottomDesktop?: number | null;
+            marginTopMobile?: number | null;
+            marginBottomMobile?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'enquiry-form';
@@ -307,6 +339,14 @@ export interface Page {
             appStoreUrl?: string | null;
             googlePlayUrl?: string | null;
             image: string | Media;
+            paddingTopDesktop?: number | null;
+            paddingBottomDesktop?: number | null;
+            paddingTopMobile?: number | null;
+            paddingBottomMobile?: number | null;
+            marginTopDesktop?: number | null;
+            marginBottomDesktop?: number | null;
+            marginTopMobile?: number | null;
+            marginBottomMobile?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'contact-information';
@@ -478,6 +518,14 @@ export interface CampaignPage {
             form: string | CampaignForm;
             backgroundImage?: (string | null) | Media;
             imageOpacity?: number | null;
+            paddingTopDesktop?: number | null;
+            paddingBottomDesktop?: number | null;
+            paddingTopMobile?: number | null;
+            paddingBottomMobile?: number | null;
+            marginTopDesktop?: number | null;
+            marginBottomDesktop?: number | null;
+            marginTopMobile?: number | null;
+            marginBottomMobile?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'campaign-form-embed';
@@ -501,6 +549,14 @@ export interface CampaignPage {
               };
               [k: string]: unknown;
             };
+            paddingTopDesktop?: number | null;
+            paddingBottomDesktop?: number | null;
+            paddingTopMobile?: number | null;
+            paddingBottomMobile?: number | null;
+            marginTopDesktop?: number | null;
+            marginBottomDesktop?: number | null;
+            marginTopMobile?: number | null;
+            marginBottomMobile?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'content-section';
@@ -521,6 +577,14 @@ export interface CampaignPage {
               link?: string | null;
               openInNewTab?: boolean | null;
             };
+            paddingTopDesktop?: number | null;
+            paddingBottomDesktop?: number | null;
+            paddingTopMobile?: number | null;
+            paddingBottomMobile?: number | null;
+            marginTopDesktop?: number | null;
+            marginBottomDesktop?: number | null;
+            marginTopMobile?: number | null;
+            marginBottomMobile?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'multi-image-content';
@@ -535,6 +599,14 @@ export interface CampaignPage {
               relationTo: 'pages';
               value: string | Page;
             } | null;
+            paddingTopDesktop?: number | null;
+            paddingBottomDesktop?: number | null;
+            paddingTopMobile?: number | null;
+            paddingBottomMobile?: number | null;
+            marginTopDesktop?: number | null;
+            marginBottomDesktop?: number | null;
+            marginTopMobile?: number | null;
+            marginBottomMobile?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'enquiry-form';
@@ -577,6 +649,14 @@ export interface CampaignPage {
             appStoreUrl?: string | null;
             googlePlayUrl?: string | null;
             image: string | Media;
+            paddingTopDesktop?: number | null;
+            paddingBottomDesktop?: number | null;
+            paddingTopMobile?: number | null;
+            paddingBottomMobile?: number | null;
+            marginTopDesktop?: number | null;
+            marginBottomDesktop?: number | null;
+            marginTopMobile?: number | null;
+            marginBottomMobile?: number | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'contact-information';
@@ -686,6 +766,14 @@ export interface HeroSliderBlock {
         id?: string | null;
       }[]
     | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero-slider';
@@ -727,6 +815,14 @@ export interface SplitContentBlock {
         id?: string | null;
       }[]
     | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'split-content';
@@ -769,6 +865,14 @@ export interface AppPromoBlock {
         id?: string | null;
       }[]
     | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'app-promo';
@@ -799,6 +903,14 @@ export interface TestimonialsSliderBlock {
         id?: string | null;
       }[]
     | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'testimonials-slider';
@@ -835,6 +947,14 @@ export interface StagesSectionBlock {
         id?: string | null;
       }[]
     | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'stages-section';
@@ -859,6 +979,14 @@ export interface FeatureCardsBlock {
         id?: string | null;
       }[]
     | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'feature-cards';
@@ -924,6 +1052,14 @@ export interface PricingSectionBlock {
         id?: string | null;
       }[]
     | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'pricing-section';
@@ -943,6 +1079,14 @@ export interface PageBannerBlock {
         id?: string | null;
       }[]
     | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'page-banner';
@@ -963,6 +1107,14 @@ export interface ImageCardsSectionBlock {
         id?: string | null;
       }[]
     | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'image-cards-section';
@@ -998,6 +1150,14 @@ export interface StorySectionBlock {
     [k: string]: unknown;
   };
   content_html?: string | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'story-section';
@@ -1019,6 +1179,14 @@ export interface FaqSectionBlock {
         id?: string | null;
       }[]
     | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'faq-section';
@@ -1048,6 +1216,14 @@ export interface ComparisonTableBlock {
         id?: string | null;
       }[]
     | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'comparison-table';
@@ -1083,6 +1259,14 @@ export interface ImageGridSectionBlock {
         id?: string | null;
       }[]
     | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'image-grid-section';
@@ -1117,6 +1301,14 @@ export interface CenteredTextSectionBlock {
     [k: string]: unknown;
   } | null;
   description_html?: string | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'centered-text-section';
@@ -1129,6 +1321,14 @@ export interface FeaturedBlogPostBlock {
   preHeading?: string | null;
   mainHeading: string;
   post: string | BlogPost;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'featured-blog-post';
@@ -1215,6 +1415,14 @@ export interface BlogCategoryGridBlock {
   theme: 'light' | 'dark' | 'beige';
   backgroundImage?: (string | null) | Media;
   imageOpacity?: number | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'blog-category-grid';
@@ -1229,6 +1437,14 @@ export interface BlogFilterGridBlock {
   theme: 'light' | 'dark' | 'beige';
   backgroundImage?: (string | null) | Media;
   imageOpacity?: number | null;
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'blog-filter-grid';
@@ -1585,6 +1801,14 @@ export interface PagesSelect<T extends boolean = true> {
               form?: T;
               backgroundImage?: T;
               imageOpacity?: T;
+              paddingTopDesktop?: T;
+              paddingBottomDesktop?: T;
+              paddingTopMobile?: T;
+              paddingBottomMobile?: T;
+              marginTopDesktop?: T;
+              marginBottomDesktop?: T;
+              marginTopMobile?: T;
+              marginBottomMobile?: T;
               id?: T;
               blockName?: T;
             };
@@ -1592,6 +1816,14 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               content?: T;
+              paddingTopDesktop?: T;
+              paddingBottomDesktop?: T;
+              paddingTopMobile?: T;
+              paddingBottomMobile?: T;
+              marginTopDesktop?: T;
+              marginBottomDesktop?: T;
+              marginTopMobile?: T;
+              marginBottomMobile?: T;
               id?: T;
               blockName?: T;
             };
@@ -1617,6 +1849,14 @@ export interface PagesSelect<T extends boolean = true> {
                     link?: T;
                     openInNewTab?: T;
                   };
+              paddingTopDesktop?: T;
+              paddingBottomDesktop?: T;
+              paddingTopMobile?: T;
+              paddingBottomMobile?: T;
+              marginTopDesktop?: T;
+              marginBottomDesktop?: T;
+              marginTopMobile?: T;
+              marginBottomMobile?: T;
               id?: T;
               blockName?: T;
             };
@@ -1629,6 +1869,14 @@ export interface PagesSelect<T extends boolean = true> {
               redirectLink?: T;
               url?: T;
               pageReference?: T;
+              paddingTopDesktop?: T;
+              paddingBottomDesktop?: T;
+              paddingTopMobile?: T;
+              paddingBottomMobile?: T;
+              marginTopDesktop?: T;
+              marginBottomDesktop?: T;
+              marginTopMobile?: T;
+              marginBottomMobile?: T;
               id?: T;
               blockName?: T;
             };
@@ -1673,6 +1921,14 @@ export interface PagesSelect<T extends boolean = true> {
               appStoreUrl?: T;
               googlePlayUrl?: T;
               image?: T;
+              paddingTopDesktop?: T;
+              paddingBottomDesktop?: T;
+              paddingTopMobile?: T;
+              paddingBottomMobile?: T;
+              marginTopDesktop?: T;
+              marginBottomDesktop?: T;
+              marginTopMobile?: T;
+              marginBottomMobile?: T;
               id?: T;
               blockName?: T;
             };
@@ -1736,6 +1992,14 @@ export interface HeroSliderBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -1762,6 +2026,14 @@ export interface SplitContentBlockSelect<T extends boolean = true> {
         textColor?: T;
         id?: T;
       };
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -1789,6 +2061,14 @@ export interface AppPromoBlockSelect<T extends boolean = true> {
         textColor?: T;
         id?: T;
       };
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -1812,6 +2092,14 @@ export interface TestimonialsSliderBlockSelect<T extends boolean = true> {
         name?: T;
         id?: T;
       };
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -1844,6 +2132,14 @@ export interface StagesSectionBlockSelect<T extends boolean = true> {
         textColor?: T;
         id?: T;
       };
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -1864,6 +2160,14 @@ export interface FeatureCardsBlockSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -1905,6 +2209,14 @@ export interface PricingSectionBlockSelect<T extends boolean = true> {
         textColor?: T;
         id?: T;
       };
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -1923,6 +2235,14 @@ export interface PageBannerBlockSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -1942,6 +2262,14 @@ export interface ImageCardsSectionBlockSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -1956,6 +2284,14 @@ export interface StorySectionBlockSelect<T extends boolean = true> {
   mainHeading?: T;
   content?: T;
   content_html?: T;
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -1973,6 +2309,14 @@ export interface FaqSectionBlockSelect<T extends boolean = true> {
         answer?: T;
         id?: T;
       };
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -2001,6 +2345,14 @@ export interface ComparisonTableBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -2021,6 +2373,14 @@ export interface ImageGridSectionBlockSelect<T extends boolean = true> {
         title?: T;
         id?: T;
       };
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -2037,6 +2397,14 @@ export interface CenteredTextSectionBlockSelect<T extends boolean = true> {
   subHeading?: T;
   description?: T;
   description_html?: T;
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -2048,6 +2416,14 @@ export interface FeaturedBlogPostBlockSelect<T extends boolean = true> {
   preHeading?: T;
   mainHeading?: T;
   post?: T;
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -2062,6 +2438,14 @@ export interface BlogCategoryGridBlockSelect<T extends boolean = true> {
   theme?: T;
   backgroundImage?: T;
   imageOpacity?: T;
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -2075,6 +2459,14 @@ export interface BlogFilterGridBlockSelect<T extends boolean = true> {
   theme?: T;
   backgroundImage?: T;
   imageOpacity?: T;
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   id?: T;
   blockName?: T;
 }
@@ -2215,6 +2607,14 @@ export interface CampaignPagesSelect<T extends boolean = true> {
               form?: T;
               backgroundImage?: T;
               imageOpacity?: T;
+              paddingTopDesktop?: T;
+              paddingBottomDesktop?: T;
+              paddingTopMobile?: T;
+              paddingBottomMobile?: T;
+              marginTopDesktop?: T;
+              marginBottomDesktop?: T;
+              marginTopMobile?: T;
+              marginBottomMobile?: T;
               id?: T;
               blockName?: T;
             };
@@ -2222,6 +2622,14 @@ export interface CampaignPagesSelect<T extends boolean = true> {
           | T
           | {
               content?: T;
+              paddingTopDesktop?: T;
+              paddingBottomDesktop?: T;
+              paddingTopMobile?: T;
+              paddingBottomMobile?: T;
+              marginTopDesktop?: T;
+              marginBottomDesktop?: T;
+              marginTopMobile?: T;
+              marginBottomMobile?: T;
               id?: T;
               blockName?: T;
             };
@@ -2247,6 +2655,14 @@ export interface CampaignPagesSelect<T extends boolean = true> {
                     link?: T;
                     openInNewTab?: T;
                   };
+              paddingTopDesktop?: T;
+              paddingBottomDesktop?: T;
+              paddingTopMobile?: T;
+              paddingBottomMobile?: T;
+              marginTopDesktop?: T;
+              marginBottomDesktop?: T;
+              marginTopMobile?: T;
+              marginBottomMobile?: T;
               id?: T;
               blockName?: T;
             };
@@ -2259,6 +2675,14 @@ export interface CampaignPagesSelect<T extends boolean = true> {
               redirectLink?: T;
               url?: T;
               pageReference?: T;
+              paddingTopDesktop?: T;
+              paddingBottomDesktop?: T;
+              paddingTopMobile?: T;
+              paddingBottomMobile?: T;
+              marginTopDesktop?: T;
+              marginBottomDesktop?: T;
+              marginTopMobile?: T;
+              marginBottomMobile?: T;
               id?: T;
               blockName?: T;
             };
@@ -2303,6 +2727,14 @@ export interface CampaignPagesSelect<T extends boolean = true> {
               appStoreUrl?: T;
               googlePlayUrl?: T;
               image?: T;
+              paddingTopDesktop?: T;
+              paddingBottomDesktop?: T;
+              paddingTopMobile?: T;
+              paddingBottomMobile?: T;
+              marginTopDesktop?: T;
+              marginBottomDesktop?: T;
+              marginTopMobile?: T;
+              marginBottomMobile?: T;
               id?: T;
               blockName?: T;
             };

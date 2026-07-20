@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 
 export const EnquiryForm: Block = {
   slug: 'enquiry-form',
@@ -7,6 +8,12 @@ export const EnquiryForm: Block = {
     plural: 'Enquiry Forms',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'backgroundImage',
       type: 'upload',
@@ -57,6 +64,11 @@ export const EnquiryForm: Block = {
             condition: (_, siblingData) => siblingData?.redirectLink === 'reference',
           },
         },
+      ],
+    },
+          ],
+        },
+        styleTab,
       ],
     },
   ],

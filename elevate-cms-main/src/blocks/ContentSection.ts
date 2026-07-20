@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 
 export const ContentSection: Block = {
   slug: 'content-section',
@@ -8,6 +9,12 @@ export const ContentSection: Block = {
   },
   fields: [
     {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
+    {
       name: 'content',
       type: 'richText',
       required: true,
@@ -15,6 +22,11 @@ export const ContentSection: Block = {
       admin: {
         description: 'Use this field for full page formatted textual content.',
       },
+    },
+          ],
+        },
+        styleTab,
+      ],
     },
   ],
 };

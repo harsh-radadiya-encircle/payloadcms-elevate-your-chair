@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getMedia } from "~/_utils/getMedia";
+import { FadeIn } from "~/components/animations/FadeIn";
+import { StaggerContainer } from "~/components/animations/StaggerContainer";
 
 type PlanProps = {
   badge?: string;
@@ -48,7 +50,7 @@ export const PricingSection: React.FC<Props> = ({
   };
 
   return (
-    <section className={`relative w-full py-20 px-6 overflow-hidden ${bgImageUrl && bgImageUrl !== "#" ? "bg-[#e6dfd8]" : ""}`}>
+    <section className={`dynamic-section relative w-full py-20 px-6 overflow-hidden ${bgImageUrl && bgImageUrl !== "#" ? "bg-[#e6dfd8]" : ""}`}>
       {/* Background Image & Overlay */}
       {bgImageUrl && bgImageUrl !== "#" && (
         <div className="absolute inset-0 z-0" style={{ opacity: bgOpacity / 100 }}>
@@ -63,9 +65,7 @@ export const PricingSection: React.FC<Props> = ({
       )}
 
       <div className="relative z-10 max-w-6xl mx-auto">
-
-        {/* Header Section */}
-        <div className="text-center mb-12 flex flex-col items-center">
+        <FadeIn direction="up" className="text-center mb-12 flex flex-col items-center">
           <h2 className="text-3xl md:text-5xl uppercase tracking-wider mb-8 leading-tight text-[#1a1a1a]">
             {preHeading && (
               <span className="font-light mr-3">{preHeading}</span>
@@ -97,12 +97,12 @@ export const PricingSection: React.FC<Props> = ({
               Yearly
             </button>
           </div>
-        </div>
+        </FadeIn>
 
         {/* Pricing Cards */}
         {plans && plans.length > 0 && (
           <div className="relative">
-            <div
+            <StaggerContainer
               ref={scrollContainerRef}
               className={`flex flex-nowrap overflow-x-auto snap-x snap-mandatory gap-4 lg:gap-6 items-stretch mb-12 scroll-smooth hide-scrollbar pt-6 pb-6 ${plans.length <= 5 ? "lg:justify-center" : "justify-start"}`}
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -182,7 +182,7 @@ export const PricingSection: React.FC<Props> = ({
                   </div>
                 );
               })}
-            </div>
+            </StaggerContainer>
 
             {/* Scroll Buttons */}
             {plans.length > 1 && (
@@ -217,7 +217,7 @@ export const PricingSection: React.FC<Props> = ({
 
         {/* Buttons */}
         {buttons && buttons.length > 0 && (
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+          <FadeIn direction="up" delay={0.4} className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
             {buttons.map((btn: any, btnIdx: number) => {
               const isSolid = btn.style === "solid";
 
@@ -252,7 +252,7 @@ export const PricingSection: React.FC<Props> = ({
                 </Link>
               );
             })}
-          </div>
+          </FadeIn>
         )}
 
       </div>

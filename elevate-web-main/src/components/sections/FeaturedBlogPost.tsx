@@ -20,7 +20,7 @@ export const FeaturedBlogPost: React.FC<Props> = ({
   const imageUrl = post.card?.cardImage ? getMedia(post.card.cardImage) : getMedia(post.featuredImage);
 
   return (
-    <section className="w-full bg-white py-16 px-6">
+    <section className="dynamic-section w-full bg-white py-16 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl uppercase tracking-wider mb-4 leading-tight text-[#1a1a1a]">

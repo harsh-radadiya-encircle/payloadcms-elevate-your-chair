@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 import { Button } from '@/fields/Button';
 
 export const StagesSection: Block = {
@@ -11,6 +12,12 @@ export const StagesSection: Block = {
     plural: 'Stages Sections',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'backgroundImage',
       type: 'upload',
@@ -69,6 +76,11 @@ export const StagesSection: Block = {
       label: 'Buttons',
       maxRows: 2,
       fields: Button,
+    },
+          ],
+        },
+        styleTab,
+      ],
     },
   ],
 };

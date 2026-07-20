@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 import { Button } from '@/fields/Button';
 import {
   lexicalEditor,
@@ -16,6 +17,12 @@ export const SplitContent: Block = {
     plural: 'Split Content Blocks',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'layout',
       type: 'radio',
@@ -63,6 +70,11 @@ export const SplitContent: Block = {
       label: 'Buttons',
       maxRows: 2,
       fields: Button,
+    },
+          ],
+        },
+        styleTab,
+      ],
     },
   ],
 };

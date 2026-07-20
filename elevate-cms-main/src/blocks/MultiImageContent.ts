@@ -1,4 +1,5 @@
 import type { Block } from 'payload';
+import { styleTab } from '@/fields/styleTab';
 
 export const MultiImageContent: Block = {
   slug: 'multi-image-content',
@@ -7,6 +8,12 @@ export const MultiImageContent: Block = {
     plural: 'Multi Image Contents',
   },
   fields: [
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
     {
       name: 'preheading',
       type: 'text',
@@ -88,6 +95,11 @@ export const MultiImageContent: Block = {
           label: 'Open in a new tab',
           required: false,
         },
+      ],
+    },
+          ],
+        },
+        styleTab,
       ],
     },
   ],

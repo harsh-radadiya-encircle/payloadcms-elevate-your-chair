@@ -47,7 +47,7 @@ export const FaqSection: React.FC<Props> = ({ backgroundImage, heading, faqs }) 
   const bgImageUrl = getMedia(backgroundImage);
 
   return (
-    <section className="relative w-full py-20 px-6 min-h-[60vh] flex flex-col items-center justify-center">
+    <section className="dynamic-section relative w-full py-20 px-6 min-h-[60vh] flex flex-col items-center justify-center">
       {/* Background Image & Overlay */}
       {bgImageUrl && bgImageUrl !== "#" && (
         <>

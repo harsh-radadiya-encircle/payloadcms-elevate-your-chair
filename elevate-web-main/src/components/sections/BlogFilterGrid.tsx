@@ -89,7 +89,7 @@ export const BlogFilterGrid: React.FC<Props> = ({
   const bgImageUrl = getMedia(backgroundImage);
 
   return (
-    <section className="relative w-full py-16 px-6 overflow-hidden" style={{ backgroundColor: bgColor, color: textColor }}>
+    <section className="dynamic-section relative w-full py-16 px-6 overflow-hidden" style={{ backgroundColor: bgColor, color: textColor }}>
       {bgImageUrl && bgImageUrl !== "#" && (
         <div className="absolute inset-0 z-0">
           <Image
