@@ -91,11 +91,11 @@ export const TestimonialsSlider: React.FC<Props> = ({
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header Section */}
         <FadeIn direction="up" className="text-center mb-16 flex flex-col items-center">
-          <h2 className="text-3xl md:text-5xl uppercase tracking-wider mb-4 leading-tight text-[#1a1a1a]">
+          <h2 className="uppercase tracking-wider mb-4 leading-tight text-[#1a1a1a]">
             {preHeading && (
-              <span className="font-light mr-3">{preHeading}</span>
+              <span className="text-h3 block md:inline-block mr-3 mb-2 md:mb-0">{preHeading}</span>
             )}
-            <span className="font-bold">{mainHeading}</span>
+            <span className="text-h2-bold block md:inline-block">{mainHeading}</span>
           </h2>
         </FadeIn>
 
@@ -154,7 +154,7 @@ export const TestimonialsSlider: React.FC<Props> = ({
                       )}
 
                       {/* Quote Text */}
-                      <p className="text-gray-500 text-sm md:text-base leading-relaxed mt-2 mb-8 px-4 flex-grow flex items-center justify-center relative">
+                      <p className="text-gray-500 text-body leading-relaxed mt-2 mb-8 px-4 flex-grow flex items-center justify-center relative">
                         {hasMedia && <span className="font-serif text-xl absolute top-0 left-0 -mt-2 text-gray-400">&ldquo;</span>}
                         {testimonial.quote}
                         {hasMedia && <span className="font-serif text-xl absolute bottom-0 right-0 -mb-2 text-gray-400">&rdquo;</span>}
@@ -168,7 +168,7 @@ export const TestimonialsSlider: React.FC<Props> = ({
                       )}
 
                       {/* Name */}
-                      <h4 className="text-xs md:text-sm font-bold uppercase tracking-widest text-[#1a1a1a] mt-auto">
+                      <h4 className="text-h5-bold uppercase tracking-widest text-[#1a1a1a] mt-auto">
                         {testimonial.name}
                       </h4>
                     </div>

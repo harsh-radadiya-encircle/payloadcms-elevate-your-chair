@@ -40,14 +40,14 @@ export const FeatureCards: React.FC<Props> = ({
 
         {/* Header Section */}
         <div className="text-center mb-16 flex flex-col items-center">
-          <h2 className="text-3xl md:text-5xl uppercase tracking-wider mb-4 leading-tight">
+          <h2 className="uppercase tracking-wider mb-4 leading-tight">
             {preHeading && (
-              <span className="font-light mr-3">{preHeading}</span>
+              <span className="text-h3 block md:inline-block mr-3 mb-2 md:mb-0">{preHeading}</span>
             )}
-            <span className="font-bold">{mainHeading}</span>
+            <span className="text-h2-bold block md:inline-block">{mainHeading}</span>
           </h2>
           {subHeading && (
-            <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
+            <p className="text-gray-400 text-body max-w-2xl mx-auto">
               {subHeading}
             </p>
           )}
@@ -91,12 +91,12 @@ export const FeatureCards: React.FC<Props> = ({
                     )}
 
                     {/* Title */}
-                    <h3 className="text-sm md:text-base uppercase font-bold tracking-widest mb-4 leading-snug">
+                    <h3 className="text-body uppercase font-bold tracking-widest mb-4 leading-snug">
                       {card.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-gray-400 text-xs md:text-sm leading-relaxed mt-auto">
+                    <p className="text-gray-400 text-h5 leading-relaxed mt-auto">
                       {card.description}
                     </p>
                   </div>

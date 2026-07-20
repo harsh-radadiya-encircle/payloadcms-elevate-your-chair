@@ -54,15 +54,15 @@ export const StagesSection: React.FC<Props> = ({
       <div className="relative z-10 w-full max-w-6xl bg-white/95 shadow-2xl px-6 py-12 md:px-12 md:py-16 text-center">
         
         {/* Headings */}
-        <h2 className="text-3xl md:text-5xl uppercase tracking-widest mb-10 leading-tight text-[#1a1a1a]">
+        <h2 className="mb-10 text-center text-[#1a1a1a]">
           {preHeading && (
-            <span className="font-light block mb-2">{preHeading}</span>
+            <span className="text-h2 block mb-2">{preHeading}</span>
           )}
-          <span className="font-bold block">{mainHeading}</span>
+          <span className="text-h2-bold block">{mainHeading}</span>
         </h2>
 
         {subHeading && (
-          <p className="text-sm md:text-base font-bold text-[#1a1a1a] mb-10">
+          <p className="text-h5-bold text-[#1a1a1a] mb-10">
             {subHeading}
           </p>
         )}
@@ -89,7 +89,7 @@ export const StagesSection: React.FC<Props> = ({
                       No Image
                     </div>
                   )}
-                  <p className="text-xs md:text-sm font-bold text-[#1a1a1a] leading-relaxed max-w-[200px]">
+                  <p className="text-h5-bold text-[#1a1a1a] mt-4 max-w-[200px]">
                     {stage.label}
                   </p>
                 </div>
@@ -100,7 +100,7 @@ export const StagesSection: React.FC<Props> = ({
 
         {/* Bottom Text */}
         {bottomText && (
-          <p className="text-sm md:text-base font-bold text-[#1a1a1a] mb-8">
+          <p className="text-h5-bold text-[#1a1a1a] mb-8">
             {bottomText}
           </p>
         )}

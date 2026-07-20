@@ -47,7 +47,7 @@ export const CenteredTextSection: React.FC<Props> = ({
       <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center">
         {/* Heading */}
         {(preHeading || mainHeading) && (
-          <h2 className="text-3xl md:text-5xl uppercase tracking-wider mb-6 leading-tight">
+          <h2 className="text-h2-bold uppercase tracking-wider mb-6 leading-tight">
             {preHeading && (
               <span className="font-light mr-3">{preHeading}</span>
             )}
@@ -59,7 +59,7 @@ export const CenteredTextSection: React.FC<Props> = ({
 
         {/* Subheading */}
         {subHeading && (
-          <p className="text-lg md:text-xl mb-8 opacity-90">
+          <p className="text-h3 mb-8 opacity-90">
             {subHeading}
           </p>
         )}

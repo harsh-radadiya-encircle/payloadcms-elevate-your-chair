@@ -41,7 +41,7 @@ export const StorySection: React.FC<Props> = ({
       <div className="relative z-10 w-full max-w-5xl mx-auto bg-white shadow-2xl px-6 py-12 md:px-16 md:py-20 text-center flex flex-col items-center">
         
         {/* Headings */}
-        <h2 className="text-3xl md:text-5xl uppercase tracking-widest mb-10 leading-tight text-[#1a1a1a]">
+        <h2 className="text-h2-bold uppercase tracking-widest mb-10 leading-tight text-[#1a1a1a]">
           {preHeading && (
             <span className="font-light mr-3">{preHeading}</span>
           )}

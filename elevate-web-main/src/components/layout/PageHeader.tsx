@@ -9,7 +9,7 @@ import { getMedia } from "~/_utils/getMedia";
 
 import { useRouter } from "next/router";
 
-type Props = { 
+type Props = {
   siteHeader: SiteHeader;
   forceDarkBg?: boolean;
 };
@@ -31,7 +31,7 @@ const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && searchQuery.trim()) {
       setIsSearchOpen(false);
@@ -76,21 +76,20 @@ const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
   const logoUrl = getMedia(siteHeader.logo);
   const noticeText = siteHeader.noticeText;
   const cta = siteHeader.primaryCTA;
-  
+
   return (
     <>
       <motion.header
         initial={{ y: -100, opacity: 0 }}
-        animate={{ 
-          y: isVisible ? 0 : -100, 
-          opacity: isVisible ? 1 : 0 
+        animate={{
+          y: isVisible ? 0 : -100,
+          opacity: isVisible ? 1 : 0
         }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-          forceDarkBg || isScrolled || isMobileMenuOpen || isSearchOpen
-            ? "bg-[#1a1a1a] shadow-md" 
-            : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${forceDarkBg || isScrolled || isMobileMenuOpen || isSearchOpen
+          ? "bg-[#1a1a1a] shadow-md"
+          : "bg-transparent"
+          }`}
       >
         {/* Top Notice Bar */}
         {(noticeText || cta) && (
@@ -116,7 +115,7 @@ const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
 
         {/* Main Header */}
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          
+
           {/* Mobile Menu Toggle (Left) */}
           <button
             onClick={() => {
@@ -137,7 +136,7 @@ const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
                   src={logoUrl}
                   alt="Site Logo"
                   fill
-                  className="object-contain object-center lg:object-left" 
+                  className="object-contain object-center lg:object-left"
                   unoptimized={logoUrl.includes('localhost') || logoUrl.includes('127.0.0.1')}
                 />
               </div>
@@ -160,7 +159,7 @@ const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
                   {link.label}
                   <span className="absolute left-0 bottom-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
                 </Link>
-                
+
                 {/* Dropdown */}
                 {link.dropdownLinks && link.dropdownLinks.length > 0 && (
                   <div className="absolute top-full left-0 mt-4 w-56 bg-white shadow-xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
@@ -198,10 +197,9 @@ const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
         </div>
 
         {/* Expandable Search Bar (Desktop & Mobile) */}
-        <div 
-          className={`w-full bg-white transition-all duration-300 overflow-hidden ${
-            isSearchOpen ? "max-h-24 py-4 border-b border-gray-200" : "max-h-0 py-0"
-          }`}
+        <div
+          className={`w-full bg-white transition-all duration-300 overflow-hidden ${isSearchOpen ? "max-h-24 py-4 border-b border-gray-200" : "max-h-0 py-0"
+            }`}
         >
           <div className="max-w-7xl mx-auto px-6">
             <div className="relative flex items-center">
@@ -220,24 +218,21 @@ const PageHeader: FC<Props> = ({ siteHeader, forceDarkBg = false }) => {
       </motion.header>
 
       {/* Mobile Menu Dropdown */}
-      <div 
-        className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-300 ${
-          (noticeText || cta) ? "top-[90px] md:top-[100px]" : "top-[64px] md:top-[80px]"
-        } ${
-          isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
+      <div
+        className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-300 ${(noticeText || cta) ? "top-[90px] md:top-[100px]" : "top-[64px] md:top-[80px]"
+          } ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
       >
         {/* Backdrop */}
-        <div 
-          className="absolute inset-0 bg-black/50" 
+        <div
+          className="absolute inset-0 bg-black/50"
           onClick={() => setIsMobileMenuOpen(false)}
         />
-        
+
         {/* Menu Container */}
-        <div 
-          className={`absolute inset-0 bg-[#f8f8f8] shadow-2xl transition-transform duration-300 flex flex-col ${
-            isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
-          }`}
+        <div
+          className={`absolute inset-0 bg-[#f8f8f8] shadow-2xl transition-transform duration-300 flex flex-col ${isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
+            }`}
         >
           <div className="flex flex-col flex-1 py-4 overflow-y-auto">
             {siteHeader.navigationLinks?.map((link, idx) => (

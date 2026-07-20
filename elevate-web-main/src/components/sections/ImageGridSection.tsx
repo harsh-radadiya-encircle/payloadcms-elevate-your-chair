@@ -26,14 +26,14 @@ export const ImageGridSection: React.FC<Props> = ({
     <section className="dynamic-section w-full bg-white text-[#1a1a1a] py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 flex flex-col items-center">
-          <h2 className="text-3xl md:text-5xl uppercase tracking-wider mb-4 leading-tight">
+          <h2 className="text-h2-bold uppercase tracking-wider mb-4 leading-tight">
             {preHeading && (
               <span className="font-light mr-3">{preHeading}</span>
             )}
             <span className="font-bold">{mainHeading}</span>
           </h2>
           {subHeading && (
-            <p className="text-lg md:text-xl text-[#1a1a1a] mb-6">
+            <p className="text-h3 text-[#1a1a1a] mb-6">
               {subHeading}
             </p>
           )}
@@ -67,7 +67,7 @@ export const ImageGridSection: React.FC<Props> = ({
                     </div>
                   )}
                   {img.title && (
-                    <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-[#1a1a1a] leading-relaxed">
+                    <h3 className="text-h5-bold uppercase tracking-widest text-[#1a1a1a] leading-relaxed">
                       {img.title}
                     </h3>
                   )}

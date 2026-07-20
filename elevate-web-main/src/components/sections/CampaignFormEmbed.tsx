@@ -102,7 +102,7 @@ const CampaignFormEmbed: React.FC<Props> = ({
       <div className="relative z-10 max-w-4xl mx-auto">
         <div className="text-center mb-12">
           {heading && (
-            <h2 className="text-3xl md:text-5xl uppercase tracking-wider mb-4 leading-tight">
+            <h2 className="text-h2-bold uppercase tracking-wider mb-4 leading-tight">
               {/* Parse first two words as light, rest as bold just to match styling if they use a space */}
               {heading.split(' ').length > 1 ? (
                 <>
@@ -114,12 +114,12 @@ const CampaignFormEmbed: React.FC<Props> = ({
               )}
             </h2>
           )}
-          {description && <p className="text-lg text-gray-700 font-light mt-4">{description}</p>}
+          {description && <p className="text-h3 text-gray-700 font-light mt-4">{description}</p>}
         </div>
 
         {success ? (
           <div className="bg-white p-12 text-center shadow-lg border border-gray-200">
-            <h3 className="text-2xl font-bold mb-4 uppercase tracking-widest text-[#1a1a1a]">Thank You!</h3>
+            <h3 className="text-h3-bold mb-4 uppercase tracking-widest text-[#1a1a1a]">Thank You!</h3>
             <p className="text-gray-600">Your message has been successfully sent. We will get back to you shortly.</p>
           </div>
         ) : (
@@ -131,7 +131,7 @@ const CampaignFormEmbed: React.FC<Props> = ({
 
                 return (
                   <div key={field.id || idx} className={`flex flex-col ${fieldClass}`}>
-                    <label className="text-sm text-[#1a1a1a] mb-2 font-medium">
+                    <label className="text-body text-[#1a1a1a] mb-2 font-medium">
                       {field.label} {field.required && "*"}
                     </label>
                     {field.blockType === "textarea" ? (
@@ -162,7 +162,7 @@ const CampaignFormEmbed: React.FC<Props> = ({
                           className="w-5 h-5 text-black border-gray-800 rounded focus:ring-black"
                           defaultChecked={field.defaultValue as boolean}
                         />
-                        <span className="ml-3 text-sm text-gray-700">{field.label}</span>
+                        <span className="ml-3 text-body text-gray-700">{field.label}</span>
                       </div>
                     ) : (
                       <input
@@ -172,16 +172,16 @@ const CampaignFormEmbed: React.FC<Props> = ({
                         defaultValue={field.defaultValue as string}
                       />
                     )}
-                    {errors[field.name] && <span className="text-red-500 text-xs mt-1">This field is required</span>}
+                    {errors[field.name] && <span className="text-red-500 text-h5 mt-1">This field is required</span>}
                   </div>
                 );
               })}
             </div>
 
-            {submitError && <div className="text-red-500 text-sm font-semibold">{submitError}</div>}
+            {submitError && <div className="text-red-500 text-body font-semibold">{submitError}</div>}
 
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8 pt-8">
-              <div className="bg-white p-1 inline-block shadow-sm">
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-10 pt-6">
+              <div className="bg-white p-1 inline-flex shadow-sm self-center shrink-0">
                 {/* Use a placeholder site key for development, users will swap this out */}
                 <ReCAPTCHA
                   sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"}
@@ -191,8 +191,7 @@ const CampaignFormEmbed: React.FC<Props> = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#1a1a1a] text-white px-8 py-3 text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors disabled:opacity-70 flex-shrink-0"
-                style={{ height: '78px' }} // Match recaptcha height roughly
+                className="bg-[#1a1a1a] text-white px-10 text-h5-bold uppercase tracking-widest hover:bg-black transition-colors disabled:opacity-70 flex items-center justify-center shrink-0 h-[78px]"
               >
                 {isSubmitting ? "SENDING..." : form.submitButtonLabel || "SEND"}
               </button>

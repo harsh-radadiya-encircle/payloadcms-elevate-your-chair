@@ -17,19 +17,19 @@ const HeroContent = ({ data }: { data: any }) => {
   return (
     <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 max-w-4xl mx-auto">
       {data.title && (
-        <h2 className="text-xl md:text-3xl font-light text-white mb-2 tracking-widest uppercase">
+        <h2 className="text-h2 font-light text-white mb-2 tracking-widest uppercase">
           {data.title}
         </h2>
       )}
-      
+
       {data.highlightedTitle && (
-        <h1 className="text-h1 text-white mb-6 text-center">
+        <h1 className="text-h1-bold text-white mb-6 text-center">
           {data.highlightedTitle}
         </h1>
       )}
-      
+
       {data.description && (
-        <p className="text-xs md:text-sm text-white/90 mb-10 max-w-2xl font-light tracking-[0.2em] uppercase leading-relaxed">
+        <p className="text-h5 text-white/90 mb-10 max-w-2xl font-light tracking-[0.2em] uppercase leading-relaxed">
           {data.description}
         </p>
       )}

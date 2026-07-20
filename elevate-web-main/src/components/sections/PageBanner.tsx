@@ -42,7 +42,7 @@ const PageBanner: React.FC<Props> = ({ title, mediaType, image, video, slides })
   // Render the central text overlay
   const renderContent = () => (
     <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6 mt-16 md:mt-24">
-      <h1 className="text-h1 text-white text-center">
+      <h1 className="text-h1-bold text-white text-center">
         {title}
       </h1>
     </div>

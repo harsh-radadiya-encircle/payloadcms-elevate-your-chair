@@ -44,7 +44,7 @@ export const AppPromo: React.FC<Props> = ({
         >
           <div className="flex flex-col py-2">
             {/* Headings */}
-            <h2 className="text-3xl md:text-5xl uppercase mb-6 leading-tight text-white">
+            <h2 className="text-h2-bold uppercase mb-6 leading-tight text-white">
               {preHeading && (
                 <span className="font-light block">{preHeading}</span>
               )}

@@ -70,11 +70,11 @@ export const PricingSection: React.FC<Props> = ({
 
       <div className="relative z-10 max-w-6xl mx-auto">
         <FadeIn direction="up" className="text-center mb-12 flex flex-col items-center">
-          <h2 className="text-h2 text-[#1a1a1a] mb-8 text-center">
+          <h2 className="mb-8 text-center text-[#1a1a1a]">
             {preHeading && (
-              <span className="font-light mr-3">{preHeading}</span>
+              <span className="text-h3 block md:inline-block mr-3 mb-2 md:mb-0">{preHeading}</span>
             )}
-            <span className="font-bold">{mainHeading}</span>
+            <span className="text-h2-bold block md:inline-block">{mainHeading}</span>
           </h2>
 
           {/* Optional Rich Text Description */}
@@ -86,7 +86,7 @@ export const PricingSection: React.FC<Props> = ({
           )}
 
           {/* Toggle Switch */}
-          <div className="flex items-center justify-center space-x-6 text-sm md:text-base font-bold tracking-widest uppercase">
+          <div className="flex items-center justify-center space-x-6 text-h5-bold tracking-widest uppercase">
             <button
               onClick={() => setIsYearly(false)}
               className={`transition-colors ${!isYearly ? "text-[#1a1a1a] border-b-2 border-[#1a1a1a] pb-1" : "text-gray-400 hover:text-gray-600"}`}
@@ -150,12 +150,12 @@ export const PricingSection: React.FC<Props> = ({
                       )}
 
                       {/* Title */}
-                      <h3 className="text-h5-bold text-[#1a1a1a] mb-4 mt-2">
+                      <h3 className="text-h3-bold text-[#1a1a1a] mb-4 mt-2">
                         {plan.title}
                       </h3>
 
                       {/* Price */}
-                      <div className="text-gray-700 text-sm md:text-base mb-6 min-h-[1.5rem] flex items-center justify-center gap-2">
+                      <div className="text-gray-700 text-body mb-6 min-h-[1.5rem] flex items-center justify-center gap-2">
                         {isYearly ? (
                           <>
                             {plan.yearlyOriginalPrice && (

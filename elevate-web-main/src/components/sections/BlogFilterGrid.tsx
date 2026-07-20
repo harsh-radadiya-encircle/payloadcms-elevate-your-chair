@@ -106,7 +106,7 @@ export const BlogFilterGrid: React.FC<Props> = ({
       <div className="relative z-10 max-w-6xl mx-auto">
         {(preHeading || mainHeading) && (
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl uppercase tracking-wider mb-4 leading-tight">
+            <h2 className="text-h2-bold uppercase tracking-wider mb-4 leading-tight">
               {preHeading && <span className="font-light mr-3">{preHeading}</span>}
               <span className="font-bold">{mainHeading}</span>
             </h2>
@@ -120,11 +120,11 @@ export const BlogFilterGrid: React.FC<Props> = ({
               <svg className={`w-4 h-4 mr-2 ${isLightText ? 'text-white' : 'text-[#cdbfae]'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
               </svg>
-              <span className="text-sm font-medium mr-2">Filter By</span>
+              <span className="text-body font-medium mr-2">Filter By</span>
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className={`bg-transparent text-sm font-bold uppercase focus:outline-none cursor-pointer appearance-none ${isLightText ? 'text-white' : 'text-[#1a1a1a]'}`}
+                className={`bg-transparent text-h5-bold uppercase focus:outline-none cursor-pointer appearance-none ${isLightText ? 'text-white' : 'text-[#1a1a1a]'}`}
                 style={{ paddingRight: '20px' }}
               >
                 <option value="all" className="text-black">All Categories</option>
@@ -160,17 +160,17 @@ export const BlogFilterGrid: React.FC<Props> = ({
                       />
                     </Link>
                   )}
-                  <h3 className="text-sm font-bold uppercase tracking-widest mb-3 leading-snug">
+                  <h3 className="text-h5-bold uppercase tracking-widest mb-3 leading-snug">
                     <Link href={`/blog/${post.slug}`} className="hover:opacity-80">
                       {post.title}
                     </Link>
                   </h3>
-                  <p className={`text-xs md:text-sm leading-relaxed mb-6 line-clamp-3 ${isLightText ? 'opacity-90' : 'text-gray-500'}`}>
+                  <p className={`text-h5 leading-relaxed mb-6 line-clamp-3 ${isLightText ? 'opacity-90' : 'text-gray-500'}`}>
                     {post.card?.excerpt}
                   </p>
                   <Link 
                     href={`/blog/${post.slug}`}
-                    className={`inline-flex items-center text-xs font-bold uppercase tracking-widest mt-auto hover:opacity-70 transition-opacity ${isLightText ? 'text-white' : 'text-[#1a1a1a]'}`}
+                    className={`inline-flex items-center text-h5-bold uppercase tracking-widest mt-auto hover:opacity-70 transition-opacity ${isLightText ? 'text-white' : 'text-[#1a1a1a]'}`}
                   >
                     READ MORE
                     <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -194,7 +194,7 @@ export const BlogFilterGrid: React.FC<Props> = ({
             <button
               onClick={loadMore}
               disabled={loading}
-              className={`px-8 py-3 text-xs font-bold uppercase tracking-widest border-2 transition-colors ${
+              className={`px-8 py-3 text-h5-bold uppercase tracking-widest border-2 transition-colors ${
                 isLightText 
                   ? 'border-white text-white hover:bg-white hover:text-black' 
                   : 'border-[#1a1a1a] text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white'

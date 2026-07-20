@@ -23,7 +23,7 @@ const FaqItem: React.FC<FaqProps> = ({ question, answer }) => {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full bg-[#1a1a1a] text-white p-4 md:p-5 flex justify-between items-center text-left transition-colors hover:bg-black"
       >
-        <span className="font-bold tracking-widest uppercase text-xs md:text-sm pr-4">
+        <span className="font-bold tracking-widest uppercase text-h5 pr-4">
           {question}
         </span>
         <FaChevronDown className={`shrink-0 transition-transform duration-300 ease-in-out ${isOpen ? "rotate-180" : ""}`} />
@@ -34,7 +34,7 @@ const FaqItem: React.FC<FaqProps> = ({ question, answer }) => {
           }`}
       >
         <div className="overflow-hidden">
-          <div className="bg-white border-x border-b border-[#1a1a1a] p-4 md:p-5 text-[#666666] text-xs md:text-sm leading-relaxed">
+          <div className="bg-white border-x border-b border-[#1a1a1a] p-4 md:p-5 text-[#666666] text-h5 leading-relaxed">
             {answer}
           </div>
         </div>
@@ -68,7 +68,7 @@ export const FaqSection: React.FC<Props> = ({ backgroundImage, heading, faqs }) 
       <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center">
 
         {/* Heading */}
-        <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-widest mb-12 text-[#1a1a1a] text-center">
+        <h2 className="text-h2-bold uppercase tracking-widest mb-12 text-[#1a1a1a] text-center">
           {heading}
         </h2>
 

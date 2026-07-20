@@ -53,20 +53,20 @@ export const ContactInformation: React.FC<Props> = ({
             {/* The vertical line matching SplitContent */}
             <div className="w-[3px] bg-[#1a1a1a] mr-4 md:mr-6 shrink-0 h-auto self-stretch mt-2"></div>
             
-            <div className="flex flex-col py-2">
+            <div className="flex flex-col py-2 min-w-0 w-full">
               {/* Headings */}
-              <h2 className="text-4xl md:text-6xl uppercase mb-10 leading-tight text-[#1a1a1a]">
+              <h2 className="uppercase mb-10 leading-tight text-[#1a1a1a]">
                 {preHeading && (
-                  <span className="font-light block mb-2">{preHeading}</span>
+                  <span className="text-sm md:text-xl block mb-2 break-words">{preHeading}</span>
                 )}
-                <span className="font-extrabold tracking-tight">{mainHeading}</span>
+                <span className="text-3xl md:text-6xl font-extrabold block break-words">{mainHeading}</span>
               </h2>
 
               {/* Email Address */}
               {emailAddress && (
                 <div className="flex items-center gap-4 mb-6">
                   <EnvelopeIcon />
-                  <a href={`mailto:${emailAddress}`} className="text-lg md:text-xl font-bold text-[#1a1a1a] hover:opacity-70 transition-opacity">
+                  <a href={`mailto:${emailAddress}`} className="text-sm md:text-xl font-bold text-[#1a1a1a] hover:opacity-70 transition-opacity break-all">
                     {emailAddress}
                   </a>
                 </div>
@@ -84,7 +84,7 @@ export const ContactInformation: React.FC<Props> = ({
                             <Image src={iconUrl} alt={link.handle} fill className="object-contain" unoptimized={iconUrl.includes('localhost') || iconUrl.includes('127.0.0.1')} />
                           </div>
                         ) : null}
-                        <span className="text-lg md:text-xl font-bold">
+                        <span className="text-sm md:text-xl font-bold break-all">
                           {link.handle}
                         </span>
                       </a>
