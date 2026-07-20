@@ -32,6 +32,10 @@ export const Media: CollectionConfig = {
       type: 'relationship',
       relationTo: 'media-categories',
       label: 'Category',
+      admin: {
+        position: 'sidebar',
+        description: 'Categorize your media to keep your library organized.',
+      },
       required: false,
     },
     {

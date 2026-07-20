@@ -10,7 +10,7 @@ type Props = {
   mediaType: "image" | "video" | "slider";
   image?: any;
   video?: any;
-  slides?: { image: any }[];
+  slides?: { image: any, id?: string | null }[] | null;
 };
 
 const PageBanner: React.FC<Props> = ({ title, mediaType, image, video, slides }) => {
@@ -42,7 +42,7 @@ const PageBanner: React.FC<Props> = ({ title, mediaType, image, video, slides })
   // Render the central text overlay
   const renderContent = () => (
     <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6 mt-16 md:mt-24">
-      <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-widest uppercase">
+      <h1 className="text-h1 text-white text-center">
         {title}
       </h1>
     </div>

@@ -3,6 +3,7 @@ import { Users } from '@/collections/Users';
 import { Pages } from '@/collections/Pages';
 import { Media } from '@/collections/media/Media';
 import { MediaCategories } from '@/collections/media/MediaCategories';
+
 import { BlogPosts } from '@/collections/content/BlogPosts';
 import { BlogCategories } from '@/collections/content/BlogCategories';
 
@@ -18,6 +19,7 @@ export const collections = [
   Pages,
   Media,
   MediaCategories,
+
   BlogPosts,
   BlogCategories,
   Enquiries,

@@ -5,7 +5,7 @@ import { FadeIn } from "~/components/animations/FadeIn";
 
 type Props = {
   backgroundImage: any;
-  preHeading?: string;
+  preheading?: string | null;
   mainHeading: string;
   content_html?: string;
   bgOpacity?: number;
@@ -21,7 +21,6 @@ export const StorySection: React.FC<Props> = ({
   const bgImageUrl = getMedia(backgroundImage);
   return (
     <section className={`dynamic-section relative w-full py-16 md:py-24 px-4 md:px-8 flex items-center justify-center overflow-hidden min-h-[60vh] ${bgImageUrl && bgImageUrl !== "#" ? "bg-[#e6dfd8]" : ""}`}>
-      <FadeIn direction="up">
       {/* Full Width Background Image */}
       {bgImageUrl && bgImageUrl !== "#" && (
         <>
@@ -37,8 +36,9 @@ export const StorySection: React.FC<Props> = ({
         </>
       )}
 
+      <FadeIn direction="up">
       {/* Main White Container */}
-      <div className="relative z-10 w-full max-w-5xl bg-white shadow-2xl px-6 py-12 md:px-16 md:py-20 text-center flex flex-col items-center">
+      <div className="relative z-10 w-full max-w-5xl mx-auto bg-white shadow-2xl px-6 py-12 md:px-16 md:py-20 text-center flex flex-col items-center">
         
         {/* Headings */}
         <h2 className="text-3xl md:text-5xl uppercase tracking-widest mb-10 leading-tight text-[#1a1a1a]">

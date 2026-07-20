@@ -7,8 +7,8 @@ import { getMedia } from "~/_utils/getMedia";
 import type { BlogPost, BlogCategory } from "~/payload-types";
 
 type Props = {
-  preHeading?: string;
-  mainHeading?: string;
+  preheading?: string | null;
+  mainheading?: string | null;
   category: BlogCategory | string;
   theme?: 'light' | 'dark' | 'beige';
   backgroundImage?: any;

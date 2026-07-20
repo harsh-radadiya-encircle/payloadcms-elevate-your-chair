@@ -4,34 +4,38 @@ import Link from "next/link";
 import { getMedia } from "~/_utils/getMedia";
 import { FadeIn } from "~/components/animations/FadeIn";
 import { StaggerContainer } from "~/components/animations/StaggerContainer";
+import { Button } from "~/components/ui/Button";
 
 type PlanProps = {
-  badge?: string;
+  badge?: string | null;
   title: string;
-  monthlyOriginalPrice?: string;
-  monthlyPrice: string;
-  yearlyOriginalPrice?: string;
-  yearlyPrice: string;
+  monthlyOriginalPrice?: string | null;
+  monthlyPrice?: string | null;
+  yearlyOriginalPrice?: string | null;
+  yearlyPrice?: string | null;
   description: string;
-  isFeatured?: boolean;
-  cardBackground?: string;
-  cardBorder?: string;
+  isFeatured?: boolean | null;
+  cardBackground?: string | null;
+  cardBorder?: string | null;
+  id?: string | null;
 };
 
 type Props = {
   backgroundImage?: any;
-  preHeading?: string;
+  preHeading?: string | null;
   mainHeading: string;
-  description_html?: string;
-  plans?: PlanProps[];
-  buttons?: any[];
-  bgOpacity?: number;
+  description?: any | null; // Lexical object
+  description_html?: string | null;
+  plans?: PlanProps[] | null;
+  buttons?: any[] | null;
+  bgOpacity?: number | null;
 };
 
 export const PricingSection: React.FC<Props> = ({
   backgroundImage,
   preHeading,
   mainHeading,
+  description,
   description_html,
   plans,
   buttons,
@@ -66,7 +70,7 @@ export const PricingSection: React.FC<Props> = ({
 
       <div className="relative z-10 max-w-6xl mx-auto">
         <FadeIn direction="up" className="text-center mb-12 flex flex-col items-center">
-          <h2 className="text-3xl md:text-5xl uppercase tracking-wider mb-8 leading-tight text-[#1a1a1a]">
+          <h2 className="text-h2 text-[#1a1a1a] mb-8 text-center">
             {preHeading && (
               <span className="font-light mr-3">{preHeading}</span>
             )}
@@ -76,7 +80,7 @@ export const PricingSection: React.FC<Props> = ({
           {/* Optional Rich Text Description */}
           {description_html && (
             <div
-              className="prose prose-sm md:prose-base prose-gray max-w-[1000px] mx-auto mb-8 text-[#666666] leading-relaxed text-center"
+              className="text-body max-w-[1000px] mx-auto mb-8 text-[#666666] text-center"
               dangerouslySetInnerHTML={{ __html: description_html }}
             />
           )}
@@ -146,7 +150,7 @@ export const PricingSection: React.FC<Props> = ({
                       )}
 
                       {/* Title */}
-                      <h3 className="text-lg md:text-xl uppercase font-bold tracking-widest mb-4 mt-2 leading-snug text-[#1a1a1a]">
+                      <h3 className="text-h5-bold text-[#1a1a1a] mb-4 mt-2">
                         {plan.title}
                       </h3>
 
@@ -175,7 +179,7 @@ export const PricingSection: React.FC<Props> = ({
                       </div>
 
                       {/* Description */}
-                      <p className="text-gray-500 text-xs md:text-sm leading-relaxed mt-auto max-w-[250px]">
+                      <p className="text-body text-gray-500 mt-auto max-w-[250px]">
                         {plan.description}
                       </p>
                     </div>
@@ -218,40 +222,17 @@ export const PricingSection: React.FC<Props> = ({
         {/* Buttons */}
         {buttons && buttons.length > 0 && (
           <FadeIn direction="up" delay={0.4} className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-            {buttons.map((btn: any, btnIdx: number) => {
-              const isSolid = btn.style === "solid";
-
-              let bgColor, textColor, borderColor;
-
-              if (isSolid) {
-                bgColor = btn.backgroundColor || "#1a1a1a";
-                textColor = btn.textColor || "#ffffff";
-                borderColor = bgColor;
-              } else {
-                bgColor = "transparent";
-                textColor = btn.textColor || "#1a1a1a";
-                borderColor = btn.textColor || btn.backgroundColor || "#1a1a1a";
-              }
-
-              return (
-                <Link
-                  key={btnIdx}
-                  href={btn.url || "#"}
-                  target={btn.newTab ? "_blank" : "_self"}
-                  style={{
-                    backgroundColor: bgColor,
-                    color: textColor,
-                    borderColor: borderColor,
-                  }}
-                  className={`
-                    px-8 py-3 text-xs md:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-80 text-center
-                    ${isSolid ? "border-none" : "border-2"}
-                  `}
-                >
-                  {btn.label}
-                </Link>
-              );
-            })}
+            {buttons.map((btn: any, btnIdx: number) => (
+              <Button
+                key={btnIdx}
+                {...btn}
+                defaultSolidBgColor="#1a1a1a"
+                defaultSolidTextColor="#ffffff"
+                defaultOutlineTextColor="#1a1a1a"
+                defaultOutlineBorderColor="#1a1a1a"
+                defaultHoverTextColor="#ffffff"
+              />
+            ))}
           </FadeIn>
         )}
 

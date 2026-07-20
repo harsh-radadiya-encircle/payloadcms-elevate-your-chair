@@ -9,11 +9,11 @@ import type { CampaignForm, Media } from "~/payload-types";
 
 // The shape of the block from Payload
 type Props = {
-  heading?: string;
-  description?: string;
+  heading?: string | null;
+  description?: string | null;
   form: string | CampaignForm; // From depth: 2, this is expanded to the full form object
-  backgroundImage?: string | Media;
-  imageOpacity?: number;
+  backgroundImage?: string | Media | null;
+  imageOpacity?: number | null;
 };
 
 const CampaignFormEmbed: React.FC<Props> = ({

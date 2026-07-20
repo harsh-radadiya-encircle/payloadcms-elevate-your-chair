@@ -41,8 +41,19 @@ function renderNodes(
 ): React.ReactNode {
   return nodes.map((node, i) => {
     switch (node.type) {
-      case "paragraph":
-        return <p key={i}>{renderNodes(node.children ?? [], mediaBaseUrl)}</p>;
+      case "paragraph": {
+        // If paragraph is completely empty or just has empty text, render a <br /> so it doesn't collapse
+        const children = node.children ?? [];
+        const isActuallyEmpty =
+          children.length === 0 ||
+          (children.length === 1 && children[0].type === "text" && !children[0].text);
+
+        return (
+          <p key={i}>
+            {isActuallyEmpty ? <br /> : renderNodes(children, mediaBaseUrl)}
+          </p>
+        );
+      }
 
       case "heading": {
         const Tag = node.tag ?? "h2";
@@ -68,6 +79,9 @@ function renderNodes(
 
         return <React.Fragment key={i}>{styledText}</React.Fragment>;
       }
+
+      case "linebreak":
+        return <br key={i} />;
 
       case "link":
       case "autolink": {

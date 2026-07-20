@@ -6,10 +6,10 @@ type Props = {
   backgroundColor?: string;
   textColor?: string;
   backgroundImage?: any;
-  preHeading?: string;
-  mainHeading?: string;
-  subHeading?: string;
-  description_html?: string;
+  preheading?: string | null;
+  mainheading?: string | null;
+  subheading?: string | null;
+  description_html?: string | null;
 };
 
 export const CenteredTextSection: React.FC<Props> = ({

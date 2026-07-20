@@ -1,5 +1,5 @@
 import { ReactLenis } from 'lenis/react';
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 
 interface SmoothScrollProps {
   children: ReactNode;

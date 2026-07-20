@@ -5,7 +5,7 @@ import { getMedia } from "~/_utils/getMedia";
 import type { BlogPost } from "~/payload-types";
 
 type Props = {
-  preHeading?: string;
+  preheading?: string | null;
   mainHeading: string;
   post: BlogPost | string;
 };

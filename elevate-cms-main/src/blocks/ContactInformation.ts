@@ -1,5 +1,6 @@
 import type { Block } from 'payload';
 import { styleTab } from '@/fields/styleTab';
+import { Button } from '@/fields/Button';
 
 export const ContactInformation: Block = {
   slug: 'contact-information',
@@ -44,45 +45,36 @@ export const ContactInformation: Block = {
       defaultValue: 'info@elevateyourchair.com',
     },
     {
-      name: 'socialHandle',
-      type: 'text',
-      label: 'Social Media Handle',
-      defaultValue: '@elevateyourchair',
-    },
-    {
-      type: 'row',
+      name: 'socialLinks',
+      type: 'array',
+      label: 'Social Media Links',
       fields: [
         {
-          name: 'instagramUrl',
-          type: 'text',
-          label: 'Instagram URL (Optional)',
+          name: 'icon',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Platform Icon',
+          required: true,
         },
         {
-          name: 'tiktokUrl',
+          name: 'handle',
           type: 'text',
-          label: 'TikTok URL (Optional)',
+          label: 'Handle Name (e.g. @elevateyourchair)',
+          required: true,
         },
         {
-          name: 'youtubeUrl',
+          name: 'url',
           type: 'text',
-          label: 'YouTube URL (Optional)',
+          label: 'URL',
+          required: true,
         },
       ],
     },
     {
-      type: 'row',
-      fields: [
-        {
-          name: 'appStoreUrl',
-          type: 'text',
-          label: 'App Store URL (Optional)',
-        },
-        {
-          name: 'googlePlayUrl',
-          type: 'text',
-          label: 'Google Play URL (Optional)',
-        },
-      ],
+      name: 'buttons',
+      type: 'array',
+      label: 'Download / Action Buttons',
+      fields: Button,
     },
     {
       name: 'image',

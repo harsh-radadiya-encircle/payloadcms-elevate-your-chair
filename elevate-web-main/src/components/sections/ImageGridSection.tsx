@@ -4,14 +4,14 @@ import { getMedia } from "~/_utils/getMedia";
 
 type GridImage = {
   image: any;
-  title?: string;
+  title?: string | null;
 };
 
 type Props = {
-  preHeading?: string;
+  preheading?: string | null;
   mainHeading: string;
-  subHeading?: string;
-  description_html?: string;
+  subheading?: string | null;
+  description_html?: string | null;
   images?: GridImage[];
 };
 

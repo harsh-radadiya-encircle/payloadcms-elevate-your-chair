@@ -19,6 +19,8 @@ interface Props {
   siteFooter: SiteFooter;
   blogPost: BlogPost;
   relatedBlogPosts: BlogPost[];
+  previousPost?: BlogPost | null;
+  nextPost?: BlogPost | null;
 }
 
 import { PayloadClient } from "~/_utils/payload";
@@ -30,6 +32,8 @@ const BlogArticlePage: NextPage<Props> = ({
   siteFooter,
   blogPost,
   relatedBlogPosts,
+  previousPost,
+  nextPost,
 }) => {
   const { isFallback } = useRouter();
   if (isFallback) return <div>Loading…</div>;
@@ -52,6 +56,8 @@ const BlogArticlePage: NextPage<Props> = ({
         siteFooter={siteFooter}
         blogPost={blogPost}
         relatedBlogPosts={relatedBlogPosts}
+        previousPost={previousPost}
+        nextPost={nextPost}
       />
     </>
   );
@@ -94,7 +100,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
     const blogPost = allBlogPosts[0];
     if (!blogPost) return { notFound: true };
 
-    const [siteConfig, siteHeader, siteFooter, relatedBlogPosts] =
+    const [siteConfig, siteHeader, siteFooter, relatedBlogPosts, allPublishedPosts] =
       await Promise.all([
         payload.fetchGlobal<SiteConfig>("site-config"),
         payload.fetchGlobal<SiteHeader>("site-header"),
@@ -104,10 +110,29 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
           limit: 3,
           where: { _status: "published" },
         }),
+        payload.fetchCollection<BlogPost>("blog-posts", {
+          depth: 0,
+          limit: 1000,
+          sort: "-publishedDate",
+          where: { _status: "published" },
+        }),
       ]);
 
     if (!siteConfig || !siteHeader || !siteFooter)
       throw new Error("Missing required globals");
+
+    const currentIndex = allPublishedPosts.findIndex((p) => p.slug === slug);
+    let previousPost = null;
+    let nextPost = null;
+
+    if (currentIndex !== -1) {
+      if (currentIndex < allPublishedPosts.length - 1) {
+        previousPost = allPublishedPosts[currentIndex + 1] || null; // Older
+      }
+      if (currentIndex > 0) {
+        nextPost = allPublishedPosts[currentIndex - 1] || null; // Newer
+      }
+    }
 
     return {
       props: {
@@ -116,6 +141,8 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
         siteFooter,
         blogPost,
         relatedBlogPosts,
+        previousPost,
+        nextPost,
       },
       revalidate: 120,
     };

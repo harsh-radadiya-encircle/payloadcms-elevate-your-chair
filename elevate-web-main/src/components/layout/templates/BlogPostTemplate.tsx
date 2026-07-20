@@ -16,6 +16,8 @@ interface Props {
   siteFooter: SiteFooter;
   blogPost: BlogPost;
   relatedBlogPosts: BlogPost[];
+  previousPost?: BlogPost | null;
+  nextPost?: BlogPost | null;
 }
 
 const BlogPostTemplate: FC<Props> = ({
@@ -23,6 +25,8 @@ const BlogPostTemplate: FC<Props> = ({
   siteHeader,
   siteFooter,
   relatedBlogPosts,
+  previousPost,
+  nextPost,
 }) => {
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 
@@ -108,18 +112,18 @@ const BlogPostTemplate: FC<Props> = ({
 
         {/* Previous / Next Navigation */}
         <div className="mt-20 pt-8 border-t border-gray-200 flex justify-between items-center">
-          {relatedBlogPosts.length > 0 ? (
+          {previousPost ? (
             <Link
-              href={`/blog/${relatedBlogPosts[0].slug}`}
+              href={`/blog/${previousPost.slug}`}
               className="px-6 py-2 border-2 border-[#1a1a1a] text-xs font-bold uppercase tracking-widest text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-colors"
             >
               PREVIOUS
             </Link>
           ) : <div></div>}
 
-          {relatedBlogPosts.length > 1 ? (
+          {nextPost ? (
             <Link
-              href={`/blog/${relatedBlogPosts[1].slug}`}
+              href={`/blog/${nextPost.slug}`}
               className="px-8 py-2 bg-[#cdbfae] text-[#1a1a1a] border-2 border-[#cdbfae] text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-opacity"
             >
               NEXT

@@ -3,15 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { getMedia } from "~/_utils/getMedia";
 import { FadeIn } from "~/components/animations/FadeIn";
+import { Button } from "~/components/ui/Button";
 
 type Props = {
   layout: "image-left" | "image-right";
-  gradientColor?: string;
+  gradientColor?: string | null;
   image: any;
-  preHeading?: string;
+  preheading?: string | null;
   mainHeading: string;
-  description_html?: string;
-  buttons?: any[];
+  description_html?: string | null;
+  buttons?: any[] | null;
 };
 
 export const AppPromo: React.FC<Props> = ({
@@ -61,52 +62,17 @@ export const AppPromo: React.FC<Props> = ({
             {/* Buttons */}
             {buttons && buttons.length > 0 && (
               <div className="flex flex-col sm:flex-row gap-4 mt-2">
-                {buttons.map((btn: any, btnIdx: number) => {
-                  const isSolid = btn.style === "solid";
-
-                  let bgColor, textColor, borderColor;
-
-                  if (isSolid) {
-                    bgColor = btn.backgroundColor || "#cdbfae";
-                    textColor = btn.textColor || "#000000";
-                    borderColor = bgColor;
-                  } else {
-                    bgColor = "transparent";
-                    textColor = btn.textColor || "#ffffff";
-                    borderColor = btn.textColor || btn.backgroundColor || "#ffffff";
-                  }
-
-                  return (
-                    <Link
-                      key={btnIdx}
-                      href={btn.url || "#"}
-                      target={btn.newTab ? "_blank" : "_self"}
-                      style={{
-                        backgroundColor: bgColor,
-                        color: textColor,
-                        borderColor: borderColor,
-                      }}
-                      className={`
-                        flex items-center justify-center gap-3
-                        px-6 py-3 text-xs md:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-80 text-center
-                        ${isSolid ? "border-none" : "border-2"}
-                      `}
-                    >
-                      {btn.icon && getMedia(btn.icon) && getMedia(btn.icon) !== "#" && (
-                        <div className="w-5 h-5 relative shrink-0">
-                          <Image
-                            src={getMedia(btn.icon)}
-                            alt="icon"
-                            fill
-                            className="object-contain"
-                            unoptimized={getMedia(btn.icon).includes('localhost') || getMedia(btn.icon).includes('127.0.0.1')}
-                          />
-                        </div>
-                      )}
-                      <span>{btn.label}</span>
-                    </Link>
-                  );
-                })}
+                {buttons.map((btn: any, btnIdx: number) => (
+                <Button
+                  key={btnIdx}
+                  {...btn}
+                  defaultSolidBgColor="#cdbfae"
+                  defaultSolidTextColor="#000000"
+                  defaultOutlineTextColor="#ffffff"
+                  defaultOutlineBorderColor="#ffffff"
+                  defaultHoverTextColor="#000000"
+                />
+              ))}
               </div>
             )}
           </div>

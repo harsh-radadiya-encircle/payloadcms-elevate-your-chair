@@ -130,3 +130,85 @@
     margin-bottom: var(--mb-desktop, 0px) !important;
   }
 }
+
+.text-h1 {
+  font-family: var(--font-heading) ;
+  font-size: 64px ;
+  font-weight: 700 ;
+  line-height: normal ;
+  text-transform: uppercase ;
+}
+
+.text-h2 {
+  font-family: var(--font-heading) ;
+  font-size: 48px ;
+  font-weight: 400 ;
+  line-height: normal ;
+  text-transform: uppercase ;
+}
+
+.text-h2-bold {
+  font-family: var(--font-heading) ;
+  font-size: 48px ;
+  font-weight: 700 ;
+  line-height: normal ;
+  text-transform: uppercase ;
+}
+
+.text-h5 {
+  font-family: var(--font-sans) ;
+  font-size: 16px ;
+  font-weight: 400 ;
+  line-height: normal ;
+}
+
+.text-h5-bold {
+  font-family: var(--font-sans) ;
+  font-size: 16px ;
+  font-weight: 800 ;
+  line-height: normal ;
+}
+
+.text-body {
+  font-family: var(--font-sans) ;
+  font-size: 16px ;
+  font-weight: 400 ;
+  line-height: normal ;
+}
+
+
+.btn-circle-fill-span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: var(--btn-hover-bg);
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--delay-74) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--delay-74) - 1) * 0.1s);
+    z-index: -1;
+}
+
+.group:hover .btn-circle-fill-span {
+    transform: translateY(0) scale(2);
+}
+
+.btn-circle-fill-span:nth-of-type(1) { --delay-74: 1; }
+.btn-circle-fill-span:nth-of-type(2) { --delay-74: 2; }
+.btn-circle-fill-span:nth-of-type(3) { --delay-74: 3; }
+.btn-circle-fill-span:nth-of-type(4) { --delay-74: 4; }
+
+
+.border-trace-rect {
+    stroke-width: 4px;
+    stroke: var(--btn-border-color);
+    transition: all 600ms ease;
+    stroke-dasharray: 100 0;
+    stroke-dashoffset: 0;
+}
+.group:hover .border-trace-rect {
+    stroke-dasharray: 20 80;
+    stroke-dashoffset: -60;
+}
+

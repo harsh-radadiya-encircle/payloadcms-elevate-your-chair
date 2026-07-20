@@ -9,20 +9,21 @@ import Image from "next/image";
 import { FadeIn } from "~/components/animations/FadeIn";
 
 type Testimonial = {
-  mediaType?: 'none' | 'image' | 'video';
+  mediaType?: "image" | "video" | "none" | null;
   image?: any;
-  videoUrl?: string;
+  videoUrl?: string | null;
   quote: string;
   name: string;
+  id?: string | null;
 };
 
 type Props = {
   backgroundImage?: any;
-  preHeading?: string;
+  preHeading?: string | null;
   mainHeading: string;
-  cardBorderColor?: string;
-  testimonials?: Testimonial[];
-  bgOpacity?: number;
+  cardBorderColor?: string | null;
+  testimonials?: Testimonial[] | null;
+  bgOpacity?: number | null;
 };
 
 export const TestimonialsSlider: React.FC<Props> = ({

@@ -40,7 +40,7 @@ export const PageRenderer: FC<PageRendererProps> = ({
       {showHeader && <PageHeader siteHeader={siteHeader} />}
 
       {layout?.map((block, index) => (
-        <SectionRenderer key={block.id ?? index} content={block} />
+        <SectionRenderer key={block.id ?? index} content={block} index={index} />
       ))}
 
       {showFooter && <PageFooter siteFooter={siteFooter} />}

@@ -332,12 +332,36 @@ export interface Page {
             preHeading?: string | null;
             mainHeading?: string | null;
             emailAddress?: string | null;
-            socialHandle?: string | null;
-            instagramUrl?: string | null;
-            tiktokUrl?: string | null;
-            youtubeUrl?: string | null;
-            appStoreUrl?: string | null;
-            googlePlayUrl?: string | null;
+            socialLinks?:
+              | {
+                  icon: string | Media;
+                  handle: string;
+                  url: string;
+                  id?: string | null;
+                }[]
+              | null;
+            buttons?:
+              | {
+                  style?: ('solid' | 'outline' | 'link') | null;
+                  solidAnimation?: ('none' | 'circle-fill') | null;
+                  outlineAnimation?: ('none' | 'border-trace') | null;
+                  label: string;
+                  /**
+                   * The uploaded icon will automatically inherit the Text Color of the button.
+                   */
+                  icon?: (string | null) | Media;
+                  url: string;
+                  newTab?: boolean | null;
+                  backgroundColor?: string | null;
+                  /**
+                   * This color will also apply to the Button Icon.
+                   */
+                  textColor?: string | null;
+                  hoverBackgroundColor?: string | null;
+                  hoverTextColor?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
             image: string | Media;
             paddingTopDesktop?: number | null;
             paddingBottomDesktop?: number | null;
@@ -642,12 +666,36 @@ export interface CampaignPage {
             preHeading?: string | null;
             mainHeading?: string | null;
             emailAddress?: string | null;
-            socialHandle?: string | null;
-            instagramUrl?: string | null;
-            tiktokUrl?: string | null;
-            youtubeUrl?: string | null;
-            appStoreUrl?: string | null;
-            googlePlayUrl?: string | null;
+            socialLinks?:
+              | {
+                  icon: string | Media;
+                  handle: string;
+                  url: string;
+                  id?: string | null;
+                }[]
+              | null;
+            buttons?:
+              | {
+                  style?: ('solid' | 'outline' | 'link') | null;
+                  solidAnimation?: ('none' | 'circle-fill') | null;
+                  outlineAnimation?: ('none' | 'border-trace') | null;
+                  label: string;
+                  /**
+                   * The uploaded icon will automatically inherit the Text Color of the button.
+                   */
+                  icon?: (string | null) | Media;
+                  url: string;
+                  newTab?: boolean | null;
+                  backgroundColor?: string | null;
+                  /**
+                   * This color will also apply to the Button Icon.
+                   */
+                  textColor?: string | null;
+                  hoverBackgroundColor?: string | null;
+                  hoverTextColor?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
             image: string | Media;
             paddingTopDesktop?: number | null;
             paddingBottomDesktop?: number | null;
@@ -687,6 +735,9 @@ export interface Media {
   id: string;
   alt: string;
   caption?: string | null;
+  /**
+   * Categorize your media to keep your library organized.
+   */
   category?: (string | null) | MediaCategory;
   tags?:
     | {
@@ -735,12 +786,22 @@ export interface HeroSliderBlock {
     buttons?:
       | {
           style?: ('solid' | 'outline' | 'link') | null;
+          solidAnimation?: ('none' | 'circle-fill') | null;
+          outlineAnimation?: ('none' | 'border-trace') | null;
           label: string;
+          /**
+           * The uploaded icon will automatically inherit the Text Color of the button.
+           */
           icon?: (string | null) | Media;
           url: string;
           newTab?: boolean | null;
           backgroundColor?: string | null;
+          /**
+           * This color will also apply to the Button Icon.
+           */
           textColor?: string | null;
+          hoverBackgroundColor?: string | null;
+          hoverTextColor?: string | null;
           id?: string | null;
         }[]
       | null;
@@ -754,12 +815,22 @@ export interface HeroSliderBlock {
         buttons?:
           | {
               style?: ('solid' | 'outline' | 'link') | null;
+              solidAnimation?: ('none' | 'circle-fill') | null;
+              outlineAnimation?: ('none' | 'border-trace') | null;
               label: string;
+              /**
+               * The uploaded icon will automatically inherit the Text Color of the button.
+               */
               icon?: (string | null) | Media;
               url: string;
               newTab?: boolean | null;
               backgroundColor?: string | null;
+              /**
+               * This color will also apply to the Button Icon.
+               */
               textColor?: string | null;
+              hoverBackgroundColor?: string | null;
+              hoverTextColor?: string | null;
               id?: string | null;
             }[]
           | null;
@@ -806,12 +877,22 @@ export interface SplitContentBlock {
   buttons?:
     | {
         style?: ('solid' | 'outline' | 'link') | null;
+        solidAnimation?: ('none' | 'circle-fill') | null;
+        outlineAnimation?: ('none' | 'border-trace') | null;
         label: string;
+        /**
+         * The uploaded icon will automatically inherit the Text Color of the button.
+         */
         icon?: (string | null) | Media;
         url: string;
         newTab?: boolean | null;
         backgroundColor?: string | null;
+        /**
+         * This color will also apply to the Button Icon.
+         */
         textColor?: string | null;
+        hoverBackgroundColor?: string | null;
+        hoverTextColor?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -856,12 +937,22 @@ export interface AppPromoBlock {
   buttons?:
     | {
         style?: ('solid' | 'outline' | 'link') | null;
+        solidAnimation?: ('none' | 'circle-fill') | null;
+        outlineAnimation?: ('none' | 'border-trace') | null;
         label: string;
+        /**
+         * The uploaded icon will automatically inherit the Text Color of the button.
+         */
         icon?: (string | null) | Media;
         url: string;
         newTab?: boolean | null;
         backgroundColor?: string | null;
+        /**
+         * This color will also apply to the Button Icon.
+         */
         textColor?: string | null;
+        hoverBackgroundColor?: string | null;
+        hoverTextColor?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -938,12 +1029,22 @@ export interface StagesSectionBlock {
   buttons?:
     | {
         style?: ('solid' | 'outline' | 'link') | null;
+        solidAnimation?: ('none' | 'circle-fill') | null;
+        outlineAnimation?: ('none' | 'border-trace') | null;
         label: string;
+        /**
+         * The uploaded icon will automatically inherit the Text Color of the button.
+         */
         icon?: (string | null) | Media;
         url: string;
         newTab?: boolean | null;
         backgroundColor?: string | null;
+        /**
+         * This color will also apply to the Button Icon.
+         */
         textColor?: string | null;
+        hoverBackgroundColor?: string | null;
+        hoverTextColor?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1043,12 +1144,22 @@ export interface PricingSectionBlock {
   buttons?:
     | {
         style?: ('solid' | 'outline' | 'link') | null;
+        solidAnimation?: ('none' | 'circle-fill') | null;
+        outlineAnimation?: ('none' | 'border-trace') | null;
         label: string;
+        /**
+         * The uploaded icon will automatically inherit the Text Color of the button.
+         */
         icon?: (string | null) | Media;
         url: string;
         newTab?: boolean | null;
         backgroundColor?: string | null;
+        /**
+         * This color will also apply to the Button Icon.
+         */
         textColor?: string | null;
+        hoverBackgroundColor?: string | null;
+        hoverTextColor?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1914,12 +2025,30 @@ export interface PagesSelect<T extends boolean = true> {
               preHeading?: T;
               mainHeading?: T;
               emailAddress?: T;
-              socialHandle?: T;
-              instagramUrl?: T;
-              tiktokUrl?: T;
-              youtubeUrl?: T;
-              appStoreUrl?: T;
-              googlePlayUrl?: T;
+              socialLinks?:
+                | T
+                | {
+                    icon?: T;
+                    handle?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              buttons?:
+                | T
+                | {
+                    style?: T;
+                    solidAnimation?: T;
+                    outlineAnimation?: T;
+                    label?: T;
+                    icon?: T;
+                    url?: T;
+                    newTab?: T;
+                    backgroundColor?: T;
+                    textColor?: T;
+                    hoverBackgroundColor?: T;
+                    hoverTextColor?: T;
+                    id?: T;
+                  };
               image?: T;
               paddingTopDesktop?: T;
               paddingBottomDesktop?: T;
@@ -1962,12 +2091,16 @@ export interface HeroSliderBlockSelect<T extends boolean = true> {
           | T
           | {
               style?: T;
+              solidAnimation?: T;
+              outlineAnimation?: T;
               label?: T;
               icon?: T;
               url?: T;
               newTab?: T;
               backgroundColor?: T;
               textColor?: T;
+              hoverBackgroundColor?: T;
+              hoverTextColor?: T;
               id?: T;
             };
       };
@@ -1982,12 +2115,16 @@ export interface HeroSliderBlockSelect<T extends boolean = true> {
           | T
           | {
               style?: T;
+              solidAnimation?: T;
+              outlineAnimation?: T;
               label?: T;
               icon?: T;
               url?: T;
               newTab?: T;
               backgroundColor?: T;
               textColor?: T;
+              hoverBackgroundColor?: T;
+              hoverTextColor?: T;
               id?: T;
             };
         id?: T;
@@ -2018,12 +2155,16 @@ export interface SplitContentBlockSelect<T extends boolean = true> {
     | T
     | {
         style?: T;
+        solidAnimation?: T;
+        outlineAnimation?: T;
         label?: T;
         icon?: T;
         url?: T;
         newTab?: T;
         backgroundColor?: T;
         textColor?: T;
+        hoverBackgroundColor?: T;
+        hoverTextColor?: T;
         id?: T;
       };
   paddingTopDesktop?: T;
@@ -2053,12 +2194,16 @@ export interface AppPromoBlockSelect<T extends boolean = true> {
     | T
     | {
         style?: T;
+        solidAnimation?: T;
+        outlineAnimation?: T;
         label?: T;
         icon?: T;
         url?: T;
         newTab?: T;
         backgroundColor?: T;
         textColor?: T;
+        hoverBackgroundColor?: T;
+        hoverTextColor?: T;
         id?: T;
       };
   paddingTopDesktop?: T;
@@ -2124,12 +2269,16 @@ export interface StagesSectionBlockSelect<T extends boolean = true> {
     | T
     | {
         style?: T;
+        solidAnimation?: T;
+        outlineAnimation?: T;
         label?: T;
         icon?: T;
         url?: T;
         newTab?: T;
         backgroundColor?: T;
         textColor?: T;
+        hoverBackgroundColor?: T;
+        hoverTextColor?: T;
         id?: T;
       };
   paddingTopDesktop?: T;
@@ -2201,12 +2350,16 @@ export interface PricingSectionBlockSelect<T extends boolean = true> {
     | T
     | {
         style?: T;
+        solidAnimation?: T;
+        outlineAnimation?: T;
         label?: T;
         icon?: T;
         url?: T;
         newTab?: T;
         backgroundColor?: T;
         textColor?: T;
+        hoverBackgroundColor?: T;
+        hoverTextColor?: T;
         id?: T;
       };
   paddingTopDesktop?: T;
@@ -2720,12 +2873,30 @@ export interface CampaignPagesSelect<T extends boolean = true> {
               preHeading?: T;
               mainHeading?: T;
               emailAddress?: T;
-              socialHandle?: T;
-              instagramUrl?: T;
-              tiktokUrl?: T;
-              youtubeUrl?: T;
-              appStoreUrl?: T;
-              googlePlayUrl?: T;
+              socialLinks?:
+                | T
+                | {
+                    icon?: T;
+                    handle?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              buttons?:
+                | T
+                | {
+                    style?: T;
+                    solidAnimation?: T;
+                    outlineAnimation?: T;
+                    label?: T;
+                    icon?: T;
+                    url?: T;
+                    newTab?: T;
+                    backgroundColor?: T;
+                    textColor?: T;
+                    hoverBackgroundColor?: T;
+                    hoverTextColor?: T;
+                    id?: T;
+                  };
               image?: T;
               paddingTopDesktop?: T;
               paddingBottomDesktop?: T;

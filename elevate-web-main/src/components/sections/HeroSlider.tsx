@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import type { Page } from "~/payload-types";
 import { getMedia } from "~/_utils/getMedia";
+import { Button } from "~/components/ui/Button";
 
 // Extract the HeroSliderBlock type from the layout array union
 type LayoutBlocks = NonNullable<Page["layout"]>;
@@ -22,7 +23,7 @@ const HeroContent = ({ data }: { data: any }) => {
       )}
       
       {data.highlightedTitle && (
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-wider uppercase leading-tight">
+        <h1 className="text-h1 text-white mb-6 text-center">
           {data.highlightedTitle}
         </h1>
       )}
@@ -35,40 +36,17 @@ const HeroContent = ({ data }: { data: any }) => {
 
       {data.buttons && data.buttons.length > 0 && (
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
-          {data.buttons.map((btn: any, btnIdx: number) => {
-            const isSolid = btn.style === "solid";
-            
-            let bgColor, textColor, borderColor;
-
-            if (isSolid) {
-              bgColor = btn.backgroundColor || "#cdbfae";
-              textColor = btn.textColor || "#000000";
-              borderColor = bgColor;
-            } else {
-              // Outline button
-              bgColor = "transparent";
-              textColor = btn.textColor || "#ffffff";
-              borderColor = btn.textColor || btn.backgroundColor || "#ffffff";
-            }
-
-            return (
-              <Link
-                key={btnIdx}
-                href={btn.url || "#"}
-                style={{
-                  backgroundColor: bgColor,
-                  color: textColor,
-                  borderColor: borderColor,
-                }}
-                className={`
-                  px-8 py-3 text-xs md:text-sm font-semibold tracking-widest uppercase transition-opacity hover:opacity-80
-                  ${isSolid ? "border-none" : "border-2"}
-                `}
-              >
-                {btn.label}
-              </Link>
-            );
-          })}
+          {data.buttons.map((btn: any, btnIdx: number) => (
+            <Button
+              key={btnIdx}
+              {...btn}
+              defaultSolidBgColor="#cdbfae"
+              defaultSolidTextColor="#000000"
+              defaultOutlineTextColor="#ffffff"
+              defaultOutlineBorderColor="#ffffff"
+              defaultHoverTextColor="#000000"
+            />
+          ))}
         </div>
       )}
     </div>

@@ -6,14 +6,15 @@ type CardProps = {
   icon: any;
   title: string;
   description: string;
+  id?: string | null;
 };
 
 type Props = {
-  preHeading?: string;
+  preHeading?: string | null;
   mainHeading: string;
-  subHeading?: string;
-  cardBorderGradient?: string;
-  cards?: CardProps[];
+  subHeading?: string | null;
+  cardBorderGradient?: string | null;
+  cards?: CardProps[] | null;
 };
 
 export const FeatureCards: React.FC<Props> = ({

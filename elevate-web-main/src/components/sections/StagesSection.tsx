@@ -2,20 +2,22 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getMedia } from "~/_utils/getMedia";
+import { Button } from "~/components/ui/Button";
 
 type Stage = {
   image: any;
   label: string;
+  id?: string | null;
 };
 
 type Props = {
   backgroundImage: any;
-  preHeading?: string;
+  preHeading?: string | null;
   mainHeading: string;
-  subHeading?: string;
-  stages?: Stage[];
-  bottomText?: string;
-  buttons?: any[];
+  subHeading?: string | null;
+  stages?: Stage[] | null;
+  bottomText?: string | null;
+  buttons?: any[] | null;
 };
 
 export const StagesSection: React.FC<Props> = ({
@@ -106,52 +108,17 @@ export const StagesSection: React.FC<Props> = ({
         {/* Buttons */}
         {buttons && buttons.length > 0 && (
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            {buttons.map((btn: any, btnIdx: number) => {
-              const isSolid = btn.style === "solid";
-              
-              let bgColor, textColor, borderColor;
-
-              if (isSolid) {
-                bgColor = btn.backgroundColor || "#cdbfae";
-                textColor = btn.textColor || "#000000";
-                borderColor = bgColor;
-              } else {
-                bgColor = "transparent";
-                textColor = btn.textColor || "#1a1a1a";
-                borderColor = btn.textColor || btn.backgroundColor || "#1a1a1a";
-              }
-
-              return (
-                <Link
-                  key={btnIdx}
-                  href={btn.url || "#"}
-                  target={btn.newTab ? "_blank" : "_self"}
-                  style={{
-                    backgroundColor: bgColor,
-                    color: textColor,
-                    borderColor: borderColor,
-                  }}
-                  className={`
-                    flex items-center justify-center gap-3
-                    px-8 py-3 text-xs md:text-sm font-bold tracking-widest uppercase transition-opacity hover:opacity-80 text-center
-                    ${isSolid ? "border-none" : "border-2"}
-                  `}
-                >
-                  {btn.icon && getMedia(btn.icon) && getMedia(btn.icon) !== "#" && (
-                    <div className="w-5 h-5 relative shrink-0">
-                      <Image
-                        src={getMedia(btn.icon)}
-                        alt="icon"
-                        fill
-                        className="object-contain"
-                        unoptimized={getMedia(btn.icon).includes('localhost') || getMedia(btn.icon).includes('127.0.0.1')}
-                      />
-                    </div>
-                  )}
-                  <span>{btn.label}</span>
-                </Link>
-              );
-            })}
+            {buttons.map((btn: any, btnIdx: number) => (
+              <Button
+                key={btnIdx}
+                {...btn}
+                defaultSolidBgColor="#cdbfae"
+                defaultSolidTextColor="#000000"
+                defaultOutlineTextColor="#1a1a1a"
+                defaultOutlineBorderColor="#1a1a1a"
+                defaultHoverTextColor="#ffffff"
+              />
+            ))}
           </div>
         )}
 

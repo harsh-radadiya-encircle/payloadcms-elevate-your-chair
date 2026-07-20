@@ -9,9 +9,9 @@ type CardProps = {
 };
 
 type Props = {
-  preHeading?: string;
+  preheading?: string | null;
   mainHeading: string;
-  subHeading?: string;
+  subheading?: string | null;
   cards?: CardProps[];
 };
 
