@@ -42,7 +42,7 @@ export const FeatureCards: React.FC<Props> = ({
         <div className="text-center mb-16 flex flex-col items-center">
           <h2 className="uppercase tracking-wider mb-4 leading-tight">
             {preHeading && (
-              <span className="text-h3 block md:inline-block mr-3 mb-2 md:mb-0">{preHeading}</span>
+              <span className="text-h2 block md:inline-block mr-3 mb-2 md:mb-0">{preHeading}</span>
             )}
             <span className="text-h2-bold block md:inline-block">{mainHeading}</span>
           </h2>
@@ -56,9 +56,9 @@ export const FeatureCards: React.FC<Props> = ({
         {/* Cards Grid */}
         {cards && cards.length > 0 && (
           <div className="relative">
-            <div 
+            <div
               ref={scrollContainerRef}
-              className={`flex flex-nowrap overflow-x-auto snap-x snap-mandatory gap-4 lg:gap-6 items-stretch scroll-smooth hide-scrollbar pb-6 ${cards.length <= 5 ? "lg:justify-center" : "justify-start"}`} 
+              className={`flex flex-nowrap overflow-x-auto snap-x snap-mandatory gap-4 lg:gap-6 items-stretch scroll-smooth hide-scrollbar pb-6 ${cards.length <= 5 ? "lg:justify-center" : "justify-start"}`}
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {cards.map((card, idx) => {
@@ -103,26 +103,26 @@ export const FeatureCards: React.FC<Props> = ({
                 );
               })}
             </div>
-            
+
             {/* Scroll Buttons */}
             {cards.length > 1 && (
               <div className={`flex justify-center items-center space-x-6 mt-8 ${cards.length <= 5 ? "lg:hidden" : ""}`}>
-                <button 
+                <button
                   onClick={() => scroll('left')}
                   className="w-12 h-12 flex items-center justify-center border border-gray-600 rounded-sm hover:border-[#cdbfae] transition-colors"
                   aria-label="Scroll left"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 12H5M5 12L12 5M5 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M19 12H5M5 12L12 5M5 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
-                <button 
+                <button
                   onClick={() => scroll('right')}
                   className="w-12 h-12 flex items-center justify-center border border-gray-600 rounded-sm hover:border-[#cdbfae] transition-colors"
                   aria-label="Scroll right"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </div>

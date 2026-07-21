@@ -20,7 +20,7 @@ export const ComparisonTable: React.FC<Props> = ({ heading, tiers, features }) =
         <h2 className="text-white text-h2-bold text-center tracking-widest uppercase mb-12">
           {heading}
         </h2>
-        
+
         <div className="overflow-x-auto">
           <table className="w-full text-left text-[#1a1a1a] border-collapse min-w-[800px] bg-white">
             <thead>

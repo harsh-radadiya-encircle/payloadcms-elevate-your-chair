@@ -142,28 +142,30 @@ export default function SearchPage({
 
                 return (
                   <div key={result.id} className="flex flex-col group">
-                    <div className="relative aspect-[4/3] w-full mb-6 overflow-hidden bg-gray-100">
-                      {imageUrl !== "/placeholder.jpg" ? (
-                        <Image
-                          src={imageUrl}
-                          alt={result.title || "Search result"}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          unoptimized={imageUrl.includes('localhost') || imageUrl.includes('127.0.0.1')}
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                          <span className="text-gray-400">No image</span>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <h3 className="text-xl font-bold uppercase tracking-wide text-gray-900 mb-3 line-clamp-2">
-                      {result.title || "TITLE GOES HERE"}
-                    </h3>
+                    <Link href={linkUrl} className="block cursor-pointer">
+                      <div className="relative aspect-[4/3] w-full mb-6 overflow-hidden bg-gray-100">
+                        {imageUrl !== "/placeholder.jpg" ? (
+                          <Image
+                            src={imageUrl}
+                            alt={result.title || "Search result"}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            unoptimized={imageUrl.includes('localhost') || imageUrl.includes('127.0.0.1')}
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                            <span className="text-gray-400">No image</span>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <h3 className="text-xl font-bold uppercase tracking-wide text-gray-900 mb-3 line-clamp-2 hover:text-[#CDBEA5] transition-colors">
+                        {result.title || "TITLE GOES HERE"}
+                      </h3>
+                    </Link>
                     
                     <p className="text-sm text-gray-600 line-clamp-3 mb-6 flex-grow leading-relaxed">
-                      {doc?.meta?.description || "Lorem ipsum dolor sit amet consectetur. Risus sit viverra dictumst malesuada tristique mattis enim sapien hac. Aliquet viverra mauris tincidunt blandit."}
+                      {doc?.card?.excerpt || doc?.meta?.description || "Lorem ipsum dolor sit amet consectetur. Risus sit viverra dictumst malesuada tristique mattis enim sapien hac. Aliquet viverra mauris tincidunt blandit."}
                     </p>
                     
                     <div className="mt-auto">
@@ -219,7 +221,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       );
       if (res.ok) {
         const data = await res.json();
-        const searchDocs = data.docs || [];
+        const searchDocs = data.docs?.filter((item: any) => item.doc?.relationTo === "blog-posts") || [];
         
         // Manually populate full documents so nested images are guaranteed to resolve
         results = await Promise.all(searchDocs.map(async (item: any) => {
@@ -227,10 +229,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
              const docId = typeof item.doc.value === 'object' ? item.doc.value.id : item.doc.value;
              if (item.doc?.relationTo === "blog-posts") {
                  // docId could be the actual mongodb ID instead of the slug, so we fetch by ID using fetchCollection
-                 const postRes = await payload.fetchCollection<BlogPost>("blog-posts", { where: { id: { equals: docId } }, depth: 1, limit: 1 });
+                 const postRes = await payload.fetchCollection<BlogPost>("blog-posts", { where: { id: docId }, depth: 1, limit: 1 });
                  if (postRes && postRes.length > 0) item.doc.value = postRes[0];
              } else if (item.doc?.relationTo === "pages") {
-                 const pageRes = await payload.fetchCollection<Page>("pages", { where: { id: { equals: docId } }, depth: 1, limit: 1 });
+                 const pageRes = await payload.fetchCollection<Page>("pages", { where: { id: docId }, depth: 1, limit: 1 });
                  if (pageRes && pageRes.length > 0) item.doc.value = pageRes[0];
              }
            } catch(e) {

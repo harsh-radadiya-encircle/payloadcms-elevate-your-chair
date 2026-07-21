@@ -72,7 +72,7 @@ export const PricingSection: React.FC<Props> = ({
         <FadeIn direction="up" className="text-center mb-12 flex flex-col items-center">
           <h2 className="mb-8 text-center text-[#1a1a1a]">
             {preHeading && (
-              <span className="text-h3 block md:inline-block mr-3 mb-2 md:mb-0">{preHeading}</span>
+              <span className="text-h2 block md:inline-block mr-3 mb-2 md:mb-0">{preHeading}</span>
             )}
             <span className="text-h2-bold block md:inline-block">{mainHeading}</span>
           </h2>

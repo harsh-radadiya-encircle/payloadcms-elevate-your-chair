@@ -15,9 +15,15 @@ export const CampaignFormEmbed: Block = {
           label: 'Content',
           fields: [
     {
-      name: 'heading',
+      name: 'preHeading',
       type: 'text',
-      label: 'Heading',
+      label: 'Normal Heading (e.g. "CONTACT")',
+      required: false,
+    },
+    {
+      name: 'mainHeading',
+      type: 'text',
+      label: 'Bold Heading (e.g. "INFORMATION")',
       required: false,
     },
     {

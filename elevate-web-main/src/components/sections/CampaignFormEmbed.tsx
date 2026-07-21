@@ -9,7 +9,8 @@ import type { CampaignForm, Media } from "~/payload-types";
 
 // The shape of the block from Payload
 type Props = {
-  heading?: string | null;
+  preHeading?: string | null;
+  mainHeading?: string | null;
   description?: string | null;
   form: string | CampaignForm; // From depth: 2, this is expanded to the full form object
   backgroundImage?: string | Media | null;
@@ -17,7 +18,8 @@ type Props = {
 };
 
 const CampaignFormEmbed: React.FC<Props> = ({
-  heading,
+  preHeading,
+  mainHeading,
   description,
   form,
   backgroundImage,
@@ -100,17 +102,14 @@ const CampaignFormEmbed: React.FC<Props> = ({
       )}
 
       <div className="relative z-10 max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          {heading && (
-            <h2 className="text-h2-bold uppercase tracking-wider mb-4 leading-tight">
-              {/* Parse first two words as light, rest as bold just to match styling if they use a space */}
-              {heading.split(' ').length > 1 ? (
-                <>
-                  <span className="font-light mr-3">{heading.split(' ').slice(0, 1).join(' ')}</span>
-                  <span className="font-bold">{heading.split(' ').slice(1).join(' ')}</span>
-                </>
-              ) : (
-                <span className="font-bold">{heading}</span>
+        <div className="text-center mb-12 flex flex-col items-center">
+          {(preHeading || mainHeading) && (
+            <h2 className="uppercase tracking-wider mb-4 leading-tight text-[#1a1a1a]">
+              {preHeading && (
+                <span className="text-h2 block md:inline-block mr-3 mb-2 md:mb-0">{preHeading}</span>
+              )}
+              {mainHeading && (
+                <span className="text-h2-bold block md:inline-block">{mainHeading}</span>
               )}
             </h2>
           )}
@@ -138,6 +137,7 @@ const CampaignFormEmbed: React.FC<Props> = ({
                       <textarea
                         {...register(field.name, { required: field.required || false })}
                         rows={5}
+                        placeholder={field.placeholder as string}
                         className="w-full px-4 py-3 bg-white border border-gray-800 focus:outline-none focus:ring-1 focus:ring-black rounded-sm"
                         defaultValue={field.defaultValue as string}
                       />
@@ -168,6 +168,7 @@ const CampaignFormEmbed: React.FC<Props> = ({
                       <input
                         type={field.blockType === "email" ? "email" : field.blockType === "number" ? "number" : "text"}
                         {...register(field.name, { required: field.required || false })}
+                        placeholder={field.placeholder as string}
                         className="w-full px-4 py-3 bg-white border border-gray-800 focus:outline-none focus:ring-1 focus:ring-black rounded-sm"
                         defaultValue={field.defaultValue as string}
                       />

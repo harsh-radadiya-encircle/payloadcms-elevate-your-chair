@@ -203,7 +203,8 @@ export interface Page {
   layout?:
     | (
         | {
-            heading?: string | null;
+            preHeading?: string | null;
+            mainHeading?: string | null;
             description?: string | null;
             form: string | CampaignForm;
             backgroundImage?: (string | null) | Media;
@@ -426,6 +427,7 @@ export interface CampaignForm {
             label?: string | null;
             width?: number | null;
             required?: boolean | null;
+            placeholder?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'email';
@@ -436,6 +438,7 @@ export interface CampaignForm {
             width?: number | null;
             defaultValue?: number | null;
             required?: boolean | null;
+            placeholder?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'number';
@@ -464,6 +467,7 @@ export interface CampaignForm {
             width?: number | null;
             defaultValue?: string | null;
             required?: boolean | null;
+            placeholder?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'text';
@@ -474,6 +478,7 @@ export interface CampaignForm {
             width?: number | null;
             defaultValue?: string | null;
             required?: boolean | null;
+            placeholder?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'textarea';
@@ -537,7 +542,8 @@ export interface CampaignPage {
   layout?:
     | (
         | {
-            heading?: string | null;
+            preHeading?: string | null;
+            mainHeading?: string | null;
             description?: string | null;
             form: string | CampaignForm;
             backgroundImage?: (string | null) | Media;
@@ -1907,7 +1913,8 @@ export interface PagesSelect<T extends boolean = true> {
         'campaign-form-embed'?:
           | T
           | {
-              heading?: T;
+              preHeading?: T;
+              mainHeading?: T;
               description?: T;
               form?: T;
               backgroundImage?: T;
@@ -2755,7 +2762,8 @@ export interface CampaignPagesSelect<T extends boolean = true> {
         'campaign-form-embed'?:
           | T
           | {
-              heading?: T;
+              preHeading?: T;
+              mainHeading?: T;
               description?: T;
               form?: T;
               backgroundImage?: T;
@@ -3022,6 +3030,7 @@ export interface CampaignFormsSelect<T extends boolean = true> {
               label?: T;
               width?: T;
               required?: T;
+              placeholder?: T;
               id?: T;
               blockName?: T;
             };
@@ -3033,6 +3042,7 @@ export interface CampaignFormsSelect<T extends boolean = true> {
               width?: T;
               defaultValue?: T;
               required?: T;
+              placeholder?: T;
               id?: T;
               blockName?: T;
             };
@@ -3063,6 +3073,7 @@ export interface CampaignFormsSelect<T extends boolean = true> {
               width?: T;
               defaultValue?: T;
               required?: T;
+              placeholder?: T;
               id?: T;
               blockName?: T;
             };
@@ -3074,6 +3085,7 @@ export interface CampaignFormsSelect<T extends boolean = true> {
               width?: T;
               defaultValue?: T;
               required?: T;
+              placeholder?: T;
               id?: T;
               blockName?: T;
             };

@@ -6,11 +6,11 @@ export const getMedia = (media?: Media | string | null): string => {
   if (!media) return "#";
 
   if (typeof media === "string") {
-    return media.startsWith("http") ? media : `${CMS_URL}${media}`;
+    return media.startsWith("http") ? media : media.startsWith("/") ? media : `/${media}`;
   }
 
   if ("url" in media && typeof media.url === "string") {
-    return media.url.startsWith("http") ? media.url : `${CMS_URL}${media.url}`;
+    return media.url.startsWith("http") ? media.url : media.url.startsWith("/") ? media.url : `/${media.url}`;
   }
 
   return "#";

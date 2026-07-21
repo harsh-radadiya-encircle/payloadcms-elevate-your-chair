@@ -82,7 +82,29 @@ export const plugins: Plugin[] = [
         delete: access({ allowedRoles: ['admin'] }),
       },
       fields: ({ defaultFields }) => {
-        return [...defaultFields.filter((field) => (field as { name?: string }).name !== 'emails')];
+        const updatedFields = defaultFields.filter((field) => (field as { name?: string }).name !== 'emails');
+
+        const formFieldsField = updatedFields.find((f) => (f as { name?: string }).name === 'fields') as any;
+        if (formFieldsField && formFieldsField.blocks) {
+          formFieldsField.blocks = formFieldsField.blocks.map((block: any) => {
+            if (['text', 'textarea', 'email', 'number'].includes(block.slug)) {
+              // Only add if not already there
+              const hasPlaceholder = block.fields.find((f: any) => f.name === 'placeholder');
+              if (!hasPlaceholder) {
+                // Find the default value index to insert near it, or just push
+                block.fields.push({
+                  name: 'placeholder',
+                  type: 'text',
+                  label: 'Placeholder',
+                  required: false,
+                });
+              }
+            }
+            return block;
+          });
+        }
+
+        return updatedFields;
       },
     },
     formSubmissionOverrides: {

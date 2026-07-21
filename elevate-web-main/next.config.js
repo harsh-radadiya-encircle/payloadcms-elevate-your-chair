@@ -18,6 +18,7 @@ const config = {
     defaultLocale: "en",
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "http",
@@ -31,7 +32,27 @@ const config = {
         port: "3001",
         pathname: "/**",
       },
+      {
+        protocol: "http",
+        hostname: "192.168.11.68",
+        port: "3000",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "192.168.11.68",
+        port: "3001",
+        pathname: "/**",
+      },
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "http://localhost:3000/api/:path*",
+      },
+    ];
   },
 };
 
