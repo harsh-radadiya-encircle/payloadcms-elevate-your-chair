@@ -1,9 +1,6 @@
 "use client";
 
 import React, { useRef } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { getMedia } from "~/_utils/getMedia";
 import Image from "next/image";
 import { FadeIn } from "~/components/animations/FadeIn";
@@ -34,37 +31,14 @@ export const TestimonialsSlider: React.FC<Props> = ({
   testimonials,
   bgOpacity = 10,
 }) => {
-  const sliderRef = useRef<Slider | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: false, // We use custom arrows
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-
-  const next = () => {
-    sliderRef.current?.slickNext();
-  };
-
-  const previous = () => {
-    sliderRef.current?.slickPrev();
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      // Scroll by approximately one card width
+      const scrollAmount = direction === 'left' ? -350 : 350;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
   };
 
   const bgImageUrl = getMedia(backgroundImage);
@@ -99,19 +73,26 @@ export const TestimonialsSlider: React.FC<Props> = ({
           </h2>
         </FadeIn>
 
-        {/* Slider Container */}
+        {/* Native Scroll Container */}
         {testimonials && testimonials.length > 0 && (
           <FadeIn direction="up" delay={0.2} className="relative">
-            <Slider ref={sliderRef} {...settings} className="mx-[-10px]">
+            <div 
+              ref={scrollRef}
+              className="flex flex-nowrap overflow-x-auto snap-x snap-mandatory gap-6 items-stretch scroll-smooth py-4 px-2 [&::-webkit-scrollbar]:hidden"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
               {testimonials.map((testimonial, idx) => {
                 const hasMedia = testimonial.mediaType === 'image' || testimonial.mediaType === 'video';
                 const imageUrl = hasMedia ? getMedia(testimonial.image) : null;
                 const isVideo = testimonial.mediaType === 'video';
 
                 return (
-                  <div key={idx} className="px-[10px] py-4 h-full">
+                  <div 
+                    key={idx} 
+                    className={`snap-center w-[85vw] md:w-[350px] lg:w-[380px] shrink-0 flex flex-col ${testimonials.length <= 3 ? "md:shrink md:flex-1" : ""}`}
+                  >
                     <div
-                      className="bg-white p-6 flex flex-col items-center text-center relative h-full shadow-lg"
+                      className="bg-white p-6 md:p-8 flex flex-col items-center text-center relative flex-grow shadow-lg"
                       style={{
                         border: "3px solid transparent",
                         borderImage: `${borderGradient} 1`,
@@ -175,29 +156,31 @@ export const TestimonialsSlider: React.FC<Props> = ({
                   </div>
                 );
               })}
-            </Slider>
+            </div>
 
             {/* Custom Arrows */}
-            <div className="flex justify-center items-center gap-6 mt-12">
-              <button
-                onClick={previous}
-                className="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-black transition-colors"
-                aria-label="Previous slide"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M19 12H5M12 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button
-                onClick={next}
-                className="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-black transition-colors"
-                aria-label="Next slide"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
+            {testimonials.length > 1 && (
+              <div className="flex justify-center items-center gap-6 mt-8">
+                <button
+                  onClick={() => scroll('left')}
+                  className="w-12 h-12 flex items-center justify-center text-gray-500 hover:text-black hover:bg-gray-200 rounded-full transition-all"
+                  aria-label="Previous testimonial"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => scroll('right')}
+                  className="w-12 h-12 flex items-center justify-center text-gray-500 hover:text-black hover:bg-gray-200 rounded-full transition-all"
+                  aria-label="Next testimonial"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            )}
           </FadeIn>
         )}
       </div>

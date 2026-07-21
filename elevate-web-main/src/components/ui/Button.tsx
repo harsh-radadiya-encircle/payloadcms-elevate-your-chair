@@ -102,7 +102,7 @@ export const Button: React.FC<ButtonProps> = ({
         bg-[var(--btn-bg)] text-[var(--btn-text)]
         ${isSolid ? "border-none" : (isBorderTrace ? "border-none" : "border-2 border-[var(--btn-border-color)]")}
         ${!isBorderTrace && !isCircleFill ? "hover:opacity-80" : ""}
-        ${isCircleFill ? "hover:text-[var(--btn-hover-text)] z-10" : (isBorderTrace ? "z-10" : "")}
+        ${isCircleFill ? "solid-circle-btn z-10" : (isBorderTrace ? "z-10" : "")}
         ${className}
       `}
     >

@@ -215,8 +215,16 @@
   z-index: -1;
 }
 
-.group:hover .btn-circle-fill-span {
+.group:hover .btn-circle-fill-span,
+.group:active .btn-circle-fill-span,
+.solid-circle-btn:active .btn-circle-fill-span {
   transform: translateY(0) scale(2);
+}
+
+.solid-circle-btn:hover,
+.solid-circle-btn:active,
+.solid-circle-btn:focus {
+  color: var(--btn-hover-text) !important;
 }
 
 .btn-circle-fill-span:nth-of-type(1) {

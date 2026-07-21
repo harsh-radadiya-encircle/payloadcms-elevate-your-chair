@@ -40,6 +40,7 @@ const App: AppType = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <style>{`
           :root {
             --font-sans: ${avenir.style.fontFamily}, sans-serif;

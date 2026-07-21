@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { env } from "~/env";
 
 import { PayloadClient } from "~/_utils/payload";
@@ -39,6 +39,10 @@ export default function SearchPage({
   const router = useRouter();
   const [localQuery, setLocalQuery] = useState(query);
 
+  useEffect(() => {
+    setLocalQuery(query);
+  }, [query]);
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (localQuery.trim()) {
@@ -64,24 +68,30 @@ export default function SearchPage({
         
         {/* If no CMS page is found, render a fallback Hero */}
         {!page && (
-          <div className="relative h-[400px] w-full flex items-center justify-center bg-[#1a1a1a] pt-20">
+          <div className="relative h-[60vh] min-h-[400px] w-full flex items-center justify-center bg-[#1a1a1a] pt-20">
             <div className="absolute inset-0 bg-black/40 z-10" />
             <div className="relative z-20 text-center px-6 w-full max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-widest uppercase mb-8">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-widest uppercase">
                 SEARCH RESULTS
               </h1>
-              <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto">
-                <input
-                  type="text"
-                  value={localQuery}
-                  onChange={(e) => setLocalQuery(e.target.value)}
-                  placeholder="Search..."
-                  className="w-full py-4 pl-6 pr-4 bg-white border-none rounded-sm focus:outline-none focus:ring-2 focus:ring-black text-gray-800 text-lg shadow-lg"
-                />
-              </form>
             </div>
           </div>
         )}
+
+        {/* Always visible Search Bar */}
+        <div className="w-full bg-[#f6f4f0] py-12 border-b border-gray-200">
+          <div className="max-w-3xl mx-auto px-6 text-center">
+            <form onSubmit={handleSearch} className="relative w-full">
+              <input
+                type="text"
+                value={localQuery}
+                onChange={(e) => setLocalQuery(e.target.value)}
+                placeholder="Search articles..."
+                className="w-full py-4 pl-6 pr-4 bg-white border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-[#CDBEA5] text-gray-800 text-lg shadow-sm"
+              />
+            </form>
+          </div>
+        </div>
 
         {/* Results Section */}
         <div className="max-w-7xl mx-auto px-6 py-20">
