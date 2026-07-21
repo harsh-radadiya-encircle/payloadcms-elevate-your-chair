@@ -52,10 +52,32 @@ export const Button: Field[] = [
     },
   },
   {
+    name: 'linkType',
+    type: 'radio',
+    defaultValue: 'custom',
+    options: [
+      { label: 'Custom URL', value: 'custom' },
+      { label: 'Internal Page', value: 'internal' },
+    ],
+  },
+  {
     name: 'url',
     type: 'text',
-    label: 'URL',
+    label: 'Custom URL',
     required: true,
+    admin: {
+      condition: (_, siblingData) => siblingData?.linkType === 'custom' || !siblingData?.linkType,
+    },
+  },
+  {
+    name: 'internalLink',
+    type: 'relationship',
+    relationTo: ['pages', 'blog-posts'],
+    label: 'Internal Page',
+    required: true,
+    admin: {
+      condition: (_, siblingData) => siblingData?.linkType === 'internal',
+    },
   },
   {
     name: 'newTab',

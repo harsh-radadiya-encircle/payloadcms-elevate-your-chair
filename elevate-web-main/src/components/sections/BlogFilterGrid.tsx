@@ -23,7 +23,7 @@ export const BlogFilterGrid: React.FC<Props> = ({
 }) => {
   const [categories, setCategories] = useState<BlogCategory[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  
+
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [page, setPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(false);
@@ -48,7 +48,7 @@ export const BlogFilterGrid: React.FC<Props> = ({
       setLoading(true);
       const res = await fetch(`/api/posts?categoryId=${categoryId}&page=${pageToFetch}&limit=3`);
       const data = await res.json();
-      
+
       if (pageToFetch === 1) {
         setPosts(data.docs || []);
       } else {
@@ -75,7 +75,7 @@ export const BlogFilterGrid: React.FC<Props> = ({
   };
 
   const isLightText = theme === 'dark';
-  
+
   let bgColor = '#ffffff';
   let textColor = '#1a1a1a';
   if (theme === 'dark') {
@@ -102,7 +102,7 @@ export const BlogFilterGrid: React.FC<Props> = ({
           />
         </div>
       )}
-      
+
       <div className="relative z-10 max-w-6xl mx-auto">
         {(preHeading || mainHeading) && (
           <div className="text-center mb-12">
@@ -146,7 +146,7 @@ export const BlogFilterGrid: React.FC<Props> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {posts.map((post) => {
               const imageUrl = post.card?.cardImage ? getMedia(post.card.cardImage) : getMedia(post.featuredImage);
-              
+
               return (
                 <div key={post.id} className="flex flex-col">
                   {imageUrl && (
@@ -168,7 +168,7 @@ export const BlogFilterGrid: React.FC<Props> = ({
                   <p className={`text-h5 leading-relaxed mb-6 line-clamp-3 ${isLightText ? 'opacity-90' : 'text-gray-500'}`}>
                     {post.card?.excerpt}
                   </p>
-                  <Link 
+                  <Link
                     href={`/blog/${post.slug}`}
                     className={`inline-flex items-center text-h5-bold uppercase tracking-widest mt-auto hover:opacity-70 transition-opacity ${isLightText ? 'text-white' : 'text-[#1a1a1a]'}`}
                   >
@@ -194,11 +194,10 @@ export const BlogFilterGrid: React.FC<Props> = ({
             <button
               onClick={loadMore}
               disabled={loading}
-              className={`px-8 py-3 text-h5-bold uppercase tracking-widest border-2 transition-colors ${
-                isLightText 
-                  ? 'border-white text-white hover:bg-white hover:text-black' 
+              className={`px-8 py-3 text-h5-bold uppercase tracking-widest border-2 transition-colors ${isLightText
+                  ? 'border-white text-white hover:bg-white hover:text-black'
                   : 'border-[#1a1a1a] text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white'
-              } disabled:opacity-50`}
+                } disabled:opacity-50`}
             >
               {loading ? "LOADING..." : "LOAD MORE"}
             </button>

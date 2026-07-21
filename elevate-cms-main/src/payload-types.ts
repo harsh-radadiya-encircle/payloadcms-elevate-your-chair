@@ -351,7 +351,17 @@ export interface Page {
                    * The uploaded icon will automatically inherit the Text Color of the button.
                    */
                   icon?: (string | null) | Media;
-                  url: string;
+                  linkType?: ('custom' | 'internal') | null;
+                  url?: string | null;
+                  internalLink?:
+                    | ({
+                        relationTo: 'pages';
+                        value: string | Page;
+                      } | null)
+                    | ({
+                        relationTo: 'blog-posts';
+                        value: string | BlogPost;
+                      } | null);
                   newTab?: boolean | null;
                   backgroundColor?: string | null;
                   /**
@@ -690,7 +700,17 @@ export interface CampaignPage {
                    * The uploaded icon will automatically inherit the Text Color of the button.
                    */
                   icon?: (string | null) | Media;
-                  url: string;
+                  linkType?: ('custom' | 'internal') | null;
+                  url?: string | null;
+                  internalLink?:
+                    | ({
+                        relationTo: 'pages';
+                        value: string | Page;
+                      } | null)
+                    | ({
+                        relationTo: 'blog-posts';
+                        value: string | BlogPost;
+                      } | null);
                   newTab?: boolean | null;
                   backgroundColor?: string | null;
                   /**
@@ -799,7 +819,17 @@ export interface HeroSliderBlock {
            * The uploaded icon will automatically inherit the Text Color of the button.
            */
           icon?: (string | null) | Media;
-          url: string;
+          linkType?: ('custom' | 'internal') | null;
+          url?: string | null;
+          internalLink?:
+            | ({
+                relationTo: 'pages';
+                value: string | Page;
+              } | null)
+            | ({
+                relationTo: 'blog-posts';
+                value: string | BlogPost;
+              } | null);
           newTab?: boolean | null;
           backgroundColor?: string | null;
           /**
@@ -828,7 +858,17 @@ export interface HeroSliderBlock {
                * The uploaded icon will automatically inherit the Text Color of the button.
                */
               icon?: (string | null) | Media;
-              url: string;
+              linkType?: ('custom' | 'internal') | null;
+              url?: string | null;
+              internalLink?:
+                | ({
+                    relationTo: 'pages';
+                    value: string | Page;
+                  } | null)
+                | ({
+                    relationTo: 'blog-posts';
+                    value: string | BlogPost;
+                  } | null);
               newTab?: boolean | null;
               backgroundColor?: string | null;
               /**
@@ -854,6 +894,77 @@ export interface HeroSliderBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero-slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-posts".
+ */
+export interface BlogPost {
+  id: string;
+  title: string;
+  /**
+   * This will be used in the URL. It must be unique.
+   */
+  slug: string;
+  category: string | BlogCategory;
+  publishedDate: string;
+  author?: string | null;
+  tags?:
+    | {
+        tag?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  card: {
+    cardImage: string | Media;
+    excerpt: string;
+  };
+  featuredImage: string | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    /**
+     * Paste valid JSON-LD (Schema.org) here.
+     */
+    schema?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-categories".
+ */
+export interface BlogCategory {
+  id: string;
+  title: string;
+  /**
+   * This is used for filtering and should be lowercase/kebab-case.
+   */
+  slug: string;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -890,7 +1001,17 @@ export interface SplitContentBlock {
          * The uploaded icon will automatically inherit the Text Color of the button.
          */
         icon?: (string | null) | Media;
-        url: string;
+        linkType?: ('custom' | 'internal') | null;
+        url?: string | null;
+        internalLink?:
+          | ({
+              relationTo: 'pages';
+              value: string | Page;
+            } | null)
+          | ({
+              relationTo: 'blog-posts';
+              value: string | BlogPost;
+            } | null);
         newTab?: boolean | null;
         backgroundColor?: string | null;
         /**
@@ -950,7 +1071,17 @@ export interface AppPromoBlock {
          * The uploaded icon will automatically inherit the Text Color of the button.
          */
         icon?: (string | null) | Media;
-        url: string;
+        linkType?: ('custom' | 'internal') | null;
+        url?: string | null;
+        internalLink?:
+          | ({
+              relationTo: 'pages';
+              value: string | Page;
+            } | null)
+          | ({
+              relationTo: 'blog-posts';
+              value: string | BlogPost;
+            } | null);
         newTab?: boolean | null;
         backgroundColor?: string | null;
         /**
@@ -1042,7 +1173,17 @@ export interface StagesSectionBlock {
          * The uploaded icon will automatically inherit the Text Color of the button.
          */
         icon?: (string | null) | Media;
-        url: string;
+        linkType?: ('custom' | 'internal') | null;
+        url?: string | null;
+        internalLink?:
+          | ({
+              relationTo: 'pages';
+              value: string | Page;
+            } | null)
+          | ({
+              relationTo: 'blog-posts';
+              value: string | BlogPost;
+            } | null);
         newTab?: boolean | null;
         backgroundColor?: string | null;
         /**
@@ -1157,7 +1298,17 @@ export interface PricingSectionBlock {
          * The uploaded icon will automatically inherit the Text Color of the button.
          */
         icon?: (string | null) | Media;
-        url: string;
+        linkType?: ('custom' | 'internal') | null;
+        url?: string | null;
+        internalLink?:
+          | ({
+              relationTo: 'pages';
+              value: string | Page;
+            } | null)
+          | ({
+              relationTo: 'blog-posts';
+              value: string | BlogPost;
+            } | null);
         newTab?: boolean | null;
         backgroundColor?: string | null;
         /**
@@ -1437,7 +1588,7 @@ export interface CenteredTextSectionBlock {
 export interface FeaturedBlogPostBlock {
   preHeading?: string | null;
   mainHeading: string;
-  post: string | BlogPost;
+  posts: (string | BlogPost)[];
   paddingTopDesktop?: number | null;
   paddingBottomDesktop?: number | null;
   paddingTopMobile?: number | null;
@@ -1449,77 +1600,6 @@ export interface FeaturedBlogPostBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'featured-blog-post';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog-posts".
- */
-export interface BlogPost {
-  id: string;
-  title: string;
-  /**
-   * This will be used in the URL. It must be unique.
-   */
-  slug: string;
-  category: string | BlogCategory;
-  publishedDate: string;
-  author?: string | null;
-  tags?:
-    | {
-        tag?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  card: {
-    cardImage: string | Media;
-    excerpt: string;
-  };
-  featuredImage: string | Media;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    /**
-     * Paste valid JSON-LD (Schema.org) here.
-     */
-    schema?: string | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "blog-categories".
- */
-export interface BlogCategory {
-  id: string;
-  title: string;
-  /**
-   * This is used for filtering and should be lowercase/kebab-case.
-   */
-  slug: string;
-  description?: string | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2048,7 +2128,9 @@ export interface PagesSelect<T extends boolean = true> {
                     outlineAnimation?: T;
                     label?: T;
                     icon?: T;
+                    linkType?: T;
                     url?: T;
+                    internalLink?: T;
                     newTab?: T;
                     backgroundColor?: T;
                     textColor?: T;
@@ -2102,7 +2184,9 @@ export interface HeroSliderBlockSelect<T extends boolean = true> {
               outlineAnimation?: T;
               label?: T;
               icon?: T;
+              linkType?: T;
               url?: T;
+              internalLink?: T;
               newTab?: T;
               backgroundColor?: T;
               textColor?: T;
@@ -2126,7 +2210,9 @@ export interface HeroSliderBlockSelect<T extends boolean = true> {
               outlineAnimation?: T;
               label?: T;
               icon?: T;
+              linkType?: T;
               url?: T;
+              internalLink?: T;
               newTab?: T;
               backgroundColor?: T;
               textColor?: T;
@@ -2166,7 +2252,9 @@ export interface SplitContentBlockSelect<T extends boolean = true> {
         outlineAnimation?: T;
         label?: T;
         icon?: T;
+        linkType?: T;
         url?: T;
+        internalLink?: T;
         newTab?: T;
         backgroundColor?: T;
         textColor?: T;
@@ -2205,7 +2293,9 @@ export interface AppPromoBlockSelect<T extends boolean = true> {
         outlineAnimation?: T;
         label?: T;
         icon?: T;
+        linkType?: T;
         url?: T;
+        internalLink?: T;
         newTab?: T;
         backgroundColor?: T;
         textColor?: T;
@@ -2280,7 +2370,9 @@ export interface StagesSectionBlockSelect<T extends boolean = true> {
         outlineAnimation?: T;
         label?: T;
         icon?: T;
+        linkType?: T;
         url?: T;
+        internalLink?: T;
         newTab?: T;
         backgroundColor?: T;
         textColor?: T;
@@ -2361,7 +2453,9 @@ export interface PricingSectionBlockSelect<T extends boolean = true> {
         outlineAnimation?: T;
         label?: T;
         icon?: T;
+        linkType?: T;
         url?: T;
+        internalLink?: T;
         newTab?: T;
         backgroundColor?: T;
         textColor?: T;
@@ -2575,7 +2669,7 @@ export interface CenteredTextSectionBlockSelect<T extends boolean = true> {
 export interface FeaturedBlogPostBlockSelect<T extends boolean = true> {
   preHeading?: T;
   mainHeading?: T;
-  post?: T;
+  posts?: T;
   paddingTopDesktop?: T;
   paddingBottomDesktop?: T;
   paddingTopMobile?: T;
@@ -2897,7 +2991,9 @@ export interface CampaignPagesSelect<T extends boolean = true> {
                     outlineAnimation?: T;
                     label?: T;
                     icon?: T;
+                    linkType?: T;
                     url?: T;
+                    internalLink?: T;
                     newTab?: T;
                     backgroundColor?: T;
                     textColor?: T;

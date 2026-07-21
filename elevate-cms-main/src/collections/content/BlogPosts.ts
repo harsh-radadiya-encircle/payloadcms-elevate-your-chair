@@ -11,6 +11,9 @@ export const BlogPosts: CollectionConfig = {
     group: 'Content Management',
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'category', 'status', 'publishedDate', 'updatedAt'],
+    pagination: {
+      defaultLimit: 50,
+    },
     livePreview: {
       url: ({ data }) => {
         const baseUrl = process.env.PAYLOAD_PUBLIC_SITE_URL ?? 'http://localhost:3000';

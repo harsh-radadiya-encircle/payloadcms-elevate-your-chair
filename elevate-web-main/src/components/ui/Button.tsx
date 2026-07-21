@@ -16,6 +16,11 @@ type ButtonProps = {
   icon?: any;
   newTab?: boolean | null;
   className?: string;
+  linkType?: "custom" | "internal" | null;
+  internalLink?: {
+    relationTo: string;
+    value: any;
+  } | null;
 
   // Context defaults (so we don't have to rewrite logic in every section)
   defaultSolidBgColor?: string;
@@ -30,7 +35,7 @@ type ButtonProps = {
 
 export const Button: React.FC<ButtonProps> = ({
   label,
-  url = "#",
+  url,
   style = "outline",
   solidAnimation = "none",
   outlineAnimation = "none",
@@ -41,6 +46,8 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   newTab,
   className = "",
+  linkType,
+  internalLink,
   defaultSolidBgColor = "#cdbfae",
   defaultSolidTextColor = "#000000",
   defaultOutlineTextColor = "#ffffff",
@@ -49,6 +56,15 @@ export const Button: React.FC<ButtonProps> = ({
   defaultHoverTextColor = "#000000",
 }) => {
   const isSolid = style === "solid";
+
+  let finalUrl = url || "#";
+  if (linkType === "internal" && internalLink && typeof internalLink.value === 'object') {
+    if (internalLink.relationTo === 'pages') {
+      finalUrl = `/${internalLink.value.slug === 'home' ? '' : internalLink.value.slug}`;
+    } else if (internalLink.relationTo === 'blog-posts') {
+      finalUrl = `/blog/${internalLink.value.slug}`;
+    }
+  }
 
   let bgColor = "transparent";
   let txtColor = "#ffffff";
@@ -87,7 +103,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <Link
-      href={url || "#"}
+      href={finalUrl || "#"}
       target={newTab ? "_blank" : "_self"}
       style={{
         "--btn-bg": actualBgColor,
