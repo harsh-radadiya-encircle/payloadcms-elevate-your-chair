@@ -935,6 +935,14 @@ export interface BlogPost {
     };
     [k: string]: unknown;
   };
+  paddingTopDesktop?: number | null;
+  paddingBottomDesktop?: number | null;
+  paddingTopMobile?: number | null;
+  paddingBottomMobile?: number | null;
+  marginTopDesktop?: number | null;
+  marginBottomDesktop?: number | null;
+  marginTopMobile?: number | null;
+  marginBottomMobile?: number | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -2785,6 +2793,14 @@ export interface BlogPostsSelect<T extends boolean = true> {
       };
   featuredImage?: T;
   content?: T;
+  paddingTopDesktop?: T;
+  paddingBottomDesktop?: T;
+  paddingTopMobile?: T;
+  paddingBottomMobile?: T;
+  marginTopDesktop?: T;
+  marginBottomDesktop?: T;
+  marginTopMobile?: T;
+  marginBottomMobile?: T;
   meta?:
     | T
     | {

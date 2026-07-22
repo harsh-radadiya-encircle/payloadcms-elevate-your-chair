@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload';
 import { access } from '@/payload/helpers/rbac';
+import { styleTab } from '@/fields/styleTab';
 
 export const BlogPosts: CollectionConfig = {
   slug: 'blog-posts',
@@ -32,94 +33,105 @@ export const BlogPosts: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      required: true,
-      label: 'Post Title',
-    },
-    {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      unique: true,
-      label: 'Post Slug',
-      admin: {
-        description: 'This will be used in the URL. It must be unique.',
-      },
-    },
-    {
-      type: 'row',
-      fields: [
+      type: 'tabs',
+      tabs: [
         {
-          name: 'category',
-          type: 'relationship',
-          relationTo: 'blog-categories',
-          required: true,
-          label: 'Blog Category',
+          label: 'Content',
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true,
+              label: 'Post Title',
+            },
+            {
+              name: 'slug',
+              type: 'text',
+              required: true,
+              unique: true,
+              label: 'Post Slug',
+              admin: {
+                description: 'This will be used in the URL. It must be unique.',
+              },
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'category',
+                  type: 'relationship',
+                  relationTo: 'blog-categories',
+                  required: true,
+                  label: 'Blog Category',
+                },
+                {
+                  name: 'publishedDate',
+                  type: 'date',
+                  label: 'Published Date',
+                  defaultValue: () => new Date(),
+                  required: true,
+                },
+                {
+                  name: 'author',
+                  type: 'text',
+                  label: 'Author Name',
+                },
+              ],
+            },
+            {
+              name: 'tags',
+              type: 'array',
+              label: 'Tags (optional)',
+              fields: [
+                {
+                  name: 'tag',
+                  type: 'text',
+                },
+              ],
+            },
+            {
+              type: 'group',
+              name: 'card',
+              label: 'Blog Post Card',
+              fields: [
+                {
+                  name: 'cardImage',
+                  type: 'upload',
+                  relationTo: 'media',
+                  required: true,
+                  label: 'Card Image',
+                  filterOptions: {
+                    mimeType: { in: ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'] },
+                  },
+                },
+                {
+                  name: 'excerpt',
+                  type: 'textarea',
+                  label: 'Card Excerpt',
+                  required: true,
+                },
+              ],
+            },
+            {
+              name: 'featuredImage',
+              type: 'upload',
+              relationTo: 'media',
+              label: 'Featured Image',
+              required: true,
+              filterOptions: {
+                mimeType: { in: ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'] },
+              },
+            },
+            {
+              name: 'content',
+              type: 'richText',
+              required: true,
+              label: 'Post Content',
+            },
+          ],
         },
-        {
-          name: 'publishedDate',
-          type: 'date',
-          label: 'Published Date',
-          defaultValue: () => new Date(),
-          required: true,
-        },
-        {
-          name: 'author',
-          type: 'text',
-          label: 'Author Name',
-        },
+        styleTab,
       ],
-    },
-    {
-      name: 'tags',
-      type: 'array',
-      label: 'Tags (optional)',
-      fields: [
-        {
-          name: 'tag',
-          type: 'text',
-        },
-      ],
-    },
-    {
-      type: 'group',
-      name: 'card',
-      label: 'Blog Post Card',
-      fields: [
-        {
-          name: 'cardImage',
-          type: 'upload',
-          relationTo: 'media',
-          required: true,
-          label: 'Card Image',
-          filterOptions: {
-            mimeType: { in: ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'] },
-          },
-        },
-        {
-          name: 'excerpt',
-          type: 'textarea',
-          label: 'Card Excerpt',
-          required: true,
-        },
-      ],
-    },
-    {
-      name: 'featuredImage',
-      type: 'upload',
-      relationTo: 'media',
-      label: 'Featured Image',
-      required: true,
-      filterOptions: {
-        mimeType: { in: ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'] },
-      },
-    },
-    {
-      name: 'content',
-      type: 'richText',
-      required: true,
-      label: 'Post Content',
     },
   ],
   hooks: {

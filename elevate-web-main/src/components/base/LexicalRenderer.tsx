@@ -29,7 +29,7 @@ export default function LexicalRenderer({ content, mediaBaseUrl = "" }: Props) {
   if (!content?.root?.children?.length) return null;
 
   return (
-    <div className="prose max-w-none">
+    <div className="prose max-w-none w-full overflow-hidden">
       {renderNodes(content.root.children, mediaBaseUrl)}
     </div>
   );

@@ -7,6 +7,8 @@
 .content-formatting {
   /* Optimal reading width */
   margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
 }
 
 .content-formatting h1,
@@ -19,32 +21,48 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #1a1a1a;
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+  .content-formatting h1,
+  .content-formatting h2,
+  .content-formatting h3,
+  .content-formatting h4,
+  .content-formatting h5,
+  .content-formatting h6 {
+    margin-top: 3rem;
+  }
 }
 
 .content-formatting h1 {
-  font-size: 2.25rem;
+  font-size: clamp(1.6rem, 6vw, 2.25rem);
+  line-height: 1.2;
 }
 
 .content-formatting h2 {
-  font-size: 1.5rem;
+  font-size: clamp(1.3rem, 4.5vw, 1.5rem);
+  line-height: 1.3;
 }
 
 .content-formatting h3 {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 3.5vw, 1.25rem);
+  line-height: 1.4;
 }
 
 .content-formatting h4 {
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 3vw, 1.125rem);
 }
 
 .content-formatting h5 {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
 
 .content-formatting h6 {
-  font-size: 0.875rem;
+  font-size: clamp(0.8rem, 2vw, 0.875rem);
 }
 
 .content-formatting p {
@@ -52,24 +70,47 @@
   margin-bottom: 1.25rem;
   line-height: 1.7;
   font-size: 0.875rem;
-  /* text-sm */
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+  .content-formatting p {
+    font-size: 1rem;
+  }
 }
 
 /* Base lists */
 .content-formatting ul {
   list-style-type: disc;
-  padding-left: 1.5rem;
+  padding-left: 1.25rem;
   margin-bottom: 1.5rem;
   color: #666666;
   font-size: 0.875rem;
+  word-break: break-word;
+}
+
+@media (min-width: 768px) {
+  .content-formatting ul {
+    padding-left: 1.5rem;
+    font-size: 1rem;
+  }
 }
 
 .content-formatting ol {
   list-style-type: decimal;
-  padding-left: 1.5rem;
+  padding-left: 1.25rem;
   margin-bottom: 1.5rem;
   color: #666666;
   font-size: 0.875rem;
+  word-break: break-word;
+}
+
+@media (min-width: 768px) {
+  .content-formatting ol {
+    padding-left: 1.5rem;
+    font-size: 1rem;
+  }
 }
 
 .content-formatting li {
@@ -90,6 +131,8 @@
   text-underline-offset: 4px;
   font-weight: 600;
   transition: opacity 0.2s;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .content-formatting a:hover {
@@ -100,6 +143,20 @@
 .content-formatting b {
   font-weight: 700;
   color: #1a1a1a;
+}
+
+.content-formatting table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.content-formatting img,
+.content-formatting video,
+.content-formatting iframe {
+  max-width: 100%;
+  height: auto;
 }
 
 .dynamic-section {
